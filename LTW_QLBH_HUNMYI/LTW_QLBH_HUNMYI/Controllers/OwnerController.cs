@@ -44,6 +44,161 @@ namespace LTW_QLBH_HUNMYI.Controllers
 
             return View();
         }
+        // GET: Owner/Profile - Thông tin tài khoản
+        public ActionResult Profile()
+        {
+            ViewBag.Title = "Thông tin tài khoản";
+
+            try
+            {
+                string staffId = Session["StaffID"]?.ToString();
+                
+                if (string.IsNullOrEmpty(staffId))
+                {
+                    TempData["Error"] = "Vui lòng đăng nhập lại!";
+                    return RedirectToAction("Login", "Account");
+                }
+
+                var staff = db.NHANVIEN.Find(staffId);
+
+                if (staff == null)
+                {
+                    TempData["Error"] = "Không tìm thấy thông tin tài khoản!";
+                    return RedirectToAction("Index");
+                }
+
+                // Thống kê cho Owner
+                ViewBag.TotalOrders = db.HOADON_BAN.Count();
+                ViewBag.TotalRevenue = db.HOADON_BAN
+                    .Where(h => h.TRANGTHAI == "Hoàn thành")
+                    .Sum(h => (decimal?)h.TONGTIEN) ?? 0;
+                ViewBag.TotalProducts = db.SANPHAM.Count(s => s.TRANGTHAI == "Đang bán");
+
+                return View(staff);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Có lỗi xảy ra: " + ex.Message;
+                return View();
+            }
+        }
+
+        // POST: Owner/UpdateProfile - Cập nhật thông tin
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateProfile(NHANVIEN model)
+        {
+            try
+            {
+                string staffId = Session["StaffID"]?.ToString();
+                
+                if (string.IsNullOrEmpty(staffId))
+                {
+                    TempData["Error"] = "Phiên đăng nhập đã hết hạn!";
+                    return RedirectToAction("Login", "Account");
+                }
+
+                var staff = db.NHANVIEN.Find(staffId);
+
+                if (staff != null)
+                {
+                    // Cập nhật các trường thông tin
+                    staff.HOTENNV = model.HOTENNV;
+                    staff.GIOITINH = model.GIOITINH;
+                    staff.NGAYSINH = model.NGAYSINH;
+                    staff.NGAYVAOLAM = model.NGAYVAOLAM;
+                    staff.SDT = model.SDT;
+                    staff.EMAIL = model.EMAIL;
+                    staff.DIACHI = model.DIACHI;
+
+                    db.SaveChanges();
+
+                    // Cập nhật session
+                    Session["StaffName"] = staff.HOTENNV;
+
+                    TempData["Success"] = "Cập nhật thông tin thành công!";
+                }
+                else
+                {
+                    TempData["Error"] = "Không tìm thấy thông tin tài khoản!";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Có lỗi xảy ra: " + ex.Message;
+            }
+
+            return RedirectToAction("Profile");
+        }
+
+        // GET: Owner/ChangePassword - Đổi mật khẩu
+        public ActionResult ChangePassword()
+        {
+            ViewBag.Title = "Đổi mật khẩu";
+            return View();
+        }
+
+        // POST: Owner/ChangePassword - Đổi mật khẩu
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(string oldPassword, string newPassword, string confirmPassword)
+        {
+            try
+            {
+                // Kiểm tra mật khẩu mới khớp nhau
+                if (newPassword != confirmPassword)
+                {
+                    TempData["Error"] = "Mật khẩu mới không khớp!";
+                    return View();
+                }
+
+                // Kiểm tra độ dài mật khẩu
+                if (string.IsNullOrEmpty(newPassword) || newPassword.Length < 6)
+                {
+                    TempData["Error"] = "Mật khẩu mới phải có ít nhất 6 ký tự!";
+                    return View();
+                }
+
+                string userId = Session["UserID"]?.ToString();
+                
+                if (string.IsNullOrEmpty(userId))
+                {
+                    TempData["Error"] = "Phiên đăng nhập đã hết hạn!";
+                    return RedirectToAction("Login", "Account");
+                }
+
+                var account = db.ACCOUNT.Find(userId);
+
+                if (account != null)
+                {
+                    string oldPasswordHash = GetMD5Hash(oldPassword);
+
+                    // Kiểm tra mật khẩu cũ
+                    if (account.PASSWORDHASH != oldPasswordHash)
+                    {
+                        TempData["Error"] = "Mật khẩu cũ không đúng!";
+                        return View();
+                    }
+
+                    // Cập nhật mật khẩu mới
+                    account.PASSWORDHASH = GetMD5Hash(newPassword);
+                    db.SaveChanges();
+
+                    TempData["Success"] = "Đổi mật khẩu thành công!";
+                    return RedirectToAction("Profile");
+                }
+                else
+                {
+                    TempData["Error"] = "Không tìm thấy tài khoản!";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Có lỗi xảy ra: " + ex.Message;
+            }
+
+            return View();
+        }
         #endregion
 
         #region SẢN PHẨM *****ĐÃ XONG*****

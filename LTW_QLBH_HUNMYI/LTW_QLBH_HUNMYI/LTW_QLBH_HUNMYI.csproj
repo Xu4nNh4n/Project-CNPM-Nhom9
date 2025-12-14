@@ -326,6 +326,8 @@
     <Content Include="Views\Owner\CreateCategory.cshtml" />
     <Content Include="Views\Owner\EditCategory.cshtml" />
     <Content Include="Views\Owner\DeleteCategory.cshtml" />
+    <Content Include="Views\Owner\Profile.cshtml" />
+    <Content Include="Views\Owner\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
