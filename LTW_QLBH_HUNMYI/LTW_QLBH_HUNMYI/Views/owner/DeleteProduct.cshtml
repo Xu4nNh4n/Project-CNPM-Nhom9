@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "DeleteProduct";
+}
+
+@model LTW_QLBH_HUNMYI.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+<h4 class="text-danger">⚠️ Xác nhận ngừng bán sản phẩm</h4>
+
+<div class="card p-4 shadow-sm">
+    <dl class="row">
+        <dt class="col-sm-3">Mã sản phẩm</dt>
+        <dd class="col-sm-9">@Model.MASP</dd>
+
+        <dt class="col-sm-3">Tên sản phẩm</dt>
+        <dd class="col-sm-9">@Model.TENSP</dd>
+
+        <dt class="col-sm-3">Danh mục</dt>
+        <dd class="col-sm-9">@Model.DANHMUC.TENDM</dd>
+
+        <dt class="col-sm-3">Giá</dt>
+        <dd class="col-sm-9">
+            @String.Format("{0:N0}", Model.GIA) đ
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.MASP)
+
+        <button type="submit" class="btn btn-danger">
+            ❌ Ngừng bán
+        </button>
+
+        <a href="@Url.Action("Products")"
+           class="btn btn-secondary ms-2">
+            ↩ Hủy
+        </a>
+    }
+</div>
+
+

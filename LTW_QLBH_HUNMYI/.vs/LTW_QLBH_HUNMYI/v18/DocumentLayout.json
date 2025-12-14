@@ -1,0 +1,377 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\products.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\products.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\suppliers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\suppliers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\deletestaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\deletestaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\deletecategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\deletecategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\staffdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\staffdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\staff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\staff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\shared\\_layoutowner.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\shared\\_layoutowner.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\categories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\categories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|c:\\users\\admin\\onedrive\\desktop\\do_an_ltw_qlbh_hunmyi_nfn\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 17,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Web.config",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Web.config",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Web.config",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAB8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-12-14T15:28:09.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Products.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
+              "ViewState": "AgIAAGYAAAAAAAAAAADwv3sAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T15:23:22.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DeleteStaff.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\DeleteStaff.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteStaff.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\DeleteStaff.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteStaff.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T15:15:40.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Suppliers.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Suppliers.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Suppliers.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Suppliers.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Suppliers.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAADwv0EAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T15:10:32.051Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Staff.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Staff.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Staff.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Staff.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Staff.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T15:10:23.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StaffDetail.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T15:10:22.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DeleteCategory.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\DeleteCategory.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteCategory.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\DeleteCategory.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteCategory.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T15:07:13.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_LayoutOwner.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\Shared\\_LayoutOwner.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\Shared\\_LayoutOwner.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\Shared\\_LayoutOwner.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\Shared\\_LayoutOwner.cshtml",
+              "ViewState": "AgIAALQAAAAAAAAAAADwv5QAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T14:54:36.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Categories.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAADAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T14:54:24.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "StaffController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAIwHcAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-14T14:52:41.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OwnerController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-14T14:52:38.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-14T14:52:32.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "GIOHANG.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-14T14:52:16.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\Model1.edmx",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Models\\Model1.edmx",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Models\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-12-14T14:51:58.902Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-14T14:49:13.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\DO_AN_LTW_QLBH_HUNMYI_NFN\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAASwGgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T14:49:13.862Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 429,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<LTW_QLBH_HUNMYI.Models.CTHD_BAN>
+@{
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+    var order = ViewBag.Order;
+    string currentStatus = order.TRANGTHAI;
+}
+
+<h4>Đơn hàng: @order.MAHD_BAN</h4>
+<p>Khách hàng: @order.KHACHHANG.HOTENKH</p>
+<p>Trạng thái: @order.TRANGTHAI</p>
+
+<form action="@Url.Action("UpdateOrderStatus","Owner")" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@order.MAHD_BAN" />
+    <select name="status" class="form-select w-25">
+        <option value="Chờ xử lý"
+                @(currentStatus != "Chờ xử lý" ? "disabled" : "selected")>
+            Chờ xử lý
+        </option>
+
+        <option value="Đang xử lý"
+                @(currentStatus == "Hoàn thành" || currentStatus == "Đã hủy" ? "disabled" : "")
+                @(currentStatus == "Đang xử lý" ? "selected" : "")>
+            Đang xử lý
+        </option>
+
+        <option value="Hoàn thành"
+                @(currentStatus == "Đã hủy" ? "disabled" : "")
+                @(currentStatus == "Hoàn thành" ? "selected" : "")>
+            Hoàn thành
+        </option>
+
+        <option value="Đã hủy"
+                @(currentStatus == "Hoàn thành" ? "disabled" : "")
+                @(currentStatus == "Đã hủy" ? "selected" : "")>
+            Đã hủy
+        </option>
+    </select>
+
+    <button class="btn btn-primary mt-2"
+            @(currentStatus == "Hoàn thành" || currentStatus == "Đã hủy" ? "disabled" : "")>
+        Cập nhật
+    </button>
+</form>
+
+<table class="table mt-4">
+    <thead>
+        <tr><th>Sản phẩm</th><th>Số lượng</th><th>Giá</th><th>Thành tiền</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.SANPHAM.TENSP</td>
+                <td>@d.SOLUONG</td>
+                <td>@d.DONGIA</td>
+                <td>@d.THANHTIEN</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="mt-4">
+    <button type="button" class="btn btn-secondary" onclick="history.back();">⬅ Quay lại</button>
+</div>

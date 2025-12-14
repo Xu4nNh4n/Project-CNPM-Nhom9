@@ -1,0 +1,23 @@
+﻿@model LTW_QLBH_HUNMYI.Models.DANHMUC
+
+@{
+    ViewBag.Title = "Thêm danh mục";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+<h4>➕ Thêm danh mục</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card p-4 shadow-sm">
+        <div class="mb-3">
+            <label>Tên danh mục</label>
+            @Html.TextBoxFor(m => m.TENDM, new { @class = "form-control", required = "required" })
+        </div>
+
+        <button type="submit" class="btn btn-success">Lưu</button>
+        <a href="@Url.Action("Categories")" class="btn btn-secondary ms-2">Quay lại</a>
+    </div>
+}

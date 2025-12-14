@@ -1,0 +1,7 @@
+﻿@model LTW_QLBH_HUNMYI.Models.GIOHANG
+<li class="nav-item">
+    <a class="nav-link position-relative" href="@Url.Action("Cart", "Customer")">
+        <i class="fas fa-shopping-cart fa-lg"></i>
+        <span class="cart-badge" id="cartCount">@(Model.TongSL!=null? Model.TongSL.Value:0)</span>
+    </a>
+</li>

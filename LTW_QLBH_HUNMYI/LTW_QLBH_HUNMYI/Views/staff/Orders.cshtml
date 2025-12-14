@@ -1,0 +1,89 @@
+﻿@model IEnumerable<LTW_QLBH_HUNMYI.Models.HOADON_BAN>
+@{
+    Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+}
+
+<!-- 🔍 TÌM THEO MÃ -->
+@using (Html.BeginForm("Orders", "Staff", FormMethod.Get))
+{
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <input type="text"
+                   name="maHD"
+                   class="form-control"
+                   placeholder="Nhập mã hóa đơn..." />
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary">Tìm mã</button>
+        </div>
+    </div>
+}
+
+<!-- 🔽 LỌC THEO TRẠNG THÁI -->
+@using (Html.BeginForm("Orders", "Staff", FormMethod.Get))
+{
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <select name="status" class="form-control">
+                <option value="">-- Chọn trạng thái --</option>
+                <option value="Chờ xử lý" @(Request["status"] == "Chờ xử lý" ? "selected" : "")>
+                    Chờ xử lý
+                </option>
+                <option value="Đang xử lý" @(Request["status"] == "Đang xử lý" ? "selected" : "")>
+                    Đang xử lý
+                </option>
+                <option value="Hoàn thành" @(Request["status"] == "Hoàn thành" ? "selected" : "")>
+                    Hoàn thành
+                </option>
+                <option value="Đã hủy" @(Request["status"] == "Đã hủy" ? "selected" : "")>
+                    Đã hủy
+                </option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-success">Lọc</button>
+            <a href="@Url.Action("Orders","Staff")"
+               class="btn btn-secondary">Tất cả</a>
+        </div>
+    </div>
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Mã HĐ</th>
+            <th>Ngày lập</th>
+            <th>Khách</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center text-danger">
+                    Không có đơn hàng phù hợp
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var o in Model)
+            {
+                <tr>
+                    <td>@o.MAHD_BAN</td>
+                    <td>@o.NGAYLAP</td>
+                    <td>@o.KHACHHANG.HOTENKH</td>
+                    <td>@o.TRANGTHAI</td>
+                    <td>
+                        <a href="@Url.Action("OrderDetail","Staff", new { id = o.MAHD_BAN })"
+                           class="btn btn-info btn-sm">
+                            Xem
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "EditSupplier";
+}
+
+@model LTW_QLBH_HUNMYI.Models.XUONGIN
+@{
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+    ViewBag.Title = "Sửa xưởng in";
+}
+
+<h4>Sửa xưởng in</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.MAXI)
+
+    <div class="mb-3">
+        <label>Mã xưởng</label>
+        <input class="form-control" value="@Model.MAXI" disabled />
+    </div>
+
+    <div class="mb-3">
+        <label>Tên xưởng</label>
+        @Html.TextBoxFor(m => m.TENXI, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label>Địa chỉ</label>
+        @Html.TextBoxFor(m => m.DIACHI, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label>SĐT</label>
+        @Html.TextBoxFor(m => m.SDT, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label>Người liên hệ</label>
+        @Html.TextBoxFor(m => m.NGUOILIENHE, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label>Trạng thái</label>
+        @Html.DropDownListFor(m => m.TRANGTHAI,
+            new SelectList(
+                new[] { "Hoạt động", "Ngừng hợp tác" },
+                Model.TRANGTHAI),
+            new { @class = "form-select" })
+    </div>
+
+    <button type="submit" class="btn btn-warning">💾 Lưu</button>
+    <a href="@Url.Action("Suppliers")" class="btn btn-secondary">Quay lại</a>
+}
+
+

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Xóa nhân viên";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+@model LTW_QLBH_HUNMYI.Models.NHANVIEN
+
+<h2>Bạn có chắc muốn xóa nhân viên?</h2>
+
+<div><b>@Model.HOTENNV</b></div>
+
+@using (Html.BeginForm("DeleteStaff", "Owner", new { id = Model.MANV }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a href="@Url.Action("Staff", "Owner")" class="btn btn-secondary">Hủy</a>
+}
+
+

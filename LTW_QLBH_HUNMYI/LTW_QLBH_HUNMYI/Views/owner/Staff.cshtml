@@ -1,0 +1,27 @@
+﻿@model IEnumerable<LTW_QLBH_HUNMYI.Models.NHANVIEN>
+@{
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+<table class="table table-striped">
+    <thead>
+        <a href="@Url.Action("CreateStaff","Owner")" class="btn btn-primary mb-3">➕ Thêm nhân viên</a>
+        <tr><th>Mã KH</th><th>Tên KH</th><th>SDT</th><th>Email</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.MANV</td>
+                <td>@c.HOTENNV</td>
+                <td>@c.SDT</td>
+                <td>@c.EMAIL</td>
+                <td>
+                    <a href="@Url.Action("StaffDetail","Owner", new {id=c.MANV})" class="btn btn-primary btn-sm">Xem</a>
+                    <a href="@Url.Action("EditStaff","Owner", new { id = c.MANV })" class="btn btn-warning btn-sm">Sửa</a>
+                    <a href="@Url.Action("DeleteStaff","Owner", new { id = c.MANV })" class="btn btn-danger btn-sm">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

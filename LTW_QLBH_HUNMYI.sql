@@ -1,0 +1,594 @@
+﻿CREATE DATABASE QLBH_HUNMYI_LTW
+GO
+USE QLBH_HUNMYI_LTW
+GO
+
+-- ==========================================================================================
+--                                         TẠO BẢNG
+-- ==========================================================================================
+
+----------1. BẢNG KHÁCH HÀNG----------
+CREATE TABLE KHACHHANG
+(
+	MAKH VARCHAR(10) NOT NULL,
+	HOTENKH NVARCHAR(50) NOT NULL,
+	GIOITINH NVARCHAR(5) CHECK(GIOITINH IN (N'Nam', N'Nữ')),
+	SDT CHAR(10),
+	EMAIL VARCHAR(50),
+	DIACHI NVARCHAR(100),
+	NGAYDANGKY DATE DEFAULT GETDATE(),
+	CONSTRAINT PK_KH PRIMARY KEY (MAKH),
+	CONSTRAINT UQ_KHACHHANG_SDT UNIQUE (SDT),
+	CONSTRAINT UQ_KHACHHANG_EMAIL UNIQUE (EMAIL),
+	CONSTRAINT CK_KH_EMAIL_FORMAT CHECK (EMAIL LIKE '_%@_%._%')
+)
+GO
+
+----------2. BẢNG NHÂN VIÊN----------
+CREATE TABLE NHANVIEN
+(
+	MANV VARCHAR(10) NOT NULL PRIMARY KEY,
+	HOTENNV NVARCHAR(50) NOT NULL,
+	GIOITINH NVARCHAR(5) CHECK(GIOITINH IN (N'Nam', N'Nữ')),
+	NGAYSINH DATE,
+	NGAYVAOLAM DATE,
+	SDT CHAR(10) UNIQUE,
+	EMAIL VARCHAR(50) UNIQUE CHECK (EMAIL LIKE '_%@_%._%'),
+	DIACHI NVARCHAR(100),
+	CHUCVU NVARCHAR(30) CHECK (CHUCVU IN (N'Chủ shop', N'Nhân viên')),
+	LUONGCOBAN MONEY CHECK (LUONGCOBAN >= 0),
+	TRANGTHAI NVARCHAR(20) DEFAULT N'Đang làm' CHECK (TRANGTHAI IN (N'Đang làm', N'Nghỉ việc')),
+	CONSTRAINT CK_NV_NGAY CHECK (NGAYVAOLAM >= NGAYSINH)
+)
+GO
+
+----------3. BẢNG TÀI KHOẢN----------
+CREATE TABLE ACCOUNT
+(
+	USERID VARCHAR(10) PRIMARY KEY,  
+    USERNAME VARCHAR(30) NOT NULL UNIQUE,
+    PASSWORDHASH NVARCHAR(256) NOT NULL, -- Lưu mật khẩu đã hash
+    VAITRO NVARCHAR(30) NOT NULL CHECK (VAITRO IN (N'Chủ shop', N'Nhân viên', N'Khách')),
+    MAKH VARCHAR(10) NULL,
+    MANV VARCHAR(10) NULL,
+    EMAIL VARCHAR(100) UNIQUE NOT NULL,
+    SDT VARCHAR(15) NULL,
+    TRANGTHAI NVARCHAR(20) DEFAULT N'Hoạt động' CHECK (TRANGTHAI IN (N'Hoạt động', N'Khóa')),
+    FOREIGN KEY (MAKH) REFERENCES KHACHHANG(MAKH),
+    FOREIGN KEY (MANV) REFERENCES NHANVIEN(MANV),
+    CONSTRAINT CK_ACCOUNT_ROLE CHECK 
+	(
+        (VAITRO = N'Khách' AND MAKH IS NOT NULL AND MANV IS NULL) OR
+        (VAITRO IN (N'Nhân viên', N'Chủ shop') AND MANV IS NOT NULL AND MAKH IS NULL)
+    )
+)
+GO
+
+----------4. BẢNG DANH MỤC----------
+CREATE TABLE DANHMUC 
+(
+    MADM VARCHAR(10) NOT NULL PRIMARY KEY,
+    TENDM NVARCHAR(50) UNIQUE NOT NULL,
+	MOTA_DM NVARCHAR(255),
+    TRANGTHAI NVARCHAR(20) DEFAULT N'Hiển thị' CHECK (TRANGTHAI IN (N'Hiển thị', N'Ẩn'))
+)
+GO
+
+----------5. BẢNG SẢN PHẨM----------
+CREATE TABLE SANPHAM 
+(
+    MASP VARCHAR(10) PRIMARY KEY NOT NULL,
+    TENSP NVARCHAR(100) NOT NULL,
+	HINHANH NVARCHAR(200),
+	MOTA NVARCHAR(500),
+    SOLUONGTON INT DEFAULT 0 CHECK (SOLUONGTON >= 0),
+    GIA MONEY CHECK (GIA > 0),
+    TRANGTHAI NVARCHAR(20) DEFAULT N'Đang bán' CHECK (TRANGTHAI IN (N'Đang bán', N'Ngừng bán', N'Hết hàng')),
+    MADM VARCHAR(10) NOT NULL,
+    NGAYTAO DATE DEFAULT GETDATE(),
+    CONSTRAINT FK_SP_DM FOREIGN KEY (MADM) REFERENCES DANHMUC(MADM)
+)
+GO
+
+----------6. BẢNG GIỎ HÀNG----------
+CREATE TABLE GIOHANG
+(
+    MAGH VARCHAR(10) PRIMARY KEY,
+    MAKH VARCHAR(10) NOT NULL,
+    NGAYTAO DATE DEFAULT GETDATE(),
+    FOREIGN KEY (MAKH) REFERENCES KHACHHANG(MAKH)
+)
+GO
+
+----------7. BẢNG CHI TIẾT GIỎ HÀNG----------
+CREATE TABLE CHITIET_GIOHANG
+(
+
+    MAGH VARCHAR(10),
+    MASP VARCHAR(10),
+    SOLUONG INT CHECK (SOLUONG > 0),
+    NGAYTHEM DATETIME DEFAULT GETDATE(),
+    PRIMARY KEY (MAGH, MASP),
+    FOREIGN KEY (MAGH) REFERENCES GIOHANG(MAGH),
+    FOREIGN KEY (MASP) REFERENCES SANPHAM(MASP)
+)
+GO
+
+----------8. BẢNG HÓA ĐƠN BÁN----------
+CREATE TABLE HOADON_BAN 
+(
+    MAHD_BAN VARCHAR(10) NOT NULL PRIMARY KEY,
+	NGAYLAP DATETIME DEFAULT GETDATE(),
+    MANV VARCHAR(10) NULL, -- Có thể null nếu khách tự đặt online
+    MAKH VARCHAR(10) NOT NULL,
+    TONGTIEN MONEY DEFAULT 0 CHECK (TONGTIEN >= 0),
+    TRANGTHAI NVARCHAR(30) DEFAULT N'Chờ xử lý' 
+        CHECK (TRANGTHAI IN (N'Chờ xử lý', N'Đang xử lý', N'Hoàn thành', N'Đã hủy')),
+    GHICHU NVARCHAR(500),
+    CONSTRAINT FK_HOADON_NHANVIEN FOREIGN KEY (MANV) REFERENCES NHANVIEN(MANV),
+    FOREIGN KEY (MAKH) REFERENCES KHACHHANG(MAKH)
+)
+GO
+
+----------9. BẢNG CHI TIẾT HÓA ĐƠN BÁN----------
+CREATE TABLE CTHD_BAN 
+(
+    MAHD_BAN VARCHAR(10) NOT NULL,
+    MASP VARCHAR(10),
+    SOLUONG INT CHECK (SOLUONG > 0),
+    DONGIA MONEY CHECK (DONGIA >= 0),
+    THANHTIEN AS (SOLUONG * DONGIA) PERSISTED,
+    CONSTRAINT PK_CTHD_BAN PRIMARY KEY (MAHD_BAN, MASP),
+    CONSTRAINT FK_CTHD_HOADON FOREIGN KEY (MAHD_BAN) REFERENCES HOADON_BAN(MAHD_BAN),
+    CONSTRAINT FK_CTHD_SANPHAM FOREIGN KEY (MASP) REFERENCES SANPHAM(MASP)
+)
+GO
+
+----------10. BẢNG XƯỞNG IN----------
+CREATE TABLE XUONGIN 
+(
+    MAXI VARCHAR(10) NOT NULL PRIMARY KEY,
+    TENXI NVARCHAR(50) NOT NULL,
+    DIACHI NVARCHAR(100),
+    SDT VARCHAR(15) UNIQUE,
+    EMAIL NVARCHAR(50) UNIQUE CHECK (EMAIL LIKE '_%@_%._%'),
+	NGUOILIENHE NVARCHAR(50),
+    TRANGTHAI NVARCHAR(20) DEFAULT N'Hoạt động' CHECK (TRANGTHAI IN (N'Hoạt động', N'Ngừng hợp tác'))
+)
+GO
+
+----------11. BẢNG PHIẾU NHẬP----------
+CREATE TABLE PHIEUNHAP 
+(
+    MAPN VARCHAR(10) NOT NULL PRIMARY KEY,
+    NGAYNHAP DATETIME DEFAULT GETDATE(),
+    MAXI VARCHAR(10),
+    MANV VARCHAR(10),
+    TONGTIEN MONEY DEFAULT 0,
+    TRANGTHAI NVARCHAR(20) DEFAULT N'Đã nhập' CHECK (TRANGTHAI IN (N'Đã nhập', N'Đã hủy')),
+    CONSTRAINT FK_PHIEUNHAP_NHACUNGCAP FOREIGN KEY (MAXI) REFERENCES XUONGIN(MAXI),
+    FOREIGN KEY (MANV) REFERENCES NHANVIEN(MANV)
+)
+GO
+
+----------12. BẢNG CHI TIẾT PHIẾU NHẬP----------
+CREATE TABLE CHITIETPHIEUNHAP 
+(
+    MAPN VARCHAR(10) NOT NULL,
+    MASP VARCHAR(10),
+    SOLUONG INT CHECK (SOLUONG > 0),
+    DONGIA MONEY CHECK (DONGIA >= 0),
+    THANHTIEN AS (SOLUONG * DONGIA) PERSISTED,
+    CONSTRAINT PK_CTPN PRIMARY KEY (MAPN, MASP),
+    CONSTRAINT FK_CTPN_PHIEUNHAP FOREIGN KEY (MAPN) REFERENCES PHIEUNHAP(MAPN),
+    FOREIGN KEY (MASP) REFERENCES SANPHAM(MASP)
+)
+GO
+
+-- ==========================================================================================
+--                                         TRIGGER
+-- ==========================================================================================
+
+-----TỰ ĐỘNG CẬP NHẬT MÃ KHACH HANG-----
+CREATE TRIGGER TRG_TU_DONG_MAKH
+ON KHACHHANG
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @CurMax INT;
+
+    SELECT @CurMax = ISNULL(MAX(CAST(SUBSTRING(MAKH, 3, 10) AS INT)), 0)
+    FROM KHACHHANG;
+
+    INSERT INTO KHACHHANG(MAKH, HOTENKH, GIOITINH, SDT, EMAIL, DIACHI, NGAYDANGKY)
+    SELECT 
+        'KH' + CAST(@CurMax + ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS VARCHAR(10)),
+        HOTENKH, GIOITINH, SDT, EMAIL, DIACHI, NGAYDANGKY
+    FROM inserted;
+END
+GO
+
+-----TỰ ĐỘNG CẬP NHẬT MÃ NHÂN VIÊN-----
+CREATE TRIGGER TRG_TU_DONG_MANV
+ON NHANVIEN
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @CurMax INT;
+
+    SELECT @CurMax = ISNULL(MAX(CAST(SUBSTRING(MANV, 3, 10) AS INT)), 0)
+    FROM NHANVIEN;
+
+    INSERT INTO NHANVIEN(MANV, HOTENNV, GIOITINH, NGAYSINH, NGAYVAOLAM, SDT, EMAIL, DIACHI, CHUCVU, LUONGCOBAN, TRANGTHAI)
+    SELECT
+        'NV' + CAST(@CurMax + ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS VARCHAR(10)),
+        HOTENNV, GIOITINH, NGAYSINH, NGAYVAOLAM, SDT, EMAIL, DIACHI, CHUCVU, LUONGCOBAN, TRANGTHAI
+    FROM inserted;
+END
+GO
+
+-----TỰ ĐỘNG CẬP NHẬT MÃ ACCOUNT-----
+CREATE TRIGGER TRG_TU_DONG_ACCOUNTID
+ON ACCOUNT
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @CurMax INT;
+
+    SELECT @CurMax = ISNULL(MAX(CAST(SUBSTRING(USERID, 3, 10) AS INT)), 0)
+    FROM ACCOUNT;
+
+    INSERT INTO ACCOUNT(USERID, USERNAME, PASSWORDHASH, VAITRO, MAKH, MANV, EMAIL, SDT, TRANGTHAI)
+    SELECT
+        'ID' + CAST(@CurMax + ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS VARCHAR(10)),
+        USERNAME, PASSWORDHASH, VAITRO, MAKH, MANV, EMAIL, SDT, TRANGTHAI
+    FROM inserted;
+END
+GO
+
+-----TỰ ĐỘNG CẬP NHẬT MÃ DANHMUC-----
+CREATE TRIGGER TRG_TU_DONG_MADM
+ON DANHMUC
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @CurMax INT;
+
+    SELECT @CurMax = ISNULL(MAX(CAST(SUBSTRING(MADM, 3, 10) AS INT)), 0)
+    FROM DANHMUC;
+
+    INSERT INTO DANHMUC(MADM, TENDM, MOTA_DM, TRANGTHAI)
+    SELECT 
+        'DM' + CAST(@CurMax + ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS VARCHAR(10)),
+        TENDM, MOTA_DM, TRANGTHAI
+    FROM inserted;
+END
+GO
+
+-----TỰ ĐỘNG CẬP NHẬT MÃ SẢN PHẨM-----
+CREATE TRIGGER TRG_TU_DONG_MASP
+ON SANPHAM
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @CurMax INT;
+
+    SELECT @CurMax = ISNULL(MAX(CAST(SUBSTRING(MASP, 3, 10) AS INT)), 0)
+    FROM SANPHAM;
+
+    INSERT INTO SANPHAM(MASP, TENSP, HINHANH, MOTA, SOLUONGTON, GIA, TRANGTHAI, MADM, NGAYTAO)
+    SELECT
+        'SP' + CAST(@CurMax + ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS VARCHAR(10)),
+        TENSP, HINHANH, MOTA, SOLUONGTON, GIA, TRANGTHAI, MADM, NGAYTAO
+    FROM inserted;
+END
+GO
+
+-----TỰ ĐỘNG CẬP NHẬT MÃ GIỎ HÀNG-----
+CREATE TRIGGER TRG_TU_DONG_MAGH
+ON GIOHANG
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @CurMax INT;
+
+    SELECT @CurMax = ISNULL(MAX(CAST(SUBSTRING(MAGH, 3, 10) AS INT)), 0)
+    FROM GIOHANG;
+
+    INSERT INTO GIOHANG(MAGH, MAKH, NGAYTAO)
+    SELECT
+        'GH' + CAST(@CurMax + ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS VARCHAR(10)),
+        MAKH, NGAYTAO
+    FROM inserted;
+END
+GO
+
+-----TỰ ĐỘNG CẬP NHẬT MÃ HOADON_BAN-----
+CREATE TRIGGER TRG_TU_DONG_MAHD_BAN
+ON HOADON_BAN
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @CurMax INT;
+
+    SELECT @CurMax = ISNULL(MAX(CAST(SUBSTRING(MAHD_BAN, 3, 10) AS INT)), 0)
+    FROM HOADON_BAN;
+
+    INSERT INTO HOADON_BAN(MAHD_BAN, NGAYLAP, MANV, MAKH, TONGTIEN, TRANGTHAI, GHICHU)
+    SELECT
+        'HB' + CAST(@CurMax + ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS VARCHAR(10)),
+        NGAYLAP, MANV, MAKH, TONGTIEN, TRANGTHAI, GHICHU
+    FROM inserted;
+END
+GO
+
+
+-----TỰ ĐỘNG CẬP NHẬT MÃ XƯỞNG IN-----
+CREATE TRIGGER TRG_TU_DONG_MAXI
+ON XUONGIN
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @CurMax INT;
+
+    SELECT @CurMax = ISNULL(MAX(CAST(SUBSTRING(MAXI, 3, 10) AS INT)), 0)
+    FROM XUONGIN;
+
+    INSERT INTO XUONGIN(MAXI, TENXI, DIACHI, SDT, EMAIL, NGUOILIENHE, TRANGTHAI)
+    SELECT
+        'XI' + CAST(@CurMax + ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS VARCHAR(10)),
+        TENXI, DIACHI, SDT, EMAIL, NGUOILIENHE, TRANGTHAI
+    FROM inserted;
+END
+GO
+
+
+-----TỰ ĐỘNG CẬP NHẬT MÃ PHIẾU NHẬP-----
+CREATE TRIGGER TRG_TU_DONG_MAPN
+ON PHIEUNHAP
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @CurMax INT;
+
+    SELECT @CurMax = ISNULL(MAX(CAST(SUBSTRING(MAPN, 3, 10) AS INT)), 0)
+    FROM PHIEUNHAP;
+
+    INSERT INTO PHIEUNHAP(MAPN, NGAYNHAP, MAXI, MANV, TONGTIEN, TRANGTHAI)
+    SELECT
+        'PN' + CAST(@CurMax + ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS VARCHAR(10)),
+        NGAYNHAP, MAXI, MANV, TONGTIEN, TRANGTHAI
+    FROM inserted;
+END
+GO
+
+
+
+-----TRIGGER CẬP NHẬT TỒN KHO MỖI KIA LẬP HÓA ĐƠN BÁN-----
+-- Giảm tồn kho khi bán hàng
+CREATE TRIGGER TRG_UPDATE_TONKHO_BAN
+ON CTHD_BAN
+AFTER INSERT
+AS
+BEGIN
+    UPDATE SP
+    SET SP.SOLUONGTON = SP.SOLUONGTON - I.SOLUONG
+    FROM SANPHAM SP
+    JOIN INSERTED I ON SP.MASP = I.MASP
+    IF EXISTS (SELECT 1 FROM SANPHAM WHERE SOLUONGTON < 0)
+    BEGIN
+        RAISERROR(N'Sản phẩm không đủ tồn kho!',16,1)
+        ROLLBACK TRANSACTION
+    END
+END
+GO
+
+----- TRIGGER CẬP NHẬT TỒN KHO KHI NHẬP HÀNG -----
+-- Tăng tồn kho khi nhập hàng
+CREATE TRIGGER TRG_UPDATE_TONKHO_NHAP
+ON CHITIETPHIEUNHAP       -- bảng chi tiết phiếu nhập (ví dụ)
+AFTER INSERT
+AS
+BEGIN
+    -- Tăng số lượng tồn kho
+    UPDATE SP
+    SET SP.SOLUONGTON = SP.SOLUONGTON + I.SOLUONG
+    FROM SANPHAM SP
+    JOIN INSERTED I ON SP.MASP = I.MASP
+
+    -- Kiểm tra nếu số lượng tồn kho bị âm (trường hợp hiếm)
+    IF EXISTS (SELECT 1 FROM SANPHAM WHERE SOLUONGTON < 0)
+    BEGIN
+        RAISERROR(N'Số lượng tồn kho không hợp lệ!', 16, 1)
+        ROLLBACK TRANSACTION
+    END
+END
+GO
+
+-----Cập nhật tổng tiền hóa đơn khi thêm mới chi tiết-----
+CREATE TRIGGER TRG_UpdateTotalInvoice
+ON CTHD_BAN
+AFTER INSERT, DELETE, UPDATE
+AS
+BEGIN
+    UPDATE HOADON_BAN
+    SET TONGTIEN =
+        (SELECT SUM(THANHTIEN) FROM CTHD_BAN WHERE MAHD_BAN = HOADON_BAN.MAHD_BAN)
+    WHERE MAHD_BAN IN (
+        SELECT MAHD_BAN FROM inserted
+        UNION
+        SELECT MAHD_BAN FROM deleted
+    );
+END
+GO
+
+-- ==========================================================================================
+--                                         THÊM DỮ LIỆU MẪU
+-- ==========================================================================================
+
+-- 1. Thêm khách hàng mẫu
+INSERT INTO KHACHHANG (HOTENKH, GIOITINH, SDT, EMAIL, DIACHI, NGAYDANGKY) VALUES
+(N'Trần Tuấn Huy', N'Nam', '0987654321', 'customer1@gmail.com', N'Quận 1, TP.HCM', '2024-01-01'),
+(N'Nguyễn Thị D', N'Nữ', '0123456789', 'customer2@gmail.com', N'Quận 12, TP.HCM', '2025-08-01')
+GO
+
+-- 2. Thêm nhân viên
+INSERT INTO NHANVIEN (HOTENNV, GIOITINH, NGAYSINH, NGAYVAOLAM, SDT, EMAIL, DIACHI, CHUCVU, LUONGCOBAN, TRANGTHAI) VALUES
+(N'Nguyễn Văn A', N'Nam', '1990-01-01', '2020-01-01', '0901234567', 'owner@hunmyi.com', N'TP.HCM', N'Chủ Shop', 20000000, N'Đang làm'),
+(N'Trần Thị B', N'Nữ', '1995-05-05', '2021-06-01', '0912345678', 'staff1@hunmyi.com', N'TP.HCM', N'Nhân Viên', 10000000, N'Đang làm'),
+(N'Lê Văn C', N'Nam', '1998-03-10', '2022-03-01', '0923456789', 'staff2@hunmyi.com', N'TP.HCM', N'Nhân Viên', 10000000, N'Đang làm')
+GO
+
+-- 3. Thêm tài khoản (mật khẩu: 123456)
+INSERT INTO ACCOUNT (USERNAME,PASSWORDHASH,VAITRO,MAKH,MANV,EMAIL,SDT,TRANGTHAI) VALUES
+('owner', N'e10adc3949ba59abbe56e057f20f883e', N'Chủ shop', NULL, 'NV1', 'owner@hunmyi.com', '0901234567', N'Hoạt động'),
+('staff1', N'e10adc3949ba59abbe56e057f20f883e', N'Nhân viên', NULL, 'NV2', 'staff1@hunmyi.com', '0912345678', N'Hoạt động'),
+('staff2', N'e10adc3949ba59abbe56e057f20f883e', N'Nhân viên', NULL, 'NV3', 'staff2@hunmyi.com', '0923456789', N'Hoạt động'),
+('customer1', N'e10adc3949ba59abbe56e057f20f883e', N'Khách', 'KH1', NULL, 'customer1@gmail.com', '0987654321', N'Hoạt động'),
+('customer2', N'e10adc3949ba59abbe56e057f20f883e', N'Khách', 'KH2', NULL, 'customer2@gmail.com', '0987654321', N'Hoạt động')
+GO
+
+
+-- 4. Thêm danh mục
+INSERT INTO DANHMUC (TENDM, MOTA_DM, TRANGTHAI) VALUES
+(N'Pin Gỗ ', N'Pin cài áo, cặp ', N'Hiển thị'),
+(N'Standee Gacha', N'Standee 3cm từ nhiều fandom ', N'Hiển thị'),
+(N'Badge', N'Các loại pin cài áo và cặp ', N'Hiển thị'),
+(N'Sticker', N'Sticker đa dạng về mẫu mã ', N'Hiển thị'),
+(N'Phonecharm', N'Móc treo điện thoại và chìa khóa ', N'Hiển thị'),
+(N'Card Gacha', N'Hình các nhân vật ', N'Hiển thị')
+
+
+-- 5. Thêm sản phẩm
+INSERT INTO SANPHAM (TENSP,HINHANH,MOTA,SOLUONGTON,GIA,TRANGTHAI,MADM,NGAYTAO) VALUES
+(N'Pin Gỗ HSR', 'pingo1.jpg', N'Pin gỗ Honkai: Star Rail, nhiều mẫu', 49 , 40000, N'Đang bán', 'DM1', '2024-01-01'),
+(N'Pin Gỗ GI', 'pingo2.jpg', N'Pin gỗ Gensin Impact, nhiều mẫu', 59, 40000, N'Đang bán', 'DM1', '2024-01-01'),
+(N'Pin Gỗ ZZZ', 'pingo3.jpg', N'Pin gỗ Zenless Zone Zero, nhiều mẫu', 68, 40000, N'Đang bán', 'DM1', '2024-01-01'),
+
+(N'Honkai: Star Rail', 'standee1.jpg', N'Mô hình dựng đứng các nhân vật Honkai: Star Rail', 44, 30000, N'Đang bán', 'DM2', '2024-01-01'),
+(N'Gensin Impact ', 'standee2.jpg', N'Mô hình dựng đứng các nhân vật Gensin Impact', 38, 30000, N'Đang bán', 'DM2', '2024-01-01'),
+(N'Zenless Zone Zero', 'standee3.jpg', N'Mô hình dựng đứng các nhân vật Zenless Zone Zero', 78, 30000, N'Đang bán', 'DM2', '2024-01-01'),
+
+(N'Gensin Impact', 'badge1.jpg', N'Huy hiệu cài áo hình các nhân vật trong Gensin Impact', 46, 20000, N'Đang bán', 'DM3', '2024-01-01'),
+(N'Honkai: Star Rail', 'badge2.jpg', N'Huy hiệu cài áo hình các nhân vật trong Honkai: Star Rail', 54, 20000, N'Đang bán', 'DM3', '2024-01-01'),
+
+(N'Gensin Impact', 'sticker1.jpg', N'Sticker hình các nhân vật trong Gensin Impact', 76, 15000, N'Đang bán', 'DM4', '2024-01-01'),
+(N'Mochi', 'sticker2.jpg', N'Sticker hình các nhân vật trong Mochi', 42, 15000, N'Đang bán', 'DM4', '2024-01-01'),
+
+(N'Kimetsu no Yaiba', 'phonecharm1.jpg', N'Móc điện thoại hình các nhân vật trong Kimetsu no Yaiba', 45, 30000, N'Đang bán', 'DM5', '2024-01-01'),
+(N'Singger Board', 'phonecharm2.jpg', N'Móc điện thoại hình các nhân vật trong Singger Board', 37, 30000, N'Đang bán', 'DM5', '2024-01-01'),
+
+(N'Bling', 'card1.jpg', N'Card bo góc hình các nhân vật trong Bling', 57, 30000, N'Đang bán', 'DM6', '2024-01-01'),
+(N'Spot Light', 'card2.jpg', N'Card bo góc hình các nhân vật trong Spot Light', 59, 30000, N'Đang bán', 'DM6', '2024-01-01')
+GO
+
+
+-- 6. Tạo giỏ hàng cho khách
+INSERT INTO GIOHANG VALUES 
+('GH1', 'KH1', '2024-01-01'),
+('GH2', 'KH2', '2025-08-11')
+GO
+
+
+
+SELECT * FROM KHACHHANG
+SELECT * FROM NHANVIEN
+SELECT * FROM ACCOUNT
+SELECT * FROM DANHMUC
+SELECT * FROM SANPHAM
+SELECT * FROM GIOHANG
+SELECT * FROM CHITIET_GIOHANG
+SELECT * FROM HOADON_BAN
+SELECT * FROM CTHD_BAN
+SELECT * FROM XUONGIN
+SELECT * FROM PHIEUNHAP
+SELECT * FROM CHITIETPHIEUNHAP
+
+
+
+-----------------------------------------------------BACKUP DỮ LIỆU--------------------------------------------------
+---------------BACKUP FULL----------------------
+BACKUP DATABASE QLBH_HUNMYI_FINAL
+TO DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_FULL.bak'
+WITH INIT;
+
+---------------BACKUP DIFF----------------------
+BACKUP DATABASE QLBH_HUNMYI_FINAL
+TO DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_DIFF.bak'
+WITH DIFFERENTIAL;
+
+---------------BACKUP LOG----------------------
+BACKUP LOG QLBH_HUNMYI_FINAL
+TO DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_LOG.trn';
+
+-- Restore Full
+RESTORE DATABASE QLBH_HUNMYI_FINAL
+FROM DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_FULL.bak'
+WITH REPLACE, NORECOVERY;
+GO
+
+-- Restore Diff 
+RESTORE DATABASE QLBH_HUNMYI_FINAL
+FROM DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_DIFF.bak'
+WITH NORECOVERY;
+GO
+
+-- Restore log(s) 
+RESTORE LOG QLBH_HUNMYI_FINAL 
+FROM DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_FULL.bak'
+WITH NORECOVERY;
+GO 
+
+
+-------------------------------------PHÂN QUYỀN------------------------------------------
+-----CREATE ROLE-----
+CREATE ROLE ROLE_OWNER;
+CREATE ROLE ROLE_STAFF;
+CREATE ROLE ROLE_CUSTOMER;
+GO
+-----LOGIN ACCOUNT-----
+CREATE LOGIN owner_1 WITH PASSWORD = '1234';
+CREATE LOGIN staff_1 WITH PASSWORD = '12345';
+CREATE LOGIN customer_1 WITH PASSWORD = '123456';
+
+-----USER ACCOUNT-----
+CREATE USER owner1 FOR LOGIN owner_1;
+CREATE USER staff1 FOR LOGIN staff_1;
+CREATE USER customer1 FOR LOGIN customer_1;
+
+-----GÁN ROLE-----
+EXEC sp_addrolemember 'AdminRole', 'AdminUser';
+EXEC sp_addrolemember 'NhanVienRole', 'NhanVienUser';
+EXEC sp_addrolemember 'KhachRole', 'KhachUser';
+
+-- ===== OWNER =====
+GRANT CONTROL ON DATABASE::QLBH_HUNMYI_FINAL TO ROLE_OWNER;
+
+-- ===== STAFF =====
+-- Xem thông tin khách hàng, danh mục, sản phẩm
+GRANT SELECT ON dbo.KHACHHANG TO ROLE_STAFF;
+GRANT SELECT ON dbo.DANHMUC TO ROLE_STAFF;
+GRANT SELECT ON dbo.SANPHAM TO ROLE_STAFF;
+
+-- Xử lý đơn hàng
+GRANT SELECT, INSERT, UPDATE ON dbo.HOADON_BAN TO ROLE_STAFF;
+GRANT SELECT, INSERT, UPDATE ON dbo.CTHD_BAN TO ROLE_STAFF;
+
+-- ===== CUSTOMER =====
+-- Xem danh mục, sản phẩm
+GRANT SELECT ON dbo.DANHMUC TO ROLE_CUSTOMER;
+GRANT SELECT ON dbo.SANPHAM TO ROLE_CUSTOMER;
+
+-- Giỏ hàng
+GRANT SELECT, INSERT, UPDATE, DELETE ON dbo.GIOHANG TO ROLE_CUSTOMER;
+GRANT SELECT, INSERT, UPDATE, DELETE ON dbo.CHITIET_GIOHANG TO ROLE_CUSTOMER;
+
+-- Hóa đơn
+GRANT SELECT, INSERT ON dbo.HOADON_BAN TO ROLE_CUSTOMER;
+GRANT SELECT, INSERT ON dbo.CTHD_BAN TO ROLE_CUSTOMER;
+
+-- Cả Staff + Customer đều được SELECT ACCOUNT (cập nhật cá nhân xử lý trong code)
+GRANT SELECT ON dbo.ACCOUNT TO ROLE_STAFF;
+GRANT SELECT ON dbo.ACCOUNT TO ROLE_CUSTOMER;
+GO
+

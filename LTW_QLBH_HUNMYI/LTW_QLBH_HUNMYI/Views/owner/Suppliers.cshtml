@@ -1,0 +1,74 @@
+﻿@model IEnumerable<LTW_QLBH_HUNMYI.Models.XUONGIN>
+@{
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+    ViewBag.Title = "Quản lý xưởng in";
+}
+<style>
+    .btn-action {
+        border-radius: 10px;
+        padding: 6px 14px;
+        font-weight: 500;
+    }
+
+        .btn-action:hover {
+            opacity: 0.9;
+        }
+</style>
+<a href="@Url.Action("CreateSupplier","Owner")"
+   class="btn btn-primary mb-3">
+    ➕ Thêm xưởng in
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mã xưởng</th>
+            <th>Tên xưởng</th>
+            <th>Địa chỉ</th>
+            <th>SDT</th>
+            <th>Email</th>
+            <th>Người liên hệ</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.MAXI</td>
+                <td>@x.TENXI</td>
+                <td>@x.DIACHI</td>
+                <td>@x.SDT</td>
+                <td>@x.EMAIL</td>
+                <td>@x.NGUOILIENHE</td>
+                <td>
+                    @if (x.TRANGTHAI == "Hoạt động")
+                    {
+                        <span class="badge bg-success">Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Ngừng hợp tác</span>
+                    }
+                </td>
+                <td>
+                <td class="text-nowrap">
+                    <a href="@Url.Action("EditSupplier","Owner", new { id = x.MAXI })"
+                       class="btn btn-warning btn-sm btn-action me-1">
+                        ✏️ Sửa
+                    </a>
+
+                    <a href="@Url.Action("DeleteSupplier","Owner", new { id = x.MAXI })"
+                       class="btn btn-danger btn-sm btn-action"
+                       onclick="return confirm('Bạn có chắc muốn ngừng hợp tác xưởng in này?');">
+                        🗑 Ngừng hợp tác
+                    </a>
+                </td>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

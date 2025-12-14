@@ -1,0 +1,55 @@
+﻿@model IEnumerable<LTW_QLBH_HUNMYI.Models.DANHMUC>
+
+@{
+    ViewBag.Title = "Quản lý danh mục";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+<h4>📂 Quản lý danh mục</h4>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<a href="@Url.Action("CreateCategory")" class="btn btn-success mb-3">
+    ➕ Thêm danh mục
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Mã DM</th>
+            <th>Tên danh mục</th>
+            <th>Trạng thái</th>
+            <th width="180">Thao tác</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MADM</td>
+                <td>@item.TENDM</td>
+                <td>
+                    <span class="badge bg-@(item.TRANGTHAI == "Hiển thị" ? "success" : "secondary")">
+                        @item.TRANGTHAI
+                    </span>
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-warning"
+                       href="@Url.Action("EditCategory", new { id = item.MADM })">
+                        ✏️ Sửa
+                    </a>
+
+                    <a class="btn btn-sm btn-danger ms-1"
+                       href="@Url.Action("DeleteCategory", new { id = item.MADM })"
+                       onclick="return confirm('Bạn có chắc muốn ẩn danh mục này?');">
+                        🗑 Ẩn
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

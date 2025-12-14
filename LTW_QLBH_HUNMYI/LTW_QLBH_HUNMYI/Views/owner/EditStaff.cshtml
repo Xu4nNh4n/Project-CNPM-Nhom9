@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+@model LTW_QLBH_HUNMYI.Models.NHANVIEN
+
+<h2>Sửa nhân viên</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @*@Html.HiddenFor(m => m.MANV)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.HOTENNV)
+            @Html.TextBoxFor(m => m.HOTENNV, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.SDT)
+            @Html.TextBoxFor(m => m.SDT, new { @class = "form-control" })
+        </div>*@
+
+   <div class="container d-flex justify-content-center">
+        <div class="card p-4 shadow w-75">
+            <div class="row">
+                <div class="form-group mb-3 col-6">
+                    Mã nhân viên
+                    @Html.TextBoxFor(m => m.MANV, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <div class="form-group mb-3 col-6">
+                    Họ tên
+                    @Html.TextBoxFor(m => m.HOTENNV, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group mb-3 col-6">
+                    Số điện thoại
+                    @Html.TextBoxFor(m => m.SDT, new { @class = "form-control", placeholder = "Số điện thoại" })
+                </div>
+
+                <div class="form-group mb-3 col-6">
+                    Email
+                    @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control", placeholder = "Email" })
+                </div>
+
+                <div class="form-group mb-3 col-6">
+                    Địa chỉ
+                    @Html.TextBoxFor(m => m.DIACHI, new { @class = "form-control", placeholder = "Địa chỉ" })
+                </div>
+
+                <div class="form-group mb-3 col-6">
+                    Lương cơ bản
+                    @Html.TextBoxFor(m => m.LUONGCOBAN, "{0:N0}", new { @class = "form-control"})
+                </div>
+
+                <div class="form-group mb-3">
+                    Trạng thái
+                    @Html.TextBoxFor(m => m.TRANGTHAI, new { @class = "form-control", @Value = "Đang làm", @readonly = "readonly" })
+                </div>
+                <button type="submit" class="btn btn-warning">Cập nhật</button>
+                <a href="@Url.Action("Staff","Owner")" class="btn btn-secondary">Hủy</a>
+                
+            </div>
+        </div>
+    </div>
+}
+
+
