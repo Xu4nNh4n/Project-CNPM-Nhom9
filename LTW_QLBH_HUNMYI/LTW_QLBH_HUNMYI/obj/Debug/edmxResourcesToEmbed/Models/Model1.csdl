@@ -336,7 +336,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="QLBH_HUNMYI_LTWEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="QLBH_HUNMYI_LTW1Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" />
     <EntitySet Name="CTHD_BAN" EntityType="Self.CTHD_BAN" />
     <EntitySet Name="CHITIET_GIOHANG" EntityType="Self.CHITIET_GIOHANG" />

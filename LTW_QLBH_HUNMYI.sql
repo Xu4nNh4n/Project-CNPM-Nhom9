@@ -188,6 +188,11 @@ GO
 -- ==========================================================================================
 --                                         TRIGGER
 -- ==========================================================================================
+SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('KHACHHANG');
+-- Xem triggers trên ACCOUNT  
+SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('ACCOUNT');
+-- Xem triggers trên GIOHANG
+SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('GIOHANG');
 
 -----TỰ ĐỘNG CẬP NHẬT MÃ KHACH HANG-----
 CREATE TRIGGER TRG_TU_DONG_MAKH
@@ -228,6 +233,7 @@ END
 GO
 
 -----TỰ ĐỘNG CẬP NHẬT MÃ ACCOUNT-----
+DROP TRIGGER TRG_TU_DONG_ACCOUNTID;
 CREATE TRIGGER TRG_TU_DONG_ACCOUNTID
 ON ACCOUNT
 INSTEAD OF INSERT
@@ -285,23 +291,7 @@ END
 GO
 
 -----TỰ ĐỘNG CẬP NHẬT MÃ GIỎ HÀNG-----
-CREATE TRIGGER TRG_TU_DONG_MAGH
-ON GIOHANG
-INSTEAD OF INSERT
-AS
-BEGIN
-    DECLARE @CurMax INT;
 
-    SELECT @CurMax = ISNULL(MAX(CAST(SUBSTRING(MAGH, 3, 10) AS INT)), 0)
-    FROM GIOHANG;
-
-    INSERT INTO GIOHANG(MAGH, MAKH, NGAYTAO)
-    SELECT
-        'GH' + CAST(@CurMax + ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS VARCHAR(10)),
-        MAKH, NGAYTAO
-    FROM inserted;
-END
-GO
 
 -----TỰ ĐỘNG CẬP NHẬT MÃ HOADON_BAN-----
 CREATE TRIGGER TRG_TU_DONG_MAHD_BAN

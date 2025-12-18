@@ -158,6 +158,68 @@
             height: 250px;
             object-fit: cover;
         }
+
+        /* Live Search Dropdown */
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1000;
+            margin-top: -5px;
+        }
+
+        .search-result-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+            .search-result-item:hover {
+                background: #f8f9fa;
+            }
+
+        .search-result-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .search-result-info {
+            flex: 1;
+        }
+
+            .search-result-info h6 {
+                margin: 0;
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            .search-result-info .price {
+                color: var(--secondary-color);
+                font-weight: bold;
+                font-size: 0.85rem;
+            }
+
+        .search-no-results {
+            padding: 20px;
+            text-align: center;
+            color: #999;
+        }
     </style>
 </head>
 <body>
@@ -200,14 +262,16 @@
                     </li>*@
                 </ul>
                 
-                <!-- Search Box -->
+                <!-- Search Box with Autocomplete -->
                 <div class="mx-auto search-box d-none d-lg-block">
-                    <form action="@Url.Action("Search", "Customer")" method="get">
-                        <input type="text" class="form-control" name="keyword"
-                               placeholder="Tìm kiếm sản phẩm...">
+                    <form action="@Url.Action("Search", "Customer")" method="get" id="searchForm">
+                        <input type="text" class="form-control" name="keyword" id="searchInput"
+                               placeholder="Tìm kiếm sản phẩm..." autocomplete="off">
                         <button type="submit">
                             <i class="fas fa-search"></i>
                         </button>
+                        <!-- Dropdown kết quả tìm kiếm -->
+                        <div id="searchResults" class="search-results" style="display: none;"></div>
                     </form>
                 </div>
 
@@ -220,7 +284,6 @@
                             <a class="nav-link"
                                href="@Url.Action("Login", "Account", new { returnUrl = Url.Action("Cart", "Customer") })">
                                 <i class="fas fa-shopping-cart fa-lg"></i>
-                                <span class="cart-badge" id="cartCount">0</span>
                             </a>
                         </li>
 
@@ -313,6 +376,78 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        // Live Search Autocomplete
+        $(document).ready(function () {
+            let searchTimeout;
+            
+            $('#searchInput').on('input', function () {
+                clearTimeout(searchTimeout);
+                const keyword = $(this).val().trim();
+                
+                if (keyword.length < 2) {
+                    $('#searchResults').hide();
+                    return;
+                }
+                
+                // Debounce - chờ 300ms sau khi ngừng gõ
+                searchTimeout = setTimeout(function () {
+                    $.ajax({
+                        url: '@Url.Action("SearchProducts", "Customer")',
+                        type: 'GET',
+                        data: { keyword: keyword },
+                        success: function (response) {
+                            if (response.success && response.products.length > 0) {
+                                displaySearchResults(response.products);
+                            } else {
+                                $('#searchResults').html('<div class="search-no-results">Không tìm thấy sản phẩm</div>').show();
+                            }
+                        },
+                        error: function () {
+                            $('#searchResults').hide();
+                        }
+                    });
+                }, 300);
+            });
+            
+            function displaySearchResults(products) {
+                let html = '';
+                products.forEach(function (product) {
+                    const imageUrl = product.HINHANH 
+                        ? '/Content/Images/Products/' + product.HINHANH 
+                        : '/Content/Images/no-image.png';
+                    const price = new Intl.NumberFormat('vi-VN').format(product.GIA) + 'đ';
+                    
+                    html += `
+                        <a href="/Customer/ProductDetail/${product.MASP}" class="search-result-item">
+                            <img src="${imageUrl}" alt="${product.TENSP}" class="search-result-img" onerror="this.src='/Content/Images/no-image.png'">
+                            <div class="search-result-info">
+                                <h6>${product.TENSP}</h6>
+                                <div class="price">${price}</div>
+                            </div>
+                        </a>
+                    `;
+                });
+                $('#searchResults').html(html).show();
+            }
+            
+            // Ẩn dropdown khi click bên ngoài
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.search-box').length) {
+                    $('#searchResults').hide();
+                }
+            });
+            
+            // Focus vào search input hiện lại kết quả (nếu có)
+            $('#searchInput').on('focus', function () {
+                if ($(this).val().length >= 2 && $('#searchResults').html()) {
+                    $('#searchResults').show();
+                }
+            });
+        });
+    </script>
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -724,7 +724,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QLBH_HUNMYI_LTWEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QLBH_HUNMYI_LTW1Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" />
           <EntitySet Name="CTHD_BAN" EntityType="Self.CTHD_BAN" />
           <EntitySet Name="CHITIET_GIOHANG" EntityType="Self.CHITIET_GIOHANG" />
@@ -799,7 +799,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QLBH_HUNMYI_LTW1ModelStoreContainer" CdmEntityContainer="QLBH_HUNMYI_LTWEntities">
+        <EntityContainerMapping StorageEntityContainer="QLBH_HUNMYI_LTW1ModelStoreContainer" CdmEntityContainer="QLBH_HUNMYI_LTW1Entities">
           <EntitySetMapping Name="ACCOUNT">
             <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.ACCOUNT">
               <MappingFragment StoreEntitySet="ACCOUNT">

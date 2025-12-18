@@ -12,7 +12,7 @@ namespace LTW_QLBH_HUNMYI.Controllers
     [CustomAuthorize(AllowedRoles = new[] { "Nhân viên" })]
     public class StaffController : Controller
     {
-        private QLBH_HUNMYI_LTWEntities db = new QLBH_HUNMYI_LTWEntities();
+        private QLBH_HUNMYI_LTW1Entities db = new QLBH_HUNMYI_LTW1Entities();
 
         #region TRANG CHỦ *****ĐÃ XONG*****
         public ActionResult Index()

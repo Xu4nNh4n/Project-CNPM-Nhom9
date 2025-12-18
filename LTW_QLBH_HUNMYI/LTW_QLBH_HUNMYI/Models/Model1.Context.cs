@@ -13,10 +13,10 @@ namespace LTW_QLBH_HUNMYI.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QLBH_HUNMYI_LTWEntities : DbContext
+    public partial class QLBH_HUNMYI_LTW1Entities : DbContext
     {
-        public QLBH_HUNMYI_LTWEntities()
-            : base("name=QLBH_HUNMYI_LTWEntities")
+        public QLBH_HUNMYI_LTW1Entities()
+            : base("name=QLBH_HUNMYI_LTW1Entities")
         {
         }
     

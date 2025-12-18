@@ -12,7 +12,7 @@ namespace LTW_QLBH_HUNMYI.Controllers
     //[CustomAuthorize(AllowedRoles = new[] { "Khách" })]
     public class CustomerController : Controller
     {
-        private QLBH_HUNMYI_LTWEntities db = new QLBH_HUNMYI_LTWEntities();
+        private QLBH_HUNMYI_LTW1Entities db = new QLBH_HUNMYI_LTW1Entities();
 
         #region TRANG CHỦ
 
@@ -167,6 +167,39 @@ namespace LTW_QLBH_HUNMYI.Controllers
         public ActionResult Search(string keyword)
         {
             return RedirectToAction("Products", new { search = keyword });
+        }
+
+        // GET: Customer/SearchProducts - API tìm kiếm live (JSON)
+        [HttpGet]
+        public JsonResult SearchProducts(string keyword)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(keyword) || keyword.Length < 2)
+                {
+                    return Json(new { success = true, products = new List<object>() }, JsonRequestBehavior.AllowGet);
+                }
+
+                var products = db.SANPHAM
+                    .Where(p => p.TRANGTHAI == "Đang bán" && 
+                           (p.TENSP.Contains(keyword) || p.MOTA.Contains(keyword)))
+                    .OrderBy(p => p.TENSP)
+                    .Take(5) // Chỉ lấy 5 kết quả tối đa
+                    .Select(p => new
+                    {
+                        MASP = p.MASP,
+                        TENSP = p.TENSP,
+                        GIA = p.GIA,
+                        HINHANH = p.HINHANH
+                    })
+                    .ToList();
+
+                return Json(new { success = true, products }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         #endregion
@@ -531,6 +564,7 @@ namespace LTW_QLBH_HUNMYI.Controllers
                 db.HOADON_BAN.Add(hoaDon);
                 db.SaveChanges();
                 // Thêm chi tiết hóa đơn
+                // Lưu ý: Trigger TRG_UPDATE_TONKHO_BAN sẽ tự động trừ tồn kho
                 foreach (var item in cartItems)
                 {
                     CTHD_BAN chiTiet = new CTHD_BAN
@@ -541,19 +575,6 @@ namespace LTW_QLBH_HUNMYI.Controllers
                         DONGIA = item.SANPHAM.GIA.Value
                     };
                     db.CTHD_BAN.Add(chiTiet);
-
-                    // Trừ số lượng tồn kho
-                    var product = db.SANPHAM.Find(item.MASP);
-                    if (product != null)
-                    {
-                        product.SOLUONGTON -= item.SOLUONG;
-
-                        // Cập nhật trạng thái nếu hết hàng
-                        if (product.SOLUONGTON <= 0)
-                        {
-                            product.TRANGTHAI = "Hết hàng";
-                        }
-                    }
                 }
                
                 // Xóa giỏ hàng
@@ -562,6 +583,19 @@ namespace LTW_QLBH_HUNMYI.Controllers
                     db.CHITIET_GIOHANG.Remove(item);
                 }
 
+                db.SaveChanges();
+                
+                // Sau khi SaveChanges, trigger đã trừ tồn kho
+                // Cập nhật trạng thái sản phẩm nếu hết hàng
+                foreach (var item in cartItems)
+                {
+                    var product = db.SANPHAM.Find(item.MASP);
+                    if (product != null && product.SOLUONGTON <= 0)
+                    {
+                        product.TRANGTHAI = "Hết hàng";
+                        db.Entry(product).State = System.Data.Entity.EntityState.Modified;
+                    }
+                }
                 db.SaveChanges();
 
                 TempData["Success"] = "Đặt hàng thành công! Cảm ơn bạn đã mua hàng.";

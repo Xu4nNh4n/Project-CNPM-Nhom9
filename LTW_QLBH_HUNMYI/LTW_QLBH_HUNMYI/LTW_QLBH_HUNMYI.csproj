@@ -193,6 +193,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DoAnStaff.mdf" />
+    <Content Include="App_Data\DoAnStaff_log.ldf">
+      <DependentUpon>DoAnStaff.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -331,9 +335,7 @@
     <Content Include="Views\Owner\DeleteProduct.cshtml" />
     <Content Include="Views\Owner\DeleteSupplier.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />

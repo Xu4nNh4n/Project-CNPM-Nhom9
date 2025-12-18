@@ -53,7 +53,7 @@
                     <div class="col-md-6">
                         <p class="mb-2">
                             <i class="fas fa-calendar text-muted"></i>
-                            <strong>Ngày đặt:</strong> @Model.NGAYLAP
+                            <strong>Ngày đặt:</strong> @(Model.NGAYLAP.HasValue ? Model.NGAYLAP.Value.ToString("dd/MM/yyyy HH:mm") : "")
                         </p>
                         @if (Model.NHANVIEN != null)
                         {
@@ -200,7 +200,7 @@
                         <i class="fas fa-check-circle"></i>
                         <div>
                             <strong>Đã đặt hàng</strong>
-                            <br><small>@Model.NGAYLAP?.ToString("dd/MM/yyyy HH:mm")</small>
+                            <br><small>@(Model.NGAYLAP.HasValue ? Model.NGAYLAP.Value.ToString("dd/MM/yyyy HH:mm") : "")</small>
                         </div>
                     </div>
 
