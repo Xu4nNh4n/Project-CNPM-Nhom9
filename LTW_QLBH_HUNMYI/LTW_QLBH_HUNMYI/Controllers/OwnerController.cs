@@ -505,6 +505,22 @@ namespace LTW_QLBH_HUNMYI.Controllers
             return RedirectToAction("Categories");
         }
 
+        // GET: Owner/ShowCategory - Hiển thị lại danh mục
+        public ActionResult ShowCategory(string id)
+        {
+            var category = db.DANHMUC.Find(id);
+
+            if (category != null)
+            {
+                category.TRANGTHAI = "Hiển thị";
+                db.SaveChanges();
+
+                TempData["Success"] = "Hiển thị danh mục thành công!";
+            }
+
+            return RedirectToAction("Categories");
+        }
+
         #endregion
 
         #region ĐƠN HÀNG *****ĐÃ XONG*****
@@ -625,17 +641,86 @@ namespace LTW_QLBH_HUNMYI.Controllers
         }
 
         // =============================
-        // 3. THÊM NHÂN VIÊN (POST)
+        // 3. THÊM NHÂN VIÊN (POST) - Kèm tài khoản
         // =============================
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateStaff(NHANVIEN nv)
+        public ActionResult CreateStaff(NHANVIEN nv, string username, string password)
         {
             if (ModelState.IsValid)
             {
-                db.NHANVIEN.Add(nv);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // Validate thông tin tài khoản
+                if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                {
+                    ModelState.AddModelError("", "Vui lòng nhập tên đăng nhập và mật khẩu cho nhân viên!");
+                    return View(nv);
+                }
+
+                // Kiểm tra username đã tồn tại chưa
+                if (db.ACCOUNT.Any(a => a.USERNAME == username))
+                {
+                    ModelState.AddModelError("", "Tên đăng nhập đã tồn tại!");
+                    return View(nv);
+                }
+
+                // Kiểm tra email nhân viên đã tồn tại chưa
+                if (!string.IsNullOrEmpty(nv.EMAIL) && db.ACCOUNT.Any(a => a.EMAIL == nv.EMAIL))
+                {
+                    ModelState.AddModelError("", "Email đã được sử dụng!");
+                    return View(nv);
+                }
+
+                try
+                {
+                    // Sử dụng transaction để đảm bảo tạo cả 2 hoặc không tạo gì
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            // 1. Thêm NHÂN VIÊN
+                            nv.NGAYSINH = nv.NGAYSINH?.Date; // Chỉ lưu ngày tháng năm, bỏ giờ phút giây
+                            nv.NGAYVAOLAM = DateTime.Now; // Set ngày vào làm là ngày hiện tại
+                            nv.TRANGTHAI = "Đang làm";
+                            db.NHANVIEN.Add(nv);
+                            db.SaveChanges(); // Lưu để có MANV
+
+                            // 2. Tạo ACCOUNT cho nhân viên
+                            string newAccountID = GenerateNewCode("ACC", db.ACCOUNT.Select(a => a.USERID).ToList());
+                            ACCOUNT account = new ACCOUNT
+                            {
+                                USERID = newAccountID,
+                                USERNAME = username,
+                                PASSWORDHASH = GetMD5Hash(password),
+                                VAITRO = nv.CHUCVU == "Chủ shop" ? "Chủ shop" : "Nhân viên",
+                                MANV = nv.MANV,
+                                MAKH = null,
+                                EMAIL = nv.EMAIL,
+                                SDT = nv.SDT,
+                                TRANGTHAI = "Hoạt động"
+                            };
+
+                            db.ACCOUNT.Add(account);
+                            db.SaveChanges();
+
+                            // Commit transaction
+                            transaction.Commit();
+
+                            TempData["Success"] = "Thêm nhân viên và tài khoản thành công!";
+                            return RedirectToAction("Staff");
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            ModelState.AddModelError("", "Có lỗi khi lưu dữ liệu: " + ex.Message);
+                            return View(nv);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Có lỗi xảy ra: " + ex.Message);
+                    return View(nv);
+                }
             }
             return View(nv);
         }
@@ -648,6 +733,10 @@ namespace LTW_QLBH_HUNMYI.Controllers
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var nv = db.NHANVIEN.Find(id);
             if (nv == null) return HttpNotFound();
+
+            // Lấy thông tin tài khoản (nếu có)
+            ViewBag.Account = db.ACCOUNT.FirstOrDefault(a => a.MANV == id);
+
             return View(nv);
         }
 
@@ -656,14 +745,57 @@ namespace LTW_QLBH_HUNMYI.Controllers
         // =============================
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditStaff(NHANVIEN nv)
+        public ActionResult EditStaff(NHANVIEN nv, bool resetPassword = false)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nv).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    var existingNV = db.NHANVIEN.Find(nv.MANV);
+                    if (existingNV == null) return HttpNotFound();
+
+                    // Cập nhật thông tin nhân viên
+                    existingNV.HOTENNV = nv.HOTENNV;
+                    existingNV.GIOITINH = nv.GIOITINH;
+                    existingNV.NGAYSINH = nv.NGAYSINH?.Date; // Chỉ lưu ngày/tháng/năm
+                    // NGAYVAOLAM không cho sửa, giữ nguyên
+                    existingNV.SDT = nv.SDT;
+                    existingNV.EMAIL = nv.EMAIL;
+                    existingNV.DIACHI = nv.DIACHI;
+                    existingNV.CHUCVU = nv.CHUCVU;
+                    existingNV.LUONGCOBAN = nv.LUONGCOBAN;
+                    existingNV.TRANGTHAI = nv.TRANGTHAI;
+
+                    // Đồng bộ VAITRO trong ACCOUNT khi thay đổi CHUCVU
+                    var account = db.ACCOUNT.FirstOrDefault(a => a.MANV == nv.MANV);
+                    if (account != null)
+                    {
+                        // Cập nhật vai trò theo chức vụ
+                        account.VAITRO = nv.CHUCVU == "Chủ shop" ? "Chủ shop" : "Nhân viên";
+
+                        // Reset mật khẩu nếu được yêu cầu
+                        if (resetPassword)
+                        {
+                            account.PASSWORDHASH = GetMD5Hash("123456");
+                            TempData["Success"] = "Cập nhật nhân viên và reset mật khẩu thành công!";
+                        }
+                        else
+                        {
+                            TempData["Success"] = "Cập nhật nhân viên thành công!";
+                        }
+                    }
+
+                    db.SaveChanges();
+                    return RedirectToAction("Staff");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Có lỗi xảy ra: " + ex.Message);
+                }
             }
+
+            // Nếu có lỗi, load lại thông tin account
+            ViewBag.Account = db.ACCOUNT.FirstOrDefault(a => a.MANV == nv.MANV);
             return View(nv);
         }
 
@@ -685,12 +817,35 @@ namespace LTW_QLBH_HUNMYI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            var nv = db.NHANVIEN.Find(id);
-            if (nv != null)
+            try
             {
-                db.NHANVIEN.Remove(nv);
-                db.SaveChanges();
+                var nv = db.NHANVIEN.Find(id);
+                if (nv != null)
+                {
+                    // Kiểm tra xem có tài khoản liên kết không
+                    var account = db.ACCOUNT.FirstOrDefault(a => a.MANV == id);
+                    if (account != null)
+                    {
+                        // Xóa tài khoản trước
+                        db.ACCOUNT.Remove(account);
+                    }
+
+                    // Xóa nhân viên
+                    db.NHANVIEN.Remove(nv);
+                    db.SaveChanges();
+
+                    TempData["Success"] = "Xóa nhân viên thành công!";
+                }
+                else
+                {
+                    TempData["Error"] = "Không tìm thấy nhân viên!";
+                }
             }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Không thể xóa nhân viên! " + ex.Message;
+            }
+
             return RedirectToAction("Staff");
         }
         #endregion

@@ -5,16 +5,79 @@
 }
 @model LTW_QLBH_HUNMYI.Models.NHANVIEN
 
-<h2>Bạn có chắc muốn xóa nhân viên?</h2>
+<div class="container mt-4">
+    <h2 class="mb-4 text-danger">⚠️ Xác nhận xóa nhân viên</h2>
 
-<div><b>@Model.HOTENNV</b></div>
+    <div class="alert alert-warning">
+        <strong>Cảnh báo:</strong> Hành động này sẽ xóa vĩnh viễn nhân viên khỏi hệ thống. Bạn có chắc chắn muốn tiếp tục?
+    </div>
 
-@using (Html.BeginForm("DeleteStaff", "Owner", new { id = Model.MANV }, FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+    <div class="card shadow p-4">
+        <h5 class="card-title mb-3">Thông tin nhân viên</h5>
+        
+        <div class="row mb-2">
+            <div class="col-md-3 font-weight-bold">Mã nhân viên:</div>
+            <div class="col-md-9">@Model.MANV</div>
+        </div>
 
-    <button type="submit" class="btn btn-danger">Xóa</button>
-    <a href="@Url.Action("Staff", "Owner")" class="btn btn-secondary">Hủy</a>
-}
+        <div class="row mb-2">
+            <div class="col-md-3 font-weight-bold">Họ và tên:</div>
+            <div class="col-md-9"><strong>@Model.HOTENNV</strong></div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 font-weight-bold">Giới tính:</div>
+            <div class="col-md-9">@Model.GIOITINH</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 font-weight-bold">Ngày sinh:</div>
+            <div class="col-md-9">@(Model.NGAYSINH.HasValue ? Model.NGAYSINH.Value.ToString("dd/MM/yyyy") : "Chưa cập nhật")</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 font-weight-bold">Ngày vào làm:</div>
+            <div class="col-md-9">@(Model.NGAYVAOLAM.HasValue ? Model.NGAYVAOLAM.Value.ToString("dd/MM/yyyy") : "Chưa cập nhật")</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 font-weight-bold">Số điện thoại:</div>
+            <div class="col-md-9">@Model.SDT</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 font-weight-bold">Email:</div>
+            <div class="col-md-9">@Model.EMAIL</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 font-weight-bold">Chức vụ:</div>
+            <div class="col-md-9">@Model.CHUCVU</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 font-weight-bold">Lương cơ bản:</div>
+            <div class="col-md-9">@String.Format("{0:N0}", Model.LUONGCOBAN) đ</div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-3 font-weight-bold">Trạng thái:</div>
+            <div class="col-md-9">
+                <span class="badge badge-@(Model.TRANGTHAI == "Đang làm" ? "success" : "secondary")">
+                    @Model.TRANGTHAI
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        @using (Html.BeginForm("DeleteStaff", "Owner", new { id = Model.MANV }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">🗑️ Xác nhận xóa</button>
+            <a href="@Url.Action("Staff", "Owner")" class="btn btn-secondary">❌ Hủy</a>
+        }
+    </div>
+</div>
 
 

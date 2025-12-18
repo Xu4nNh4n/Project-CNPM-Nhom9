@@ -37,6 +37,31 @@
                     @Html.TextBoxFor(m => m.HOTENNV, new { @class = "form-control" })
                 </div>
 
+                <!-- Giới tính -->
+                <div class="form-group mb-3 col-6">
+                    @Html.Label("Giới tính")
+                    <div>
+                        <label class="mr-3">
+                            @Html.RadioButtonFor(m => m.GIOITINH, "Nam") Nam
+                        </label>
+                        <label>
+                            @Html.RadioButtonFor(m => m.GIOITINH, "Nữ") Nữ
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Ngày sinh -->
+                <div class="form-group mb-3 col-6">
+                    @Html.LabelFor(m => m.NGAYSINH)
+                    @Html.TextBoxFor(m => m.NGAYSINH, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                </div>
+
+                <!-- Ngày vào làm (readonly) -->
+                <div class="form-group mb-3 col-6">
+                    @Html.LabelFor(m => m.NGAYVAOLAM)
+                    @Html.TextBoxFor(m => m.NGAYVAOLAM, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @readonly = "readonly" })
+                </div>
+
                 <div class="form-group mb-3 col-6">
                     Số điện thoại
                     @Html.TextBoxFor(m => m.SDT, new { @class = "form-control", placeholder = "Số điện thoại" })
@@ -47,20 +72,80 @@
                     @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control", placeholder = "Email" })
                 </div>
 
-                <div class="form-group mb-3 col-6">
+                <div class="form-group mb-3">
                     Địa chỉ
                     @Html.TextBoxFor(m => m.DIACHI, new { @class = "form-control", placeholder = "Địa chỉ" })
                 </div>
 
+                <!-- Chức vụ -->
+                <div class="form-group mb-3 col-6">
+                    @Html.Label("Chức vụ")
+                    @Html.DropDownListFor(
+                        m => m.CHUCVU,
+                        new SelectList(new[]
+                        {
+                            new { Value = "Chủ shop", Text = "Chủ shop" },
+                            new { Value = "Nhân viên", Text = "Nhân viên" }
+                        }, "Value", "Text", Model.CHUCVU),
+                        "-- Chọn chức vụ --",
+                        new { @class = "form-control" }
+                    )
+                </div>
+
                 <div class="form-group mb-3 col-6">
                     Lương cơ bản
-                    @Html.TextBoxFor(m => m.LUONGCOBAN, "{0:N0}", new { @class = "form-control"})
+                    @Html.TextBoxFor(m => m.LUONGCOBAN, new { @class = "form-control", type = "number", min = "0" })
                 </div>
 
                 <div class="form-group mb-3">
                     Trạng thái
-                    @Html.TextBoxFor(m => m.TRANGTHAI, new { @class = "form-control", @Value = "Đang làm", @readonly = "readonly" })
+                    @Html.DropDownListFor(
+                        m => m.TRANGTHAI,
+                        new SelectList(new[]
+                        {
+                            new { Value = "Đang làm", Text = "Đang làm" },
+                            new { Value = "Đã nghỉ", Text = "Đã nghỉ" }
+                        }, "Value", "Text", Model.TRANGTHAI),
+                        new { @class = "form-control" }
+                    )
                 </div>
+
+                <!-- ========== THÔNG TIN TÀI KHOẢN ========== -->
+                <hr class="my-4" />
+                <h5 class="text-primary mb-3">🔐 Thông tin tài khoản đăng nhập</h5>
+
+                @{
+                    var account = ViewBag.Account as LTW_QLBH_HUNMYI.Models.ACCOUNT;
+                }
+
+                @if (account != null)
+                {
+                    <!-- Username (readonly) -->
+                    <div class="form-group mb-3 col-6">
+                        <label>Tên đăng nhập</label>
+                        <input type="text" value="@account.USERNAME" class="form-control" readonly />
+                        <small class="text-muted">Không thể thay đổi tên đăng nhập</small>
+                    </div>
+
+                    <!-- Reset Password Checkbox -->
+                    <div class="form-group mb-3 col-6">
+                        <label>&nbsp;</label>
+                        <div class="custom-control custom-checkbox mt-2">
+                            <input type="checkbox" name="resetPassword" id="resetPassword" class="custom-control-input" />
+                            <label class="custom-control-label" for="resetPassword">
+                                🔄 Đặt lại mật khẩu về <strong>123456</strong>
+                            </label>
+                        </div>
+                        <small class="text-muted">Tick vào đây để reset mật khẩu về mặc định</small>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">
+                        ⚠️ Nhân viên này chưa có tài khoản đăng nhập.
+                    </div>
+                }
+
                 <button type="submit" class="btn btn-warning">Cập nhật</button>
                 <a href="@Url.Action("Staff","Owner")" class="btn btn-secondary">Hủy</a>
                 

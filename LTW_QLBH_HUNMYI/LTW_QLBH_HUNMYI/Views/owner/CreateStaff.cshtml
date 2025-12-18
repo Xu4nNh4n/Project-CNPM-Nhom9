@@ -41,15 +41,9 @@
                 </div>
 
                 <!-- Ngày sinh -->
-                <div class="form-group mb-3 col-6">
+                <div class="form-group mb-3">
                     @Html.LabelFor(m => m.NGAYSINH)
                     @Html.TextBoxFor(m => m.NGAYSINH, new { @class = "form-control", type = "date" })
-                </div>
-
-                <!-- Ngày vào làm -->
-                <div class="form-group mb-3 col-6">
-                    @Html.LabelFor(m => m.NGAYVAOLAM)
-                    @Html.TextBoxFor(m => m.NGAYVAOLAM, new { @class = "form-control", type = "date" })
                 </div>
 
                 <!-- SĐT -->
@@ -96,6 +90,30 @@
                     @Html.Label("Trạng thái")
                     @Html.TextBoxFor(m => m.TRANGTHAI, new { @class = "form-control", @Value = "Đang làm", @readonly = "readonly" })
                 </div>
+
+                <!-- ========== THÔNG TIN TÀI KHOẢN ========== -->
+                <hr class="my-4" />
+                <h5 class="text-primary mb-3">🔐 Thông tin tài khoản đăng nhập</h5>
+
+                <!-- Tên đăng nhập -->
+                <div class="form-group mb-3 col-6">
+                    <label for="username">Tên đăng nhập <span class="text-danger">*</span></label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Tên đăng nhập" required />
+                </div>
+
+                <!-- Mật khẩu -->
+                <div class="form-group mb-3 col-6">
+                    <label for="password">Mật khẩu <span class="text-danger">*</span></label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Mật khẩu" required />
+                </div>
+
+                <!-- Hiển thị lỗi validation -->
+                @if (ViewData.ModelState.Count > 0 && !ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger">
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    </div>
+                }
 
 
 

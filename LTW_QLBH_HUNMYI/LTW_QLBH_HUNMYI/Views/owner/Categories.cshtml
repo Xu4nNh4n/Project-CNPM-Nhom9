@@ -38,16 +38,39 @@
                     </span>
                 </td>
                 <td>
-                    <a class="btn btn-sm btn-warning"
-                       href="@Url.Action("EditCategory", new { id = item.MADM })">
-                        ✏️ Sửa
-                    </a>
-
-                    <a class="btn btn-sm btn-danger ms-1"
-                       href="@Url.Action("DeleteCategory", new { id = item.MADM })"
-                       onclick="return confirm('Bạn có chắc muốn ẩn danh mục này?');">
-                        🗑 Ẩn
-                    </a>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            ⚙️ Thao tác
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("EditCategory", new { id = item.MADM })">
+                                    <i class="bi bi-pencil-square text-warning"></i> ✏️ Sửa
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            @if (item.TRANGTHAI == "Hiển thị")
+                            {
+                                <li>
+                                    <a class="dropdown-item text-danger" 
+                                       href="@Url.Action("DeleteCategory", new { id = item.MADM })"
+                                       onclick="return confirm('Bạn có chắc muốn ẩn danh mục này?');">
+                                        <i class="bi bi-eye-slash"></i> 🚫 Ẩn danh mục
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a class="dropdown-item text-success" 
+                                       href="@Url.Action("ShowCategory", new { id = item.MADM })"
+                                       onclick="return confirm('Bạn có chắc muốn hiển thị lại danh mục này?');">
+                                        <i class="bi bi-eye"></i> 👁️ Hiển thị lại
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </td>
             </tr>
         }
