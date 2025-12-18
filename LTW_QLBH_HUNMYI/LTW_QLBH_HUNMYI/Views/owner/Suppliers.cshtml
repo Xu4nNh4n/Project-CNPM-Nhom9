@@ -3,6 +3,21 @@
     Layout = "~/Views/Shared/_LayoutOwner.cshtml";
     ViewBag.Title = "Quản lý xưởng in";
 }
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
 <style>
     .btn-action {
         border-radius: 10px;
@@ -29,7 +44,7 @@
             <th>Email</th>
             <th>Người liên hệ</th>
             <th>Trạng thái</th>
-            <th></th>
+            <th width="160">Thao tác</th>
         </tr>
     </thead>
 
@@ -54,19 +69,34 @@
                     }
                 </td>
                 <td>
-                <td class="text-nowrap">
-                    <a href="@Url.Action("EditSupplier","Owner", new { id = x.MAXI })"
-                       class="btn btn-warning btn-sm btn-action me-1">
-                        ✏️ Sửa
-                    </a>
-
-                    <a href="@Url.Action("DeleteSupplier","Owner", new { id = x.MAXI })"
-                       class="btn btn-danger btn-sm btn-action"
-                       onclick="return confirm('Bạn có chắc muốn ngừng hợp tác xưởng in này?');">
-                        🗑 Ngừng hợp tác
-                    </a>
-                </td>
-
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" 
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-cog"></i> Thao tác
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("EditSupplier", "Owner", new { id = x.MAXI })">
+                                    <i class="fas fa-edit text-warning"></i> Chỉnh sửa
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form method="post" action="@Url.Action("StopSupplier", "Owner")" style="display:inline;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@x.MAXI" />
+                                    <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc muốn ngừng hợp tác với xưởng in này?');">
+                                        <i class="fas fa-pause-circle text-warning"></i> Ngừng hợp tác
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="@Url.Action("DeleteSupplier", "Owner", new { id = x.MAXI })">
+                                    <i class="fas fa-trash-alt"></i> Xóa vĩnh viễn
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </td>
             </tr>
         }

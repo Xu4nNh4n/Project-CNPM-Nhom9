@@ -325,7 +325,42 @@ namespace LTW_QLBH_HUNMYI.Controllers
             return View(product);
         }
 
-        // GET: Owner/DeleteProduct/{id}
+        // GET: Owner/StopSelling/{id}
+        public ActionResult StopSelling(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return HttpNotFound();
+
+            var product = db.SANPHAM
+                            .Include("DANHMUC")
+                            .FirstOrDefault(p => p.MASP == id);
+
+            if (product == null)
+                return HttpNotFound();
+
+            return View(product);
+        }
+
+        // POST: Owner/StopSelling
+        [HttpPost, ActionName("StopSelling")]
+        [ValidateAntiForgeryToken]
+        public ActionResult StopSellingProduct(string id)
+        {
+            var product = db.SANPHAM.Find(id);
+            if (product != null)
+            {
+                // 🔴 XÓA MỀM
+                product.TRANGTHAI = "Ngừng bán";
+                db.SaveChanges();
+
+                TempData["Success"] = "Ngừng bán sản phẩm thành công!";
+            }
+
+            return RedirectToAction("Products");
+        }
+        
+        
+        // GET: Owner/DeleteProduct/{id} - Xóa hẳn khỏi database
         public ActionResult DeleteProduct(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -341,19 +376,32 @@ namespace LTW_QLBH_HUNMYI.Controllers
             return View(product);
         }
 
-        // POST: Owner/DeleteProduct
+        // POST: Owner/DeleteProduct - Xóa hẳn khỏi database
         [HttpPost, ActionName("DeleteProduct")]
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmDeleteProduct(string id)
         {
-            var product = db.SANPHAM.Find(id);
-            if (product != null)
+            try
             {
-                // 🔴 XÓA MỀM
-                product.TRANGTHAI = "Ngừng bán";
-                db.SaveChanges();
+                var product = db.SANPHAM.Find(id);
+                
+                if (product != null)
+                {
+                    // ⚠️ HARD DELETE - Xóa hẳn khỏi database
+                    // Cần kiểm tra ràng buộc FK trước khi xóa
+                    db.SANPHAM.Remove(product);
+                    db.SaveChanges();
 
-                TempData["Success"] = "Ngừng bán sản phẩm thành công!";
+                    TempData["Success"] = "Xóa sản phẩm thành công!";
+                }
+                else
+                {
+                    TempData["Error"] = "Không tìm thấy sản phẩm!";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Không thể xóa sản phẩm! " + ex.Message;
             }
 
             return RedirectToAction("Products");
@@ -721,22 +769,72 @@ namespace LTW_QLBH_HUNMYI.Controllers
             return View(model);
         }
 
+
+        // POST: Owner/StopSupplier - NGỪNG HỢP TÁC (Direct Action, No View)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult StopSupplier(string id)
+        {
+            var supplier = db.XUONGIN.Find(id);
+            if (supplier != null)
+            {
+                // Soft Delete - Chỉ đổi trạng thái
+                supplier.TRANGTHAI = "Ngừng hợp tác";
+                db.SaveChanges();
+
+                TempData["Success"] = "Ngừng hợp tác với xưởng in thành công!";
+            }
+
+            return RedirectToAction("Suppliers");
+        }
+
+        // GET: Owner/DeleteSupplier - XÓA VĨNH VIỄN (Hard Delete)
         public ActionResult DeleteSupplier(string id)
         {
-            if (id == null) return HttpNotFound();
+            if (string.IsNullOrEmpty(id))
+                return HttpNotFound();
 
-            var xi = db.XUONGIN.Find(id);
-            if (xi != null)
+            var supplier = db.XUONGIN
+                            .FirstOrDefault(x => x.MAXI == id);
+
+            if (supplier == null)
+                return HttpNotFound();
+
+            return View(supplier);
+        }
+
+        // POST: Owner/DeleteSupplier - XÓA VĨNH VIỄN
+        [HttpPost, ActionName("DeleteSupplier")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmDeleteSupplier(string id)
+        {
+            try
             {
-                xi.TRANGTHAI = "Ngừng hợp tác";
-                db.SaveChanges();
+                var supplier = db.XUONGIN.Find(id);
+
+                if (supplier != null)
+                {
+                    // Hard Delete - Xóa khỏi database
+                    db.XUONGIN.Remove(supplier);
+                    db.SaveChanges();
+
+                    TempData["Success"] = "Xóa xưởng in thành công!";
+                }
+                else
+                {
+                    TempData["Error"] = "Không tìm thấy xưởng in!";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Không thể xóa xưởng in! " + ex.Message;
             }
 
             return RedirectToAction("Suppliers");
         }
         #endregion
 
-        #region PHIẾU NHẬP *****ĐÃ XONG*****
+        #region PHIẾU NHẬP *****CHƯA XONG ******
         //GET: Owner/ImportReceipts - Quản lý phiếu nhập
         // ======= IMPORT RECEIPTS ========
         public ActionResult ImportReceipts()
@@ -757,39 +855,103 @@ namespace LTW_QLBH_HUNMYI.Controllers
 
         // POST: Owner/CreateImport
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateImport(PHIEUNHAP model, string[] productId, int[] qty, decimal[] price)
         {
-            model.MAPN = "PN" + new Random().Next(1000, 9999);
-            model.MANV = Session["StaffID"].ToString();
-            model.NGAYNHAP = DateTime.Now;
-
-            db.PHIEUNHAP.Add(model);
-
-            decimal tongTien = 0;
-
-            for (int i = 0; i < productId.Length; i++)
+            try
             {
-                var ct = new CHITIETPHIEUNHAP
+                if (Session["StaffID"] == null)
                 {
-                    MAPN = model.MAPN,
-                    MASP = productId[i],
-                    SOLUONG = qty[i],
-                    DONGIA = price[i]
-                };
-                db.CHITIETPHIEUNHAP.Add(ct);
+                    TempData["Error"] = "Phiên đăng nhập đã hết hạn!";
+                    return RedirectToAction("Login", "Account");
+                }
 
-                var sp = db.SANPHAM.Find(productId[i]);
-                if (sp != null)
-                    sp.SOLUONGTON += qty[i];
+                if (string.IsNullOrEmpty(model.MAXI))
+                {
+                    TempData["Error"] = "Vui lòng chọn xưởng in!";
+                    return RedirectToAction("CreateImport");
+                }
 
-                tongTien += qty[i] * price[i];
+                if (productId == null || qty == null || price == null)
+                {
+                    TempData["Error"] = "Vui lòng chọn ít nhất một sản phẩm!";
+                    return RedirectToAction("CreateImport");
+                }
+
+                if (productId.Length == 0)
+                {
+                    TempData["Error"] = "Vui lòng chọn ít nhất một sản phẩm!";
+                    return RedirectToAction("CreateImport");
+                }
+
+                if (productId.Length != qty.Length || productId.Length != price.Length)
+                {
+                    TempData["Error"] = "Dữ liệu không hợp lệ!";
+                    return RedirectToAction("CreateImport");
+                }
+                var existingCodes = db.PHIEUNHAP.Select(p => p.MAPN).ToList();
+                model.MAPN = GenerateNewCode("PN", existingCodes);
+                model.MANV = Session["StaffID"].ToString();
+                model.NGAYNHAP = DateTime.Now;
+                model.TRANGTHAI = "Đã nhập"; 
+                decimal tongTien = 0;
+                var chiTietList = new List<CHITIETPHIEUNHAP>();
+                
+                for (int i = 0; i < productId.Length; i++)
+                {
+                    if (string.IsNullOrEmpty(productId[i]))
+                        continue;
+
+                    var ct = new CHITIETPHIEUNHAP
+                    {
+                        MAPN = model.MAPN,
+                        MASP = productId[i],
+                        SOLUONG = qty[i],
+                        DONGIA = price[i]
+                    };
+                    chiTietList.Add(ct);
+                    tongTien += qty[i] * price[i];
+                }
+                if (chiTietList.Count == 0)
+                {
+                    TempData["Error"] = "Vui lòng chọn ít nhất một sản phẩm!";
+                    return RedirectToAction("CreateImport");
+                }
+                model.TONGTIEN = tongTien;
+                db.PHIEUNHAP.Add(model);
+                db.SaveChanges(); 
+                foreach (var ct in chiTietList)
+                {
+                    db.CHITIETPHIEUNHAP.Add(ct);
+                }
+                db.SaveChanges();
+
+                TempData["Success"] = "Tạo phiếu nhập thành công!";
+                return RedirectToAction("ImportReceipts");
             }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                // Get detailed validation errors
+                var errorMessages = ex.EntityValidationErrors
+                    .SelectMany(x => x.ValidationErrors)
+                    .Select(x => x.PropertyName + ": " + x.ErrorMessage);
 
-            model.TONGTIEN = tongTien;
-
-            db.SaveChanges();
-
-            return RedirectToAction("ImportReceipts");
+                var fullErrorMessage = string.Join("; ", errorMessages);
+                TempData["Error"] = "Lỗi validation: " + fullErrorMessage;
+                return RedirectToAction("CreateImport");
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                var innerMessage = ex.InnerException?.InnerException?.Message ?? ex.InnerException?.Message ?? ex.Message;
+                TempData["Error"] = "Lỗi cơ sở dữ liệu: " + innerMessage;
+                return RedirectToAction("CreateImport");
+            }
+            catch (Exception ex)
+            {
+                var innerMessage = ex.InnerException?.Message ?? ex.Message;
+                TempData["Error"] = "Có lỗi xảy ra: " + innerMessage;
+                return RedirectToAction("CreateImport");
+            }
         }
         #endregion
 

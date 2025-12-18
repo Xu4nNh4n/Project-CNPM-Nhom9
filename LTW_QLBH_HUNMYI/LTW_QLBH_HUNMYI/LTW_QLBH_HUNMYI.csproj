@@ -321,13 +321,15 @@
     <Content Include="Views\Owner\EditSupplier.cshtml" />
     <Content Include="Views\Owner\CreateProduct.cshtml" />
     <Content Include="Views\Owner\EditProduct.cshtml" />
-    <Content Include="Views\Owner\DeleteProduct.cshtml" />
     <Content Include="Views\Owner\Categories.cshtml" />
     <Content Include="Views\Owner\CreateCategory.cshtml" />
     <Content Include="Views\Owner\EditCategory.cshtml" />
     <Content Include="Views\Owner\DeleteCategory.cshtml" />
     <Content Include="Views\Owner\Profile.cshtml" />
     <Content Include="Views\Owner\ChangePassword.cshtml" />
+    <Content Include="Views\Owner\StopSelling.cshtml" />
+    <Content Include="Views\Owner\DeleteProduct.cshtml" />
+    <Content Include="Views\Owner\DeleteSupplier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

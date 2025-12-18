@@ -114,15 +114,30 @@
                     </span>
                 </td>
                 <td>
-                    <a class="btn btn-sm btn-warning"
-                       href="@Url.Action("EditProduct", new { id = item.MASP })">
-                        ✏️ Sửa
-                    </a>
-                    <a class="btn btn-sm btn-danger ms-1"
-                       href="@Url.Action("DeleteProduct", "Owner", new { id = item.MASP })"
-                       onclick="return confirm('Bạn có chắc muốn ngừng bán sản phẩm này?');">
-                        🗑 Ngừng
-                    </a>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" 
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-cog"></i> Thao tác
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("EditProduct", new { id = item.MASP })">
+                                    <i class="fas fa-edit text-warning"></i> Chỉnh sửa
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="@Url.Action("StopSelling", "Owner", new { id = item.MASP })">
+                                    <i class="fas fa-pause-circle text-warning"></i> Ngừng bán
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="@Url.Action("DeleteProduct", "Owner", new { id = item.MASP })">
+                                    <i class="fas fa-trash-alt"></i> Xóa vĩnh viễn
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </td>
             </tr>
         }
