@@ -31,14 +31,16 @@ namespace LTW_QLBH_HUNMYI.Controllers
 
                 // Sản phẩm mới nhất (8 sản phẩm)
                 var newProducts = db.SANPHAM
-                    .Where(s => s.TRANGTHAI == "Đang bán")
+                    .Include(s => s.DANHMUC)
+                    .Where(s => s.TRANGTHAI == "Đang bán" && s.DANHMUC.TRANGTHAI == "Hiển thị")
                     .OrderByDescending(s => s.NGAYTAO)
                     .Take(8)
                     .ToList();
 
                 // Sản phẩm bán chạy - giả lập bằng sản phẩm có số lượng tồn thấp
                 var hotProducts = db.SANPHAM
-                    .Where(s => s.TRANGTHAI == "Đang bán" && s.SOLUONGTON > 0)
+                    .Include(s => s.DANHMUC)
+                    .Where(s => s.TRANGTHAI == "Đang bán" && s.SOLUONGTON > 0 && s.DANHMUC.TRANGTHAI == "Hiển thị")
                     .OrderBy(s => s.SOLUONGTON)
                     .Take(8)
                     .ToList();
@@ -66,7 +68,7 @@ namespace LTW_QLBH_HUNMYI.Controllers
             {
                 var products = db.SANPHAM
                     .Include(s => s.DANHMUC)
-                    .Where(s => s.TRANGTHAI == "Đang bán")
+                    .Where(s => s.TRANGTHAI == "Đang bán" && s.DANHMUC.TRANGTHAI == "Hiển thị")
                     .AsQueryable();
 
                 // Lọc theo danh mục
@@ -147,8 +149,10 @@ namespace LTW_QLBH_HUNMYI.Controllers
 
                 // Sản phẩm liên quan (cùng danh mục)
                 var relatedProducts = db.SANPHAM
+                    .Include(s => s.DANHMUC)
                     .Where(s => s.MADM == product.MADM &&
                                s.MASP != id &&
+                               s.DANHMUC.TRANGTHAI == "Hiển thị" &&
                                s.TRANGTHAI == "Đang bán")
                     .Take(4)
                     .ToList();
@@ -181,7 +185,9 @@ namespace LTW_QLBH_HUNMYI.Controllers
                 }
 
                 var products = db.SANPHAM
+                    .Include(p => p.DANHMUC)
                     .Where(p => p.TRANGTHAI == "Đang bán" && 
+                           p.DANHMUC.TRANGTHAI == "Hiển thị" &&
                            (p.TENSP.Contains(keyword) || p.MOTA.Contains(keyword)))
                     .OrderBy(p => p.TENSP)
                     .Take(5) // Chỉ lấy 5 kết quả tối đa
