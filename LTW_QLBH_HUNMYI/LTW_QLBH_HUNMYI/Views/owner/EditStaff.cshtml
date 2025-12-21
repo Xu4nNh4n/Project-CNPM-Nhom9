@@ -1,28 +1,14 @@
 ﻿
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Sửa thông tin nhân viên";
     Layout = "~/Views/Shared/_LayoutOwner.cshtml";
 }
 
 @model LTW_QLBH_HUNMYI.Models.NHANVIEN
 
-<h2>Sửa nhân viên</h2>
-
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-
-    @*@Html.HiddenFor(m => m.MANV)
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.HOTENNV)
-            @Html.TextBoxFor(m => m.HOTENNV, new { @class = "form-control" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.SDT)
-            @Html.TextBoxFor(m => m.SDT, new { @class = "form-control" })
-        </div>*@
+    @Html.AntiForgeryToken()    
 
    <div class="container d-flex justify-content-center">
         <div class="card p-4 shadow w-75">
@@ -104,7 +90,7 @@
                         new SelectList(new[]
                         {
                             new { Value = "Đang làm", Text = "Đang làm" },
-                            new { Value = "Đã nghỉ", Text = "Đã nghỉ" }
+                            new { Value = "Nghỉ việc", Text = "Nghỉ việc" }
                         }, "Value", "Text", Model.TRANGTHAI),
                         new { @class = "form-control" }
                     )

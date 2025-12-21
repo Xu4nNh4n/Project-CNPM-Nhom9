@@ -3,41 +3,357 @@
     Layout = "~/Views/Shared/_LayoutStaff.cshtml";
 }
 
-<form method="get" action="/Staff/Products">
-    @Html.DropDownList(
-        "madm",
-        (SelectList)ViewBag.DanhMucList,
-        "-- Tất cả danh mục --",
-        new { @class = "form-control", style = "width:250px; display:inline-block;" }
-    )
+<style>
+    .products-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
 
-    <button type="submit" class="btn btn-primary">Lọc</button>
-</form>
+    .products-header h2 {
+        margin: 0;
+        font-weight: 600;
+        font-size: 1.8rem;
+    }
 
-<hr />
+    .search-filter-section {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 1.5rem;
+    }
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Mã Sản Phẩm</th>
-            <th>Tên Sản Phẩm</th>
-            <th>Tên Danh Mục</th>
-            <th>Tồn Kho</th>
-            <th>Giá</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var p in Model)
-        {
-            <tr>
-                <td>@p.MASP</td>
-                <td>@p.TENSP</td>
-                <td>@p.DANHMUC.TENDM</td>
-                <td>@p.SOLUONGTON</td>
-                <td>@String.Format("{0:N0}", p.GIA)đ</td>
-                <td></td>
-            </tr>
-        }
-    </tbody>
-</table>
+    .filter-controls {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .filter-controls .form-control {
+        flex: 1;
+        min-width: 200px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        padding: 0.6rem 1rem;
+    }
+
+    .filter-controls .btn {
+        border-radius: 8px;
+        padding: 0.6rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-filter {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+    }
+
+    .btn-filter:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-reset {
+        background: #6c757d;
+        color: white;
+        border: none;
+    }
+
+    .btn-reset:hover {
+        background: #5a6268;
+    }
+
+    .products-table {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .products-table table {
+        margin: 0;
+    }
+
+    .products-table thead {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .products-table thead th {
+        border: none;
+        padding: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .products-table tbody tr {
+        border-bottom: 1px solid #f0f0f0;
+        transition: all 0.2s ease;
+    }
+
+    .products-table tbody tr:hover {
+        background-color: #f8f9ff;
+        transform: scale(1.01);
+    }
+
+    .products-table tbody td {
+        padding: 1rem;
+        vertical-align: middle;
+    }
+
+    .product-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid #e0e0e0;
+    }
+
+    .product-name {
+        font-weight: 600;
+        color: #2d3748;
+    }
+
+    .product-code {
+        color: #718096;
+        font-size: 0.9rem;
+    }
+
+    .badge-status {
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .badge-dang-ban {
+        background: linear-gradient(135deg, #48bb78, #38a169);
+        color: white;
+    }
+
+    .badge-het-hang {
+        background: linear-gradient(135deg, #f56565, #e53e3e);
+        color: white;
+    }
+
+    .badge-ngung-ban {
+        background: linear-gradient(135deg, #ed8936, #dd6b20);
+        color: white;
+    }
+
+    .stock-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .stock-number {
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .stock-low {
+        color: #f56565;
+    }
+
+    .stock-medium {
+        color: #ed8936;
+    }
+
+    .stock-high {
+        color: #48bb78;
+    }
+
+    .price-display {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #667eea;
+    }
+
+    .no-products {
+        text-align: center;
+        padding: 3rem;
+        color: #718096;
+        font-size: 1.1rem;
+    }
+
+    .stats-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-card {
+        flex: 1;
+        min-width: 200px;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-left: 4px solid;
+    }
+
+    .stat-card.total {
+        border-left-color: #667eea;
+    }
+
+    .stat-card.in-stock {
+        border-left-color: #48bb78;
+    }
+
+    .stat-card.low-stock {
+        border-left-color: #ed8936;
+    }
+
+    .stat-card.out-of-stock {
+        border-left-color: #f56565;
+    }
+
+    .stat-label {
+        color: #718096;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2d3748;
+    }
+</style>
+@{
+    var totalProducts = Model.Count();
+    var inStockProducts = Model.Count(p => p.SOLUONGTON > 10);
+    var lowStockProducts = Model.Count(p => p.SOLUONGTON > 0 && p.SOLUONGTON <= 10);
+    var outOfStockProducts = Model.Count(p => p.SOLUONGTON == 0);
+}
+
+<div class="stats-row">
+    <div class="stat-card total">
+        <div class="stat-label">Tổng Sản Phẩm</div>
+        <div class="stat-value">@totalProducts</div>
+    </div>
+    <div class="stat-card in-stock">
+        <div class="stat-label">Còn Hàng</div>
+        <div class="stat-value">@inStockProducts</div>
+    </div>
+    <div class="stat-card low-stock">
+        <div class="stat-label">Sắp Hết</div>
+        <div class="stat-value">@lowStockProducts</div>
+    </div>
+    <div class="stat-card out-of-stock">
+        <div class="stat-label">Hết Hàng</div>
+        <div class="stat-value">@outOfStockProducts</div>
+    </div>
+</div>
+
+<div class="search-filter-section">
+    <form method="get" action="/Staff/Products">
+        <div class="filter-controls">
+            <div style="flex: 2;">
+                @Html.DropDownList(
+                    "madm",
+                    (SelectList)ViewBag.DanhMucList,
+                    "-- Tất cả danh mục --",
+                    new { @class = "form-control" }
+                )
+            </div>
+            <button type="submit" class="btn btn-filter">
+                <i class="fas fa-filter"></i> Lọc
+            </button>
+            <a href="@Url.Action("Products", "Staff")" class="btn btn-reset">
+                <i class="fas fa-redo"></i> Đặt Lại
+            </a>
+        </div>
+    </form>
+</div>
+
+<div class="products-table">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th style="width: 80px;">Hình Ảnh</th>
+                    <th style="width: 100px;">Mã SP</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th style="width: 150px;">Danh Mục</th>
+                    <th style="width: 120px;">Tồn Kho</th>
+                    <th style="width: 130px;">Giá Bán</th>
+                    <th style="width: 130px;">Trạng Thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    var stockClass = p.SOLUONGTON == 0 ? "stock-low" : (p.SOLUONGTON <= 10 ? "stock-medium" : "stock-high");
+                    var statusBadge = p.TRANGTHAI == "Đang bán" ? "badge-dang-ban" : 
+                                     (p.TRANGTHAI == "Hết hàng" ? "badge-het-hang" : "badge-ngung-ban");
+                    
+                    <tr>
+                        <td>
+                            @if (!string.IsNullOrEmpty(p.HINHANH))
+                            {
+                                <img src="@Url.Content("~/Content/Images/Products/" + p.HINHANH)" 
+                                     alt="@p.TENSP" 
+                                     class="product-image" 
+                                     onerror="this.src='@Url.Content("~/Content/Images/no-image.jpg")'" />
+                            }
+                            else
+                            {
+                                <div class="product-image bg-light d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-image fa-2x text-muted"></i>
+                                </div>
+                            }
+                        </td>
+                        <td>
+                            <span class="product-code">@p.MASP</span>
+                        </td>
+                        <td>
+                            <span class="product-name">@p.TENSP</span>
+                        </td>
+                        <td>@p.DANHMUC.TENDM</td>
+                        <td>
+                            <div class="stock-info">
+                                <span class="stock-number @stockClass">@p.SOLUONGTON</span>
+                                @if (p.SOLUONGTON == 0)
+                                {
+                                    <i class="fas fa-exclamation-triangle text-danger" title="Hết hàng"></i>
+                                }
+                                else if (p.SOLUONGTON <= 10)
+                                {
+                                    <i class="fas fa-exclamation-circle text-warning" title="Sắp hết"></i>
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            <span class="price-display">@String.Format("{0:N0}", p.GIA)đ</span>
+                        </td>
+                        <td>
+                            <span class="badge-status @statusBadge">@p.TRANGTHAI</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="no-products">
+            <i class="fas fa-box-open fa-3x mb-3" style="color: #cbd5e0;"></i>
+            <p>Không tìm thấy sản phẩm nào.</p>
+        </div>
+    }
+</div>

@@ -3,40 +3,68 @@
   "WorkspaceRootPath": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\editstaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\editstaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\views\\owner\\deletesupplier.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\deletesupplier.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\customerdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\customerdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\customers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\customers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\staffdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\staffdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\categories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\categories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\views\\owner\\products.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\products.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\supplierdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\supplierdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\views\\owner\\stopsupplier.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\stopsupplier.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\views\\owner\\suppliers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -58,7 +86,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 19,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -130,67 +158,162 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "EditStaff.cshtml",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\EditStaff.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\EditStaff.cshtml",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\EditStaff.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\EditStaff.cshtml",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-21T22:21:40.768Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CustomerDetail.cshtml",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\CustomerDetail.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\CustomerDetail.cshtml",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\CustomerDetail.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\CustomerDetail.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-21T22:21:09.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Customers.cshtml",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Customers.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Customers.cshtml",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Customers.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Customers.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-21T22:21:08.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StaffDetail.cshtml",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-21T22:20:31.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Categories.cshtml",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-21T22:19:33.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SupplierDetail.cshtml",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\SupplierDetail.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\SupplierDetail.cshtml",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\SupplierDetail.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\SupplierDetail.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-21T20:34:53.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "CustomerController.cs",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
               "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAD4BAAAAAAAAAAAMwE4BAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T12:16:22.385Z"
+              "WhenOpened": "2025-12-18T12:16:22.385Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "StaffController.cs",
-              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
-              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
-              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
-              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T12:16:13.598Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
               "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAA0wEwAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-18T12:15:56.291Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GIOHANG.cs",
-              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
-              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
-              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
-              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAiwBgAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T12:15:32.994Z"
+              "DocumentIndex": 1,
+              "Title": "DeleteSupplier.cshtml",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-18T07:40:28.114Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "Model1.edmx [Diagram1]",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\Model1.edmx",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Models\\Model1.edmx",
               "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\Model1.edmx [Diagram1]",
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Models\\Model1.edmx [Diagram1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2025-12-18T12:15:11.397Z"
+              "WhenOpened": "2025-12-21T21:16:29.281Z",
+              "EditorCaption": " [Diagram1]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
+              "Title": "OwnerController.cs",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T06:42:59.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "StaffController.cs",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T12:16:13.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Web.config",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Web.config",
@@ -203,19 +326,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DeleteSupplier.cshtml",
-              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
-              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
-              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
-              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAdAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "Products.cshtml",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-18T07:40:28.114Z"
+              "WhenOpened": "2025-12-18T06:51:21.245Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
+              "Title": "GIOHANG.cs",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-21T21:16:52.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "StopSupplier.cshtml",
+              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\StopSupplier.cshtml",
+              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\StopSupplier.cshtml",
+              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\StopSupplier.cshtml",
+              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\StopSupplier.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-21T20:21:07.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "Suppliers.cshtml",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Suppliers.cshtml",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Suppliers.cshtml",
@@ -223,23 +373,12 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Suppliers.cshtml",
               "ViewState": "AgIAAEIAAAAAAAAAAADwv2EAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-18T07:33:11.422Z"
+              "WhenOpened": "2025-12-18T07:33:11.422Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "OwnerController.cs",
-              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
-              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
-              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
-              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T06:42:59.869Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 17,
               "Title": "DeleteProduct.cshtml",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\DeleteProduct.cshtml",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteProduct.cshtml",
@@ -247,23 +386,12 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteProduct.cshtml",
               "ViewState": "AgIAAGAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-18T07:07:58.272Z"
+              "WhenOpened": "2025-12-18T07:07:58.272Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Products.cshtml",
-              "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
-              "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
-              "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
-              "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAYwIoAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-18T06:51:21.245Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 18,
               "Title": "StopSelling.cshtml",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\StopSelling.cshtml",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\StopSelling.cshtml",
@@ -271,7 +399,8 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\StopSelling.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-18T06:50:35.623Z"
+              "WhenOpened": "2025-12-18T06:50:35.623Z",
+              "EditorCaption": ""
             }
           ]
         },

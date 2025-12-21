@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="QLBH_HUNMYI_LTW1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="QLBH1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="ACCOUNT">
     <Key>
       <PropertyRef Name="USERID" />
@@ -62,6 +62,7 @@
     <Property Name="MAGH" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MAKH" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="NGAYTAO" Type="date" />
+    <Property Name="TONGSL" Type="int" />
   </EntityType>
   <EntityType Name="HOADON_BAN">
     <Key>
@@ -138,6 +139,7 @@
     <Property Name="SDT" Type="varchar" MaxLength="15" />
     <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
     <Property Name="NGUOILIENHE" Type="nvarchar" MaxLength="50" />
+    <Property Name="GHICHU" Type="nvarchar(max)" />
     <Property Name="TRANGTHAI" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <Association Name="FK__ACCOUNT__MAKH__5FB337D6">
@@ -164,7 +166,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CHITIET_GI__MAGH__778AC167">
+  <Association Name="FK__CHITIET_GI__MAGH__787EE5A0">
     <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="1" />
     <End Role="CHITIET_GIOHANG" Type="Self.CHITIET_GIOHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -176,7 +178,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CHITIET_GI__MASP__787EE5A0">
+  <Association Name="FK__CHITIET_GI__MASP__797309D9">
     <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
     <End Role="CHITIET_GIOHANG" Type="Self.CHITIET_GIOHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -188,7 +190,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CHITIETPHI__MASP__1AD3FDA4">
+  <Association Name="FK__CHITIETPHI__MASP__1BC821DD">
     <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
     <End Role="CHITIETPHIEUNHAP" Type="Self.CHITIETPHIEUNHAP" Multiplicity="*" />
     <ReferentialConstraint>
@@ -200,7 +202,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__GIOHANG__MAKH__72C60C4A">
+  <Association Name="FK__GIOHANG__MAKH__73BA3083">
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
     <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -212,7 +214,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__HOADON_BAN__MAKH__01142BA1">
+  <Association Name="FK__HOADON_BAN__MAKH__02084FDA">
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
     <End Role="HOADON_BAN" Type="Self.HOADON_BAN" Multiplicity="*" />
     <ReferentialConstraint>
@@ -224,7 +226,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PHIEUNHAP__MANV__151B244E">
+  <Association Name="FK__PHIEUNHAP__MANV__160F4887">
     <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
     <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
     <ReferentialConstraint>
@@ -308,7 +310,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="QLBH_HUNMYI_LTW1ModelStoreContainer">
+  <EntityContainer Name="QLBH1ModelStoreContainer">
     <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CTHD_BAN" EntityType="Self.CTHD_BAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CHITIET_GIOHANG" EntityType="Self.CHITIET_GIOHANG" Schema="dbo" store:Type="Tables" />
@@ -329,27 +331,27 @@
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="ACCOUNT" EntitySet="ACCOUNT" />
     </AssociationSet>
-    <AssociationSet Name="FK__CHITIET_GI__MAGH__778AC167" Association="Self.FK__CHITIET_GI__MAGH__778AC167">
+    <AssociationSet Name="FK__CHITIET_GI__MAGH__787EE5A0" Association="Self.FK__CHITIET_GI__MAGH__787EE5A0">
       <End Role="GIOHANG" EntitySet="GIOHANG" />
       <End Role="CHITIET_GIOHANG" EntitySet="CHITIET_GIOHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__CHITIET_GI__MASP__787EE5A0" Association="Self.FK__CHITIET_GI__MASP__787EE5A0">
+    <AssociationSet Name="FK__CHITIET_GI__MASP__797309D9" Association="Self.FK__CHITIET_GI__MASP__797309D9">
       <End Role="SANPHAM" EntitySet="SANPHAM" />
       <End Role="CHITIET_GIOHANG" EntitySet="CHITIET_GIOHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__CHITIETPHI__MASP__1AD3FDA4" Association="Self.FK__CHITIETPHI__MASP__1AD3FDA4">
+    <AssociationSet Name="FK__CHITIETPHI__MASP__1BC821DD" Association="Self.FK__CHITIETPHI__MASP__1BC821DD">
       <End Role="SANPHAM" EntitySet="SANPHAM" />
       <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAP" />
     </AssociationSet>
-    <AssociationSet Name="FK__GIOHANG__MAKH__72C60C4A" Association="Self.FK__GIOHANG__MAKH__72C60C4A">
+    <AssociationSet Name="FK__GIOHANG__MAKH__73BA3083" Association="Self.FK__GIOHANG__MAKH__73BA3083">
       <End Role="KHACHHANG" EntitySet="KHACHHANG" />
       <End Role="GIOHANG" EntitySet="GIOHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__HOADON_BAN__MAKH__01142BA1" Association="Self.FK__HOADON_BAN__MAKH__01142BA1">
+    <AssociationSet Name="FK__HOADON_BAN__MAKH__02084FDA" Association="Self.FK__HOADON_BAN__MAKH__02084FDA">
       <End Role="KHACHHANG" EntitySet="KHACHHANG" />
       <End Role="HOADON_BAN" EntitySet="HOADON_BAN" />
     </AssociationSet>
-    <AssociationSet Name="FK__PHIEUNHAP__MANV__151B244E" Association="Self.FK__PHIEUNHAP__MANV__151B244E">
+    <AssociationSet Name="FK__PHIEUNHAP__MANV__160F4887" Association="Self.FK__PHIEUNHAP__MANV__160F4887">
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="PHIEUNHAP" EntitySet="PHIEUNHAP" />
     </AssociationSet>

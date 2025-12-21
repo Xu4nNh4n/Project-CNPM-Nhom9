@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="QLBH_HUNMYI_LTW1ModelStoreContainer" CdmEntityContainer="QLBH_HUNMYI_LTW1Entities">
+  <EntityContainerMapping StorageEntityContainer="QLBH1ModelStoreContainer" CdmEntityContainer="QLBH1Entities">
     <EntitySetMapping Name="ACCOUNT">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.ACCOUNT">
+      <EntityTypeMapping TypeName="QLBH1Model.ACCOUNT">
         <MappingFragment StoreEntitySet="ACCOUNT">
           <ScalarProperty Name="USERID" ColumnName="USERID" />
           <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
@@ -17,7 +17,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CTHD_BAN">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.CTHD_BAN">
+      <EntityTypeMapping TypeName="QLBH1Model.CTHD_BAN">
         <MappingFragment StoreEntitySet="CTHD_BAN">
           <ScalarProperty Name="MAHD_BAN" ColumnName="MAHD_BAN" />
           <ScalarProperty Name="MASP" ColumnName="MASP" />
@@ -28,7 +28,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CHITIET_GIOHANG">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.CHITIET_GIOHANG">
+      <EntityTypeMapping TypeName="QLBH1Model.CHITIET_GIOHANG">
         <MappingFragment StoreEntitySet="CHITIET_GIOHANG">
           <ScalarProperty Name="MAGH" ColumnName="MAGH" />
           <ScalarProperty Name="MASP" ColumnName="MASP" />
@@ -38,7 +38,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CHITIETPHIEUNHAP">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.CHITIETPHIEUNHAP">
+      <EntityTypeMapping TypeName="QLBH1Model.CHITIETPHIEUNHAP">
         <MappingFragment StoreEntitySet="CHITIETPHIEUNHAP">
           <ScalarProperty Name="MAPN" ColumnName="MAPN" />
           <ScalarProperty Name="MASP" ColumnName="MASP" />
@@ -49,7 +49,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DANHMUC">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.DANHMUC">
+      <EntityTypeMapping TypeName="QLBH1Model.DANHMUC">
         <MappingFragment StoreEntitySet="DANHMUC">
           <ScalarProperty Name="MADM" ColumnName="MADM" />
           <ScalarProperty Name="TENDM" ColumnName="TENDM" />
@@ -59,16 +59,17 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GIOHANG">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.GIOHANG">
+      <EntityTypeMapping TypeName="QLBH1Model.GIOHANG">
         <MappingFragment StoreEntitySet="GIOHANG">
           <ScalarProperty Name="MAGH" ColumnName="MAGH" />
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
           <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
+          <ScalarProperty Name="TONGSL" ColumnName="TONGSL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HOADON_BAN">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.HOADON_BAN">
+      <EntityTypeMapping TypeName="QLBH1Model.HOADON_BAN">
         <MappingFragment StoreEntitySet="HOADON_BAN">
           <ScalarProperty Name="MAHD_BAN" ColumnName="MAHD_BAN" />
           <ScalarProperty Name="NGAYLAP" ColumnName="NGAYLAP" />
@@ -81,7 +82,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KHACHHANG">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.KHACHHANG">
+      <EntityTypeMapping TypeName="QLBH1Model.KHACHHANG">
         <MappingFragment StoreEntitySet="KHACHHANG">
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
           <ScalarProperty Name="HOTENKH" ColumnName="HOTENKH" />
@@ -94,7 +95,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NHANVIEN">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.NHANVIEN">
+      <EntityTypeMapping TypeName="QLBH1Model.NHANVIEN">
         <MappingFragment StoreEntitySet="NHANVIEN">
           <ScalarProperty Name="MANV" ColumnName="MANV" />
           <ScalarProperty Name="HOTENNV" ColumnName="HOTENNV" />
@@ -111,7 +112,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PHIEUNHAP">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.PHIEUNHAP">
+      <EntityTypeMapping TypeName="QLBH1Model.PHIEUNHAP">
         <MappingFragment StoreEntitySet="PHIEUNHAP">
           <ScalarProperty Name="MAPN" ColumnName="MAPN" />
           <ScalarProperty Name="NGAYNHAP" ColumnName="NGAYNHAP" />
@@ -123,7 +124,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SANPHAM">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.SANPHAM">
+      <EntityTypeMapping TypeName="QLBH1Model.SANPHAM">
         <MappingFragment StoreEntitySet="SANPHAM">
           <ScalarProperty Name="MASP" ColumnName="MASP" />
           <ScalarProperty Name="TENSP" ColumnName="TENSP" />
@@ -138,7 +139,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="XUONGIN">
-      <EntityTypeMapping TypeName="QLBH_HUNMYI_LTW1Model.XUONGIN">
+      <EntityTypeMapping TypeName="QLBH1Model.XUONGIN">
         <MappingFragment StoreEntitySet="XUONGIN">
           <ScalarProperty Name="MAXI" ColumnName="MAXI" />
           <ScalarProperty Name="TENXI" ColumnName="TENXI" />
@@ -146,6 +147,7 @@
           <ScalarProperty Name="SDT" ColumnName="SDT" />
           <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
           <ScalarProperty Name="NGUOILIENHE" ColumnName="NGUOILIENHE" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
           <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
         </MappingFragment>
       </EntityTypeMapping>

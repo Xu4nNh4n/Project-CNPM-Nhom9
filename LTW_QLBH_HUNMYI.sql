@@ -1,6 +1,6 @@
-﻿CREATE DATABASE QLBH_HUNMYI_LTW
+﻿CREATE DATABASE QLBH1
 GO
-USE QLBH_HUNMYI_LTW
+USE QLBH1
 GO
 
 -- ==========================================================================================
@@ -96,6 +96,7 @@ CREATE TABLE GIOHANG
     MAGH VARCHAR(10) PRIMARY KEY,
     MAKH VARCHAR(10) NOT NULL,
     NGAYTAO DATE DEFAULT GETDATE(),
+    TONGSL INT NULL DEFAULT 0,
     FOREIGN KEY (MAKH) REFERENCES KHACHHANG(MAKH)
 )
 GO
@@ -153,6 +154,7 @@ CREATE TABLE XUONGIN
     SDT VARCHAR(15) UNIQUE,
     EMAIL NVARCHAR(50) UNIQUE CHECK (EMAIL LIKE '_%@_%._%'),
 	NGUOILIENHE NVARCHAR(50),
+    GHICHU NVARCHAR(MAX) NULL,
     TRANGTHAI NVARCHAR(20) DEFAULT N'Hoạt động' CHECK (TRANGTHAI IN (N'Hoạt động', N'Ngừng hợp tác'))
 )
 GO
@@ -188,11 +190,22 @@ GO
 -- ==========================================================================================
 --                                         TRIGGER
 -- ==========================================================================================
+-- XUONGIN (bảng supplier - có GHICHU)
+SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('XUONGIN');
+-- KHACHHANG
 SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('KHACHHANG');
--- Xem triggers trên ACCOUNT  
+-- ACCOUNT  
 SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('ACCOUNT');
--- Xem triggers trên GIOHANG
+-- GIOHANG
 SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('GIOHANG');
+-- NHANVIEN
+SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('NHANVIEN');
+-- SANPHAM
+SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('SANPHAM');
+-- PHIEUNHAP
+SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('PHIEUNHAP');
+-- HOADON_BAN
+SELECT name FROM sys.triggers WHERE parent_id = OBJECT_ID('HOADON_BAN');
 
 -----TỰ ĐỘNG CẬP NHẬT MÃ KHACH HANG-----
 CREATE TRIGGER TRG_TU_DONG_MAKH
@@ -233,7 +246,6 @@ END
 GO
 
 -----TỰ ĐỘNG CẬP NHẬT MÃ ACCOUNT-----
-DROP TRIGGER TRG_TU_DONG_ACCOUNTID;
 CREATE TRIGGER TRG_TU_DONG_ACCOUNTID
 ON ACCOUNT
 INSTEAD OF INSERT
@@ -289,8 +301,6 @@ BEGIN
     FROM inserted;
 END
 GO
-
------TỰ ĐỘNG CẬP NHẬT MÃ GIỎ HÀNG-----
 
 
 -----TỰ ĐỘNG CẬP NHẬT MÃ HOADON_BAN-----
@@ -410,8 +420,72 @@ BEGIN
         SELECT MAHD_BAN FROM deleted
     );
 END
+
+-- TRIGGER TỰ ĐỘNG CẬP NHẬT TRẠNG THÁI KHI SỐ LƯỢNG THAY ĐỔI
+CREATE OR ALTER TRIGGER TRG_AUTO_UPDATE_TRANGTHAI_SANPHAM
+ON SANPHAM
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    -- Cập nhật sang "Hết hàng" nếu số lượng <= 0
+    UPDATE SANPHAM
+    SET TRANGTHAI = N'Hết hàng'
+    WHERE MASP IN (
+        SELECT i.MASP 
+        FROM inserted i
+        WHERE i.SOLUONGTON <= 0 
+          AND i.TRANGTHAI != N'Hết hàng'
+          AND i.TRANGTHAI != N'Ngừng bán'  -- Không đổi nếu đã ngừng bán
+    );
+    
+    -- Cập nhật lại "Đang bán" nếu có hàng trở lại
+    UPDATE SANPHAM
+    SET TRANGTHAI = N'Đang bán'
+    WHERE MASP IN (
+        SELECT i.MASP 
+        FROM inserted i
+        WHERE i.SOLUONGTON > 0 
+          AND i.TRANGTHAI = N'Hết hàng'
+    );
+END
 GO
 
+-- CẬP NHẬT TẤT CẢ SẢN PHẨM HẾT HÀNG NGAY BÂY GIỜ
+UPDATE SANPHAM 
+SET TRANGTHAI = N'Hết hàng' 
+WHERE SOLUONGTON <= 0 
+  AND TRANGTHAI NOT IN (N'Ngừng bán', N'Hết hàng');
+
+-- KIỂM TRA KẾT QUẢ
+SELECT MASP, TENSP, SOLUONGTON, TRANGTHAI 
+FROM SANPHAM 
+WHERE SOLUONGTON <= 0;
+
+CREATE TRIGGER TRG_AUTO_SYNC_ACCOUNT_STATUS 
+ON NHANVIEN 
+AFTER UPDATE 
+AS 
+BEGIN
+    SET NOCOUNT ON;
+    
+    UPDATE acc
+    SET acc.TRANGTHAI = 
+        CASE 
+            WHEN i.TRANGTHAI = N'Nghỉ việc' THEN N'Khóa'
+            WHEN i.TRANGTHAI = N'Đang làm' THEN N'Hoạt động'
+            ELSE acc.TRANGTHAI
+        END,
+        acc.VAITRO = 
+        CASE 
+            WHEN i.CHUCVU = N'Chủ shop' THEN N'Chủ shop'
+            ELSE N'Nhân viên'
+        END
+    FROM ACCOUNT acc
+    INNER JOIN inserted i ON acc.MANV = i.MANV
+    WHERE acc.MANV IS NOT NULL;
+END
 -- ==========================================================================================
 --                                         THÊM DỮ LIỆU MẪU
 -- ==========================================================================================
@@ -475,8 +549,8 @@ GO
 
 -- 6. Tạo giỏ hàng cho khách
 INSERT INTO GIOHANG VALUES 
-('GH1', 'KH1', '2024-01-01'),
-('GH2', 'KH2', '2025-08-11')
+('GH1', 'KH1', '2024-01-01', 0),
+('GH2', 'KH2', '2025-08-11', 0)
 GO
 
 
@@ -495,90 +569,4 @@ SELECT * FROM PHIEUNHAP
 SELECT * FROM CHITIETPHIEUNHAP
 
 
-
------------------------------------------------------BACKUP DỮ LIỆU--------------------------------------------------
----------------BACKUP FULL----------------------
-BACKUP DATABASE QLBH_HUNMYI_FINAL
-TO DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_FULL.bak'
-WITH INIT;
-
----------------BACKUP DIFF----------------------
-BACKUP DATABASE QLBH_HUNMYI_FINAL
-TO DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_DIFF.bak'
-WITH DIFFERENTIAL;
-
----------------BACKUP LOG----------------------
-BACKUP LOG QLBH_HUNMYI_FINAL
-TO DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_LOG.trn';
-
--- Restore Full
-RESTORE DATABASE QLBH_HUNMYI_FINAL
-FROM DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_FULL.bak'
-WITH REPLACE, NORECOVERY;
-GO
-
--- Restore Diff 
-RESTORE DATABASE QLBH_HUNMYI_FINAL
-FROM DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_DIFF.bak'
-WITH NORECOVERY;
-GO
-
--- Restore log(s) 
-RESTORE LOG QLBH_HUNMYI_FINAL 
-FROM DISK = 'E:\Kì 5\HQT CSDL\ĐỒ ÁN CUỐI KỲ\QLBH_HUNMYI_FINAL\BACKUP\QLBH_FULL.bak'
-WITH NORECOVERY;
-GO 
-
-
--------------------------------------PHÂN QUYỀN------------------------------------------
------CREATE ROLE-----
-CREATE ROLE ROLE_OWNER;
-CREATE ROLE ROLE_STAFF;
-CREATE ROLE ROLE_CUSTOMER;
-GO
------LOGIN ACCOUNT-----
-CREATE LOGIN owner_1 WITH PASSWORD = '1234';
-CREATE LOGIN staff_1 WITH PASSWORD = '12345';
-CREATE LOGIN customer_1 WITH PASSWORD = '123456';
-
------USER ACCOUNT-----
-CREATE USER owner1 FOR LOGIN owner_1;
-CREATE USER staff1 FOR LOGIN staff_1;
-CREATE USER customer1 FOR LOGIN customer_1;
-
------GÁN ROLE-----
-EXEC sp_addrolemember 'AdminRole', 'AdminUser';
-EXEC sp_addrolemember 'NhanVienRole', 'NhanVienUser';
-EXEC sp_addrolemember 'KhachRole', 'KhachUser';
-
--- ===== OWNER =====
-GRANT CONTROL ON DATABASE::QLBH_HUNMYI_FINAL TO ROLE_OWNER;
-
--- ===== STAFF =====
--- Xem thông tin khách hàng, danh mục, sản phẩm
-GRANT SELECT ON dbo.KHACHHANG TO ROLE_STAFF;
-GRANT SELECT ON dbo.DANHMUC TO ROLE_STAFF;
-GRANT SELECT ON dbo.SANPHAM TO ROLE_STAFF;
-
--- Xử lý đơn hàng
-GRANT SELECT, INSERT, UPDATE ON dbo.HOADON_BAN TO ROLE_STAFF;
-GRANT SELECT, INSERT, UPDATE ON dbo.CTHD_BAN TO ROLE_STAFF;
-
--- ===== CUSTOMER =====
--- Xem danh mục, sản phẩm
-GRANT SELECT ON dbo.DANHMUC TO ROLE_CUSTOMER;
-GRANT SELECT ON dbo.SANPHAM TO ROLE_CUSTOMER;
-
--- Giỏ hàng
-GRANT SELECT, INSERT, UPDATE, DELETE ON dbo.GIOHANG TO ROLE_CUSTOMER;
-GRANT SELECT, INSERT, UPDATE, DELETE ON dbo.CHITIET_GIOHANG TO ROLE_CUSTOMER;
-
--- Hóa đơn
-GRANT SELECT, INSERT ON dbo.HOADON_BAN TO ROLE_CUSTOMER;
-GRANT SELECT, INSERT ON dbo.CTHD_BAN TO ROLE_CUSTOMER;
-
--- Cả Staff + Customer đều được SELECT ACCOUNT (cập nhật cá nhân xử lý trong code)
-GRANT SELECT ON dbo.ACCOUNT TO ROLE_STAFF;
-GRANT SELECT ON dbo.ACCOUNT TO ROLE_CUSTOMER;
-GO
 

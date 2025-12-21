@@ -1,61 +1,173 @@
 ﻿@model IEnumerable<LTW_QLBH_HUNMYI.Models.CTHD_BAN>
 @{
     Layout = "~/Views/Shared/_LayoutStaff.cshtml";
-    var order = ViewBag.Order;
+    var order = ViewBag.Order as LTW_QLBH_HUNMYI.Models.HOADON_BAN;
     string currentStatus = order.TRANGTHAI;
+    ViewBag.Title = "Chi tiết đơn hàng";
 }
 
-<h4>Đơn hàng: @order.MAHD_BAN</h4>
-<p>Khách hàng: @order.KHACHHANG.HOTENKH</p>
-<p>Trạng thái: @order.TRANGTHAI</p>
+<div class="container-fluid">
+    <!-- Header with Back Button -->
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <a href="@Url.Action("Orders")" class="btn btn-outline-secondary btn-sm">
+                <i class="fas fa-arrow-left"></i> Quay lại danh sách
+            </a>
+            <h2 class="mt-3">
+                <i class="fas fa-file-invoice"></i> Chi tiết đơn hàng #@order.MAHD_BAN
+            </h2>
+        </div>
+    </div>
 
-<form action="@Url.Action("UpdateOrderStatus","Staff")" method="post">
-    @Html.AntiForgeryToken()
-    <input type="hidden" name="id" value="@order.MAHD_BAN" />
-    <select name="status" class="form-select w-25">
-        <option value="Chờ xử lý"
-                @(currentStatus != "Chờ xử lý" ? "disabled" : "selected")>
-            Chờ xử lý
-        </option>
+    <div class="row">
+        <!-- Left: Customer & Order Info -->
+        <div class="col-md-4">
+            <!-- Customer Info Card -->
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-user"></i> Thông tin khách hàng</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong><i class="fas fa-id-card"></i> Tên:</strong> @(order.KHACHHANG?.HOTENKH ?? "")</p>
+                    <p><strong><i class="fas fa-phone"></i> SĐT:</strong> @(order.KHACHHANG?.SDT ?? "")</p>
+                    <p><strong><i class="fas fa-envelope"></i> Email:</strong> @(order.KHACHHANG?.EMAIL ?? "")</p>
+                    <p><strong><i class="fas fa-map-marker-alt"></i> Địa chỉ:</strong> @(order.KHACHHANG?.DIACHI ?? "")</p>
+                </div>
+            </div>
 
-        <option value="Đang xử lý"
-                @(currentStatus == "Hoàn thành" || currentStatus == "Đã hủy" ? "disabled" : "")
-                @(currentStatus == "Đang xử lý" ? "selected" : "")>
-            Đang xử lý
-        </option>
+            <!-- Order Info Card -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-info-circle"></i> Thông tin đơn hàng</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong><i class="fas fa-barcode"></i> Mã đơn:</strong> @order.MAHD_BAN</p>
+                    <p><strong><i class="fas fa-calendar"></i> Ngày lập:</strong> @(order.NGAYLAP.HasValue ? order.NGAYLAP.Value.ToString("dd/MM/yyyy HH:mm") : "")</p>
+                    <p><strong><i class="fas fa-money-bill-wave"></i> Tổng tiền:</strong> <span class="text-success fw-bold">@String.Format("{0:N0} đ", order.TONGTIEN)</span></p>
+                    @if (!string.IsNullOrEmpty(order.GHICHU))
+                    {
+                        <p><strong><i class="fas fa-sticky-note"></i> Ghi chú:</strong> @order.GHICHU</p>
+                    }
+                </div>
+            </div>
+        </div>
 
-        <option value="Hoàn thành"
-                @(currentStatus == "Đã hủy" ? "disabled" : "")
-                @(currentStatus == "Hoàn thành" ? "selected" : "")>
-            Hoàn thành
-        </option>
+        <!-- Right: Products & Status -->
+        <div class="col-md-8">
+            <!-- Order Status Card with Cyan color -->
+            <div class="card shadow-sm mb-3">
+                <div class="card-header text-white" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <h5 class="mb-0"><i class="fas fa-tasks"></i> Cập nhật trạng thái</h5>
+                </div>
+                <div class="card-body">
+                    <form action="@Url.Action("UpdateOrderStatus", "Staff")" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@order.MAHD_BAN" />
+                        
+                        <div class="row align-items-end">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Trạng thái hiện tại:</label>
+                                @if (currentStatus == "Chờ xử lý")
+                                {
+                                    <span class="badge bg-warning text-dark fs-6">⏳ Chờ xử lý</span>
+                                }
+                                else if (currentStatus == "Đang xử lý")
+                                {
+                                    <span class="badge bg-info fs-6">🔄 Đang xử lý</span>
+                                }
+                                else if (currentStatus == "Hoàn thành")
+                                {
+                                    <span class="badge bg-success fs-6">✅ Hoàn thành</span>
+                                }
+                                else if (currentStatus == "Đã hủy")
+                                {
+                                    <span class="badge bg-danger fs-6">❌ Đã hủy</span>
+                                }
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Cập nhật thành:</label>
+                                <div class="input-group">
+                                    <select name="status" class="form-select">
+                                        <option value="Chờ xử lý" @(currentStatus != "Chờ xử lý" ? "disabled" : "selected")>⏳ Chờ xử lý</option>
+                                        <option value="Đang xử lý" @(currentStatus == "Hoàn thành" || currentStatus == "Đã hủy" ? "disabled" : "") @(currentStatus == "Đang xử lý" ? "selected" : "")>🔄 Đang xử lý</option>
+                                        <option value="Hoàn thành" @(currentStatus == "Đã hủy" ? "disabled" : "") @(currentStatus == "Hoàn thành" ? "selected" : "")>✅ Hoàn thành</option>
+                                        <option value="Đã hủy" @(currentStatus == "Hoàn thành" ? "disabled" : "") @(currentStatus == "Đã hủy" ? "selected" : "")>❌ Đã hủy</option>
+                                    </select>
+                                    <button class="btn btn-primary" type="submit" @(currentStatus == "Hoàn thành" || currentStatus == "Đã hủy" ? "disabled" : "")>
+                                        <i class="fas fa-check"></i> Cập nhật
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-        <option value="Đã hủy"
-                @(currentStatus == "Hoàn thành" ? "disabled" : "")
-                @(currentStatus == "Đã hủy" ? "selected" : "")>
-            Đã hủy
-        </option>
-    </select>
+            <!-- Products Table Card with Green color -->
+            <div class="card shadow-sm">
+                <div class="card-header text-white" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                    <h5 class="mb-0"><i class="fas fa-shopping-cart"></i> Sản phẩm trong đơn hàng</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th class="text-center">Số lượng</th>
+                                    <th class="text-end">Đơn giá</th>
+                                    <th class="text-end">Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <strong>@(item.SANPHAM?.TENSP ?? "")</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-secondary">@item.SOLUONG</span>
+                                        </td>
+                                        <td class="text-end">@String.Format("{0:N0} đ", item.DONGIA)</td>
+                                        <td class="text-end fw-bold">@String.Format("{0:N0} đ", item.THANHTIEN)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot class="table-active">
+                                <tr class="fw-bold fs-5">
+                                    <td colspan="3" class="text-end">Tổng cộng:</td>
+                                    <td class="text-end text-success">@String.Format("{0:N0} đ", order.TONGTIEN)</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <button class="btn btn-primary mt-2"
-            @(currentStatus == "Hoàn thành" || currentStatus == "Đã hủy" ? "disabled" : "")>
-        Cập nhật
-    </button>
-</form>
+<style>
+    .card {
+        border-radius: 10px;
+        border: none;
+    }
 
-<table class="table mt-4">
-    <thead>
-        <tr><th>Sản phẩm</th><th>Số lượng</th><th>Giá</th><th>Thành tiền</th></tr>
-    </thead>
-    <tbody>
-        @foreach (var d in Model)
-        {
-            <tr>
-                <td>@d.SANPHAM.TENSP</td>
-                <td>@d.SOLUONG</td>
-                <td>@String.Format("{0:N0}", d.DONGIA)đ</td>
-                <td>@String.Format("{0:N0}", d.THANHTIEN)đ</td>
-            </tr>
-        }
-    </tbody>
-</table>
+    .card-header {
+        border-radius: 10px 10px 0 0 !important;
+    }
+
+    .badge {
+        padding: 8px 12px;
+    }
+
+    .fs-6 {
+        font-size: 1rem;
+    }
+
+    .fw-bold {
+        font-weight: 600;
+    }
+</style>

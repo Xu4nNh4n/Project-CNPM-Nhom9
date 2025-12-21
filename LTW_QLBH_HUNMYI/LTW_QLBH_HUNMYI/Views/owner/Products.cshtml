@@ -1,53 +1,10 @@
-﻿@*@model IEnumerable<LTW_QLBH_HUNMYI.Models.SANPHAM>
-    @{
-        Layout = "~/Views/Shared/_LayoutOwner.cshtml";
-    }
-
-    <form method="get" action="/Owner/Products">
-        @Html.DropDownList(
-            "madm",
-            (SelectList)ViewBag.DanhMucList,
-            "-- Tất cả danh mục --",
-            new { @class = "form-control", style = "width:250px; display:inline-block;" }
-        )
-
-        <button type="submit" class="btn btn-primary">Lọc</button>
-    </form>
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Mã Sản Phẩm</th>
-                <th>Tên Sản Phẩm</th>
-                <th>Tên Danh Mục</th>
-                <th>Tồn kho</th>
-                <th>Giá</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var p in Model)
-            {
-                <tr>
-                    <td>@p.MASP</td>
-                    <td>@p.TENSP</td>
-                    <td>@p.DANHMUC.TENDM</td>
-                    <td>@p.SOLUONGTON</td>
-                    <td>@String.Format("{0:N0}", @p.GIA)đ</td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
-
+﻿
 @model IEnumerable<LTW_QLBH_HUNMYI.Models.SANPHAM>
 
 @{
     ViewBag.Title = "Quản lý sản phẩm";
     Layout = "~/Views/Shared/_LayoutOwner.cshtml";
 }
-
-<h3 class="mb-3">📦 Quản lý sản phẩm</h3>
-
 @if (TempData["Success"] != null)
 {
     <div class="alert alert-success">@TempData["Success"]</div>
@@ -109,9 +66,22 @@
                 <td>@String.Format("{0:N0} ₫", item.GIA)</td>
                 <td>@item.SOLUONGTON</td>
                 <td>
-                    <span class="badge bg-@(item.TRANGTHAI == "Đang bán" ? "success" : "secondary")">
-                        @item.TRANGTHAI
-                    </span>
+                    @if (item.TRANGTHAI == "Đang bán")
+                    {
+                        <span class="badge bg-success">@item.TRANGTHAI</span>
+                    }
+                    else if (item.TRANGTHAI == "Hết hàng")
+                    {
+                        <span class="badge bg-danger">@item.TRANGTHAI</span>
+                    }
+                    else if (item.TRANGTHAI == "Ngừng bán")
+                    {
+                        <span class="badge bg-warning text-dark">@item.TRANGTHAI</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">@item.TRANGTHAI</span>
+                    }
                 </td>
                 <td>
                     <div class="dropdown">

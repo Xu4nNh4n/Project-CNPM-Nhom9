@@ -13,7 +13,7 @@ namespace LTW_QLBH_HUNMYI.Controllers
     [CustomAuthorize(AllowedRoles = new[] { "Chủ shop" })]
     public class OwnerController : Controller
     {
-        private QLBH_HUNMYI_LTW1Entities db = new QLBH_HUNMYI_LTW1Entities();
+        private QLBH1Entities db = new QLBH1Entities();
 
         // GET: Owner - Dashboard
         #region TRANG CHỦ *****ĐÃ XONG*****
@@ -551,8 +551,14 @@ namespace LTW_QLBH_HUNMYI.Controllers
         {
             ViewBag.Title = "Chi tiết đơn hàng";
 
-            var order = db.HOADON_BAN.Find(id);
-            var details = db.CTHD_BAN.Where(ct => ct.MAHD_BAN == id).ToList();
+            var order = db.HOADON_BAN
+                .Include("KHACHHANG")
+                .FirstOrDefault(o => o.MAHD_BAN == id);
+            
+            var details = db.CTHD_BAN
+                .Include("SANPHAM")
+                .Where(ct => ct.MAHD_BAN == id)
+                .ToList();
 
             ViewBag.Order = order;
             return View(details);
@@ -744,48 +750,47 @@ namespace LTW_QLBH_HUNMYI.Controllers
                 var existingNV = db.NHANVIEN.Find(nv.MANV);
                 if (existingNV == null) return HttpNotFound();
 
-                // DISABLE TRIGGERS
-                db.Database.ExecuteSqlCommand("ALTER TABLE NHANVIEN DISABLE TRIGGER ALL");
+                // 🔒 Validation: Ngăn owner tự nghỉ việc chính mình
+                string currentStaffId = Session["StaffID"]?.ToString();
+                if (currentStaffId == nv.MANV && nv.TRANGTHAI == "Nghỉ việc")
+                {
+                    TempData["Error"] = "Bạn không thể tự nghỉ việc! Vui lòng liên hệ quản trị viên khác.";
+                    return RedirectToAction("EditStaff", new { id = nv.MANV });
+                }
+
+                // DISABLE chỉ ACCOUNT trigger (không disable NHANVIEN để trigger auto-sync chạy)
                 db.Database.ExecuteSqlCommand("ALTER TABLE ACCOUNT DISABLE TRIGGER ALL");
+
 
                 try
                 {
-                    // Cập nhật thông tin nhân viên
-                    existingNV.HOTENNV = nv.HOTENNV;
-                    existingNV.GIOITINH = nv.GIOITINH;
-                    existingNV.NGAYSINH = nv.NGAYSINH?.Date;
-                    existingNV.SDT = nv.SDT;
-                    existingNV.EMAIL = nv.EMAIL;
-                    existingNV.DIACHI = nv.DIACHI;
-                    existingNV.CHUCVU = nv.CHUCVU;
-                    existingNV.LUONGCOBAN = nv.LUONGCOBAN;
-                    existingNV.TRANGTHAI = nv.TRANGTHAI;
+                    // ✅ UPDATE NHÂN VIÊN - Trigger sẽ tự động sync ACCOUNT
+                    string sqlUpdateNV = @"UPDATE NHANVIEN 
+                                          SET HOTENNV = @p0, GIOITINH = @p1, NGAYSINH = @p2, 
+                                              SDT = @p3, EMAIL = @p4, DIACHI = @p5, 
+                                              CHUCVU = @p6, LUONGCOBAN = @p7, TRANGTHAI = @p8
+                                          WHERE MANV = @p9";
+                    
+                    db.Database.ExecuteSqlCommand(sqlUpdateNV,
+                        nv.HOTENNV, nv.GIOITINH, nv.NGAYSINH?.Date,
+                        nv.SDT, nv.EMAIL, nv.DIACHI ?? "",
+                        nv.CHUCVU, nv.LUONGCOBAN, nv.TRANGTHAI,
+                        nv.MANV);
 
-                    // Đánh dấu entity đã modified
-                    db.Entry(existingNV).State = System.Data.Entity.EntityState.Modified;
-
-                    // Đồng bộ VAITRO trong ACCOUNT khi thay đổi CHUCVU
-                    var account = db.ACCOUNT.FirstOrDefault(a => a.MANV == nv.MANV);
-                    if (account != null)
+                    // Reset mật khẩu nếu được yêu cầu
+                    if (resetPassword)
                     {
-                        // Cập nhật vai trò theo chức vụ
-                        account.VAITRO = nv.CHUCVU == "Chủ shop" ? "Chủ shop" : "Nhân viên";
-
-                        // Reset mật khẩu nếu được yêu cầu
-                        if (resetPassword)
+                        var account = db.ACCOUNT.FirstOrDefault(a => a.MANV == nv.MANV);
+                        if (account != null)
                         {
                             string newPasswordHash = GetMD5Hash("123456");
-                            account.PASSWORDHASH = newPasswordHash;
-                            
-                            // Đánh dấu account đã modified
-                            db.Entry(account).State = System.Data.Entity.EntityState.Modified;
+                            string sqlResetPassword = @"UPDATE ACCOUNT SET PASSWORDHASH = @p0 WHERE MANV = @p1";
+                            db.Database.ExecuteSqlCommand(sqlResetPassword, newPasswordHash, nv.MANV);
                             
                             TempData["Success"] = "Cập nhật nhân viên và reset mật khẩu về 123456 thành công!";
                         }
                         else
                         {
-                            // Vẫn cần đánh dấu modified vì đổi VAITRO
-                            db.Entry(account).State = System.Data.Entity.EntityState.Modified;
                             TempData["Success"] = "Cập nhật nhân viên thành công!";
                         }
                     }
@@ -793,13 +798,10 @@ namespace LTW_QLBH_HUNMYI.Controllers
                     {
                         TempData["Success"] = "Cập nhật nhân viên thành công!";
                     }
-
-                    db.SaveChanges();
                 }
                 finally
                 {
-                    // ENABLE LẠI TRIGGERS
-                    db.Database.ExecuteSqlCommand("ALTER TABLE NHANVIEN ENABLE TRIGGER ALL");
+                    // ENABLE LẠI ACCOUNT TRIGGER
                     db.Database.ExecuteSqlCommand("ALTER TABLE ACCOUNT ENABLE TRIGGER ALL");
                 }
 
@@ -807,6 +809,13 @@ namespace LTW_QLBH_HUNMYI.Controllers
             }
             catch (Exception ex)
             {
+                // ENSURE TRIGGERS ARE RE-ENABLED EVEN ON ERROR
+                try
+                {
+                    db.Database.ExecuteSqlCommand("ALTER TABLE ACCOUNT ENABLE TRIGGER ALL");
+                }
+                catch { }
+
                 TempData["Error"] = "Có lỗi xảy ra: " + ex.Message;
                 return RedirectToAction("EditStaff", new { id = nv.MANV });
             }
@@ -872,6 +881,29 @@ namespace LTW_QLBH_HUNMYI.Controllers
             return View(suppliers);
         }
 
+        // GET: Owner/SupplierDetail/{id} - Chi tiết xưởng in
+        public ActionResult SupplierDetail(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return HttpNotFound();
+
+            var supplier = db.XUONGIN.Find(id);
+            if (supplier == null)
+                return HttpNotFound();
+
+            // Lấy lịch sử phiếu nhập từ xưởng in này (Include NHANVIEN để tránh lazy loading)
+            var importHistory = db.PHIEUNHAP
+                .Include("NHANVIEN")
+                .Where(p => p.MAXI == id)
+                .OrderByDescending(p => p.NGAYNHAP)
+                .ToList();
+
+            ViewBag.ImportHistory = importHistory;
+            ViewBag.Title = "Chi tiết xưởng in";
+
+            return View(supplier);
+        }
+
         public ActionResult CreateSupplier()
         {
             XUONGIN xi = new XUONGIN();
@@ -930,6 +962,7 @@ namespace LTW_QLBH_HUNMYI.Controllers
                 xi.EMAIL = model.EMAIL;
                 xi.NGUOILIENHE = model.NGUOILIENHE;
                 xi.TRANGTHAI = model.TRANGTHAI;
+                xi.GHICHU = model.GHICHU;
 
                 db.SaveChanges();
                 return RedirectToAction("Suppliers");
@@ -938,21 +971,38 @@ namespace LTW_QLBH_HUNMYI.Controllers
         }
 
 
-        // POST: Owner/StopSupplier - NGỪNG HỢP TÁC (Direct Action, No View)
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // GET: Owner/StopSupplier - NGỪNG HỢP TÁC (Hiển thị form nhập nguyên nhân)
         public ActionResult StopSupplier(string id)
         {
             var supplier = db.XUONGIN.Find(id);
-            if (supplier != null)
-            {
-                // Soft Delete - Chỉ đổi trạng thái
-                supplier.TRANGTHAI = "Ngừng hợp tác";
-                db.SaveChanges();
+            if (supplier == null)
+                return HttpNotFound();
 
-                TempData["Success"] = "Ngừng hợp tác với xưởng in thành công!";
+            return View(supplier);
+        }
+
+        // POST: Owner/StopSupplier - NGỪNG HỢP TÁC (Lưu nguyên nhân)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmStopSupplier(string id, string ghichu)
+        {
+            var supplier = db.XUONGIN.Find(id);
+            if (supplier == null)
+                return HttpNotFound();
+
+            // Validate: Bắt buộc phải nhập nguyên nhân
+            if (string.IsNullOrWhiteSpace(ghichu))
+            {
+                ModelState.AddModelError("", "Vui lòng nhập nguyên nhân ngừng hợp tác");
+                return View("StopSupplier", supplier);
             }
 
+            // Cập nhật trạng thái và ghi chú
+            supplier.TRANGTHAI = "Ngừng hợp tác";
+            supplier.GHICHU = ghichu.Trim();
+            db.SaveChanges();
+
+            TempData["Success"] = "Ngừng hợp tác với xưởng in thành công!";
             return RedirectToAction("Suppliers");
         }
 

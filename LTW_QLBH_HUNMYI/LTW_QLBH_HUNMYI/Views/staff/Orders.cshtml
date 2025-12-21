@@ -1,89 +1,180 @@
 ﻿@model IEnumerable<LTW_QLBH_HUNMYI.Models.HOADON_BAN>
 @{
     Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+    ViewBag.Title = "Quản lý đơn hàng";
 }
 
-<!-- 🔍 TÌM THEO MÃ -->
-@using (Html.BeginForm("Orders", "Staff", FormMethod.Get))
+@if (TempData["Success"] != null)
 {
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <input type="text"
-                   name="maHD"
-                   class="form-control"
-                   placeholder="Nhập mã hóa đơn..." />
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary">Tìm mã</button>
-        </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 }
 
-<!-- 🔽 LỌC THEO TRẠNG THÁI -->
-@using (Html.BeginForm("Orders", "Staff", FormMethod.Get))
-{
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <select name="status" class="form-control">
-                <option value="">-- Chọn trạng thái --</option>
-                <option value="Chờ xử lý" @(Request["status"] == "Chờ xử lý" ? "selected" : "")>
-                    Chờ xử lý
-                </option>
-                <option value="Đang xử lý" @(Request["status"] == "Đang xử lý" ? "selected" : "")>
-                    Đang xử lý
-                </option>
-                <option value="Hoàn thành" @(Request["status"] == "Hoàn thành" ? "selected" : "")>
-                    Hoàn thành
-                </option>
-                <option value="Đã hủy" @(Request["status"] == "Đã hủy" ? "selected" : "")>
-                    Đã hủy
-                </option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-success">Lọc</button>
-            <a href="@Url.Action("Orders","Staff")"
-               class="btn btn-secondary">Tất cả</a>
-        </div>
-    </div>
-}
-
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Mã HĐ</th>
-            <th>Ngày lập</th>
-            <th>Khách</th>
-            <th>Trạng thái</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (!Model.Any())
+<!-- Combined Filter Form -->
+<div class="card mb-4">
+    <div class="card-body">
+        @using (Html.BeginForm("Orders", "Staff", FormMethod.Get, new { @class = "row g-3" }))
         {
-            <tr>
-                <td colspan="5" class="text-center text-danger">
-                    Không có đơn hàng phù hợp
-                </td>
-            </tr>
+            <div class="col-md-3">
+                <label class="form-label small text-muted">Tìm theo mã hóa đơn</label>
+                <input type="text" name="maHD" class="form-control" placeholder="Nhập mã hóa đơn..." value="@Request["maHD"]">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small text-muted">Lọc theo trạng thái</label>
+                <select name="status" class="form-select" onchange="this.form.submit()">
+                    <option value="">-- Tất cả trạng thái --</option>
+                    <option value="Chờ xử lý" @(Request["status"] == "Chờ xử lý" ? "selected" : "")>🟡 Chờ xử lý</option>
+                    <option value="Đang xử lý" @(Request["status"] == "Đang xử lý" ? "selected" : "")>🔵 Đang xử lý</option>
+                    <option value="Hoàn thành" @(Request["status"] == "Hoàn thành" ? "selected" : "")>🟢 Hoàn thành</option>
+                    <option value="Đã hủy" @(Request["status"] == "Đã hủy" ? "selected" : "")>🔴 Đã hủy</option>
+                </select>
+            </div>
+            <div class="col-md-3 d-flex align-items-end gap-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Tìm kiếm
+                </button>
+                <a href="@Url.Action("Orders", "Staff")" class="btn btn-outline-secondary">
+                    <i class="fas fa-redo"></i> Reset
+                </a>
+            </div>
         }
-        else
-        {
-            foreach (var o in Model)
-            {
+    </div>
+</div>
+
+<!-- Orders Table -->
+<div class="card">
+    <div class="card-body">
+        <table class="table table-hover table-bordered align-middle mb-0">
+            <thead class="table-primary">
                 <tr>
-                    <td>@o.MAHD_BAN</td>
-                    <td>@o.NGAYLAP</td>
-                    <td>@o.KHACHHANG.HOTENKH</td>
-                    <td>@o.TRANGTHAI</td>
-                    <td>
-                        <a href="@Url.Action("OrderDetail","Staff", new { id = o.MAHD_BAN })"
-                           class="btn btn-info btn-sm">
-                            Xem
-                        </a>
-                    </td>
+                    <th>Mã hóa đơn</th>
+                    <th>Ngày lập</th>
+                    <th>Khách hàng</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th width="120">Thao tác</th>
                 </tr>
-            }
-        }
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            <i class="fas fa-inbox fa-3x mb-2 d-block"></i>
+                            <span>Không tìm thấy đơn hàng phù hợp</span>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var order in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold">@order.MAHD_BAN</td>
+                            <td>
+                                @if (order.NGAYLAP.HasValue)
+                                {
+                                    <span>@order.NGAYLAP.Value.ToString("dd/MM/yyyy")</span>
+                                    <br />
+                                    <small class="text-muted">@order.NGAYLAP.Value.ToString("HH:mm")</small>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">N/A</span>
+                                }
+                            </td>
+                            <td>
+                                @if (order.KHACHHANG != null)
+                                {
+                                    <span>@order.KHACHHANG.HOTENKH</span>
+                                    <br />
+                                    <small class="text-muted">@order.KHACHHANG.SDT</small>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">N/A</span>
+                                }
+                            </td>
+                            <td class="text-end fw-bold text-success">
+                                @String.Format("{0:N0}", order.TONGTIEN) đ
+                            </td>
+                            <td>
+                                @if (order.TRANGTHAI == "Chờ xử lý")
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-clock"></i> Chờ xử lý
+                                    </span>
+                                }
+                                else if (order.TRANGTHAI == "Đang xử lý")
+                                {
+                                    <span class="badge bg-info">
+                                        <i class="fas fa-spinner"></i> Đang xử lý
+                                    </span>
+                                }
+                                else if (order.TRANGTHAI == "Hoàn thành")
+                                {
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check-circle"></i> Hoàn thành
+                                    </span>
+                                }
+                                else if (order.TRANGTHAI == "Đã hủy")
+                                {
+                                    <span class="badge bg-danger">
+                                        <i class="fas fa-times-circle"></i> Đã hủy
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">@order.TRANGTHAI</span>
+                                }
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("OrderDetail", "Staff", new { id = order.MAHD_BAN })"
+                                   class="btn btn-sm btn-info text-white">
+                                    <i class="fas fa-eye"></i> Xem
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        box-shadow: 0 0 20px rgba(0,0,0,0.08);
+        border-radius: 10px;
+    }
+
+    .badge {
+        padding: 6px 12px;
+        font-weight: 500;
+    }
+
+    .table thead th {
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .form-label {
+        margin-bottom: 0.25rem;
+        font-weight: 500;
+    }
+
+    .table-primary {
+        background-color: #d1ecf1 !important;
+        color: #0c5460;
+    }
+</style>

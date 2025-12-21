@@ -14,7 +14,7 @@ namespace LTW_QLBH_HUNMYI.Controllers
 {
     public class AccountController : Controller
     {
-        QLBH_HUNMYI_LTW1Entities db = new QLBH_HUNMYI_LTW1Entities();
+        QLBH1Entities db = new QLBH1Entities();
         // GET: Account/Login
         public ActionResult Login()
         {
@@ -38,13 +38,25 @@ namespace LTW_QLBH_HUNMYI.Controllers
 
             string passwordHash = GetMD5Hash(password);
 
+            // Kiểm tra username và password trước (không quan tâm status)
             var account = db.ACCOUNT.FirstOrDefault(a =>
                 a.USERNAME == username &&
-                a.PASSWORDHASH == passwordHash &&
-                a.TRANGTHAI == "Hoạt động");
+                a.PASSWORDHASH == passwordHash);
 
             if (account != null)
             {
+                // Kiểm tra trạng thái tài khoản
+                if (account.TRANGTHAI == "Khóa")
+                {
+                    ViewBag.Error = "Tài khoản của bạn đã bị khóa! Vui lòng liên hệ quản trị viên.";
+                    return View();
+                }
+                else if (account.TRANGTHAI != "Hoạt động")
+                {
+                    ViewBag.Error = "Tài khoản không ở trạng thái hoạt động!";
+                    return View();
+                }
+
                 // Lưu thông tin vào session
                 Session["UserID"] = account.USERID;
                 Session["Username"] = account.USERNAME;

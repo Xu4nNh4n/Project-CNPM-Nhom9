@@ -3,37 +3,357 @@
     Layout = "~/Views/Shared/_LayoutStaff.cshtml";
 }
 
-@using (Html.BeginForm("Customers", "Staff", FormMethod.Get))
-{
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <input type="text"
-                   name="khach"
-                   class="form-control"
-                   placeholder="Nhập tên hoặc mã khách hàng..." />
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-warning">Tìm khách</button>
-            <a href="@Url.Action("Customers","Staff")"
-               class="btn btn-secondary">Tất cả</a>
-        </div>
-    </div>
+<style>
+    .customers-header {
+        background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .customers-header h2 {
+        margin: 0;
+        font-weight: 600;
+        font-size: 1.8rem;
+    }
+
+    .search-section {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 1.5rem;
+    }
+
+    .search-controls {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .search-input {
+        flex: 1;
+        min-width: 300px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        padding: 0.7rem 1rem;
+        font-size: 1rem;
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: #38b2ac;
+        box-shadow: 0 0 0 3px rgba(56, 178, 172, 0.1);
+    }
+
+    .btn-search {
+        background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.7rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-search:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(56, 178, 172, 0.3);
+    }
+
+    .btn-all {
+        background: #6c757d;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.7rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-all:hover {
+        background: #5a6268;
+        color: white;
+    }
+
+    .customers-table {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .customers-table table {
+        margin: 0;
+    }
+
+    .customers-table thead {
+        background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);
+        color: white;
+    }
+
+    .customers-table thead th {
+        border: none;
+        padding: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .customers-table tbody tr {
+        border-bottom: 1px solid #f0f0f0;
+        transition: all 0.2s ease;
+    }
+
+    .customers-table tbody tr:hover {
+        background-color: #f0fdfa;
+        transform: scale(1.01);
+    }
+
+    .customers-table tbody td {
+        padding: 1rem;
+        vertical-align: middle;
+    }
+
+    .customer-code {
+        font-weight: 600;
+        color: #38b2ac;
+        font-family: monospace;
+    }
+
+    .customer-name {
+        font-weight: 600;
+        color: #2d3748;
+    }
+
+    .customer-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+
+    .contact-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #4a5568;
+    }
+
+    .btn-view {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1.2rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-view:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        color: white;
+    }
+
+    .no-customers {
+        text-align: center;
+        padding: 3rem;
+        color: #718096;
+        font-size: 1.1rem;
+    }
+
+    .stats-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-card {
+        flex: 1;
+        min-width: 220px;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-left: 4px solid;
+    }
+
+    .stat-card.total-customers {
+        border-left-color: #38b2ac;
+    }
+
+    .stat-card.active-customers {
+        border-left-color: #48bb78;
+    }
+
+    .stat-card.new-customers {
+        border-left-color: #667eea;
+    }
+
+    .stat-label {
+        color: #718096;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2d3748;
+    }
+
+    .gender-badge {
+        padding: 0.3rem 0.6rem;
+        border-radius: 15px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .gender-male {
+        background: #e6f7ff;
+        color: #1890ff;
+    }
+
+    .gender-female {
+        background: #fff0f6;
+        color: #eb2f96;
+    }
+
+    .gender-other {
+        background: #f6f6f6;
+        color: #666;
+    }
+</style>
+@{
+    var totalCustomers = Model.Count();
+    var activeCustomers = Model.Count(c => c.ACCOUNT != null && c.ACCOUNT.Any(a => a.TRANGTHAI == "Active" || a.TRANGTHAI == "Hoạt động"));
+    var newCustomers = Model.Count(c => c.NGAYDANGKY.HasValue && c.NGAYDANGKY.Value >= DateTime.Now.AddDays(-30));
 }
 
-<table class="table table-striped">
-    <thead>
-        <tr><th>Mã KH</th><th>Tên KH</th><th>SDT</th><th>Email</th><th></th></tr>
-    </thead>
-    <tbody>
-        @foreach (var c in Model)
-        {
-            <tr>
-                <td>@c.MAKH</td>
-                <td>@c.HOTENKH</td>
-                <td>@c.SDT</td>
-                <td>@c.EMAIL</td>
-                <td><a href="@Url.Action("CustomerDetail","Staff", new {id=c.MAKH})" class="btn btn-primary btn-sm">Xem</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="stats-row">
+    <div class="stat-card total-customers">
+        <div class="stat-label">
+            <i class="fas fa-users"></i>
+            Tổng Khách Hàng
+        </div>
+        <div class="stat-value">@totalCustomers</div>
+    </div>
+    <div class="stat-card active-customers">
+        <div class="stat-label">
+            <i class="fas fa-user-check"></i>
+            Đang Hoạt Động
+        </div>
+        <div class="stat-value">@activeCustomers</div>
+    </div>
+    <div class="stat-card new-customers">
+        <div class="stat-label">
+            <i class="fas fa-user-plus"></i>
+            Khách Mới (30 ngày)
+        </div>
+        <div class="stat-value">@newCustomers</div>
+    </div>
+</div>
+
+<div class="search-section">
+    @using (Html.BeginForm("Customers", "Staff", FormMethod.Get))
+    {
+        <div class="search-controls">
+            <input type="text"
+                   name="khach"
+                   class="search-input"
+                   placeholder="🔍 Tìm kiếm theo tên hoặc mã khách hàng..."
+                   value="@Request.QueryString["khach"]" />
+            <button type="submit" class="btn btn-search">
+                <i class="fas fa-search"></i> Tìm Kiếm
+            </button>
+            <a href="@Url.Action("Customers","Staff")" class="btn btn-all">
+                <i class="fas fa-list"></i> Tất Cả
+            </a>
+        </div>
+    }
+</div>
+
+<div class="customers-table">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th style="width: 60px;"></th>
+                    <th style="width: 100px;">Mã KH</th>
+                    <th>Tên Khách Hàng</th>
+                    <th style="width: 80px;">Giới Tính</th>
+                    <th style="width: 150px;">Số Điện Thoại</th>
+                    <th>Email</th>
+                    <th style="width: 120px;">Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    var initial = !string.IsNullOrEmpty(c.HOTENKH) ? c.HOTENKH.Substring(0, 1).ToUpper() : "?";
+                    var genderBadge = c.GIOITINH == "Nam" ? "gender-male" : 
+                                    (c.GIOITINH == "Nữ" ? "gender-female" : "gender-other");
+                    
+                    <tr>
+                        <td>
+                            <div class="customer-icon">@initial</div>
+                        </td>
+                        <td>
+                            <span class="customer-code">@c.MAKH</span>
+                        </td>
+                        <td>
+                            <span class="customer-name">@c.HOTENKH</span>
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(c.GIOITINH))
+                            {
+                                <span class="gender-badge @genderBadge">@c.GIOITINH</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="contact-info">
+                                <i class="fas fa-phone"></i>
+                                @c.SDT
+                            </div>
+                        </td>
+                        <td>
+                            <div class="contact-info">
+                                <i class="fas fa-envelope"></i>
+                                @c.EMAIL
+                            </div>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("CustomerDetail","Staff", new {id=c.MAKH})" 
+                               class="btn btn-view btn-sm">
+                                <i class="fas fa-eye"></i> Xem
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="no-customers">
+            <i class="fas fa-users fa-3x mb-3" style="color: #cbd5e0;"></i>
+            <p>Không tìm thấy khách hàng nào.</p>
+        </div>
+    }
+</div>

@@ -12,7 +12,7 @@ namespace LTW_QLBH_HUNMYI.Controllers
     //[CustomAuthorize(AllowedRoles = new[] { "Khách" })]
     public class CustomerController : Controller
     {
-        private QLBH_HUNMYI_LTW1Entities db = new QLBH_HUNMYI_LTW1Entities();
+        private QLBH1Entities db = new QLBH1Entities();
 
         #region TRANG CHỦ
 
@@ -68,7 +68,9 @@ namespace LTW_QLBH_HUNMYI.Controllers
             {
                 var products = db.SANPHAM
                     .Include(s => s.DANHMUC)
-                    .Where(s => s.TRANGTHAI == "Đang bán" && s.DANHMUC.TRANGTHAI == "Hiển thị")
+                    .Where(s => s.DANHMUC.TRANGTHAI == "Hiển thị")
+                    .AsEnumerable() // Switch to client-side evaluation to handle Trim()
+                    .Where(s => s.TRANGTHAI.Trim() == "Đang bán" || s.TRANGTHAI.Trim() == "Hết hàng")
                     .AsQueryable();
 
                 // Lọc theo danh mục
@@ -330,7 +332,7 @@ namespace LTW_QLBH_HUNMYI.Controllers
             string customerId = Session["CustomerID"]?.ToString();
             // Lấy giỏ hàng của khách
             var cart = db.GIOHANG.FirstOrDefault(g => g.MAKH == customerId);
-            cart.TongSL = cart.CHITIET_GIOHANG.Where(c => c.MAGH == cart.MAGH)
+            cart.TONGSL = cart.CHITIET_GIOHANG.Where(c => c.MAGH == cart.MAGH)
                     .Sum(c => c.SOLUONG);
             return PartialView(cart);
         }

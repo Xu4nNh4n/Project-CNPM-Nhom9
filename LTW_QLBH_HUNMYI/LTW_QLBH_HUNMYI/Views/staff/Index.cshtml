@@ -1,38 +1,251 @@
 ﻿@model IEnumerable<LTW_QLBH_HUNMYI.Models.HOADON_BAN>
 @{
+    ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_LayoutStaff.cshtml";
 }
 
 <div class="row">
-    <div class="col-md-4">
-        <div class="card text-center p-3">
-            <h5>Công việc hôm nay</h5>
-            <h1 class="text-primary">@ViewBag.TodayWork</h1>
+    <!-- Thống kê tổng quan với màu xanh -->
+    <div class="col-md-3">
+        <div class="stats-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <i class="fas fa-tasks fa-2x"></i>
+            <h3>@ViewBag.TodayWork</h3>
+            <p class="mb-0">Công việc hôm nay</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stats-card" style="background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);">
+            <i class="fas fa-shopping-cart fa-2x"></i>
+            <h3>@ViewBag.PendingOrders</h3>
+            <p class="mb-0">Đơn chờ xử lý</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stats-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+            <i class="fas fa-spinner fa-2x"></i>
+            <h3>@ViewBag.ProcessingOrders</h3>
+            <p class="mb-0">Đang xử lý</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stats-card" style="background: linear-gradient(135deg, #38f9d7 0%, #43e97b 100%);">
+            <i class="fas fa-check-circle fa-2x"></i>
+            <h3>@ViewBag.CompletedToday</h3>
+            <p class="mb-0">Hoàn thành hôm nay</p>
         </div>
     </div>
 </div>
 
-<h4 class="mt-4">Đơn hàng chờ xử lý</h4>
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Mã HĐ</th>
-            <th>Ngày lập</th>
-            <th>Khách hàng</th>
-            <th>Tổng tiền</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var o in Model)
-        {
-            <tr>
-                <td>@o.MAHD_BAN</td>
-                <td>@o.NGAYLAP</td>
-                <td>@o.KHACHHANG.HOTENKH</td>
-                <td>@String.Format("{0:N0}", o.TONGTIEN)đ</td>
-                <td><a href="@Url.Action("OrderDetail","Staff", new {id=o.MAHD_BAN})" class="btn btn-primary btn-sm">Xử lý</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="row">
+    <!-- Cảnh báo -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                    Cảnh báo
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning mb-2">
+                    <i class="fas fa-clock"></i>
+                    <strong>@ViewBag.PendingOrders</strong> đơn hàng chờ xử lý
+                    <a href="@Url.Action("Orders", "Staff", new { status = "Chờ xử lý" })"
+                       class="alert-link float-end">Xem ngay</a>
+                </div>
+                <div class="alert alert-info mb-0">
+                    <i class="fas fa-spinner"></i>
+                    <strong>@ViewBag.ProcessingOrders</strong> đơn đang xử lý
+                    <a href="@Url.Action("Orders", "Staff", new { status = "Đang xử lý" })"
+                       class="alert-link float-end">Kiểm tra</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Truy cập nhanh -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-bolt"></i>
+                    Truy cập nhanh
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-6">
+                        <a href="@Url.Action("Orders", "Staff")"
+                           class="btn btn-info w-100 text-white py-3">
+                            <i class="fas fa-list"></i> Tất cả đơn hàng
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="@Url.Action("Orders", "Staff", new { status = "Chờ xử lý" })"
+                           class="btn btn-warning w-100 text-white py-3">
+                            <i class="fas fa-clock"></i> Chờ xử lý
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="@Url.Action("Customers", "Staff")"
+                           class="btn btn-primary w-100 py-3">
+                            <i class="fas fa-users"></i> Khách hàng
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="@Url.Action("Products", "Staff")"
+                           class="btn btn-success w-100 py-3">
+                            <i class="fas fa-box"></i> Sản phẩm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Đơn hàng gần đây -->
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">
+            <i class="fas fa-history"></i>
+            Đơn hàng chờ xử lý
+        </h5>
+        <a href="@Url.Action("Orders", "Staff")" class="btn btn-sm btn-primary">
+            Xem tất cả
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Mã đơn</th>
+                        <th>Khách hàng</th>
+                        <th>Ngày lập</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var order in Model)
+                        {
+                            string badgeClass = "";
+                            switch (order.TRANGTHAI)
+                            {
+                                case "Chờ xử lý":
+                                    badgeClass = "bg-warning";
+                                    break;
+                                case "Đang xử lý":
+                                    badgeClass = "bg-info";
+                                    break;
+                                case "Hoàn thành":
+                                    badgeClass = "bg-success";
+                                    break;
+                                case "Đã hủy":
+                                    badgeClass = "bg-danger";
+                                    break;
+                            }
+
+                            <tr>
+                                <td><strong>@order.MAHD_BAN</strong></td>
+                                <td>@order.KHACHHANG.HOTENKH</td>
+                                <td>
+                                    @if (order.NGAYLAP.HasValue)
+                                    {
+                                        <span>@order.NGAYLAP.Value.ToString("dd/MM/yyyy")</span>
+                                        <br />
+                                        <small class="text-muted">@order.NGAYLAP.Value.ToString("HH:mm")</small>
+                                    }
+                                </td>
+                                <td><strong class="text-success">@String.Format("{0:N0}", order.TONGTIEN)đ</strong></td>
+                                <td>
+                                    <span class="badge @badgeClass">@order.TRANGTHAI</span>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("OrderDetail", "Staff", new { id = order.MAHD_BAN })"
+                                       class="btn btn-sm btn-primary">
+                                        <i class="fas fa-eye"></i> Xử lý
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">
+                                <i class="fas fa-inbox fa-3x mb-2 d-block"></i>
+                                <span>Không có đơn hàng chờ xử lý</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .stats-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .stats-card h3 {
+        font-size: 2.5rem;
+        margin: 10px 0;
+        font-weight: bold;
+    }
+
+    .stats-card p {
+        font-size: 0.95rem;
+        opacity: 0.95;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 0 20px rgba(0,0,0,0.08);
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .badge {
+        padding: 6px 12px;
+        font-weight: 500;
+    }
+
+    .alert {
+        border-radius: 8px;
+    }
+
+    /* Hiệu ứng cho các nút truy cập nhanh */
+    .card-body .btn {
+        transition: all 0.3s ease;
+        font-weight: 500;
+        border: none;
+    }
+
+    .card-body .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .card-body .btn:active {
+        transform: translateY(-1px);
+    }
+</style>

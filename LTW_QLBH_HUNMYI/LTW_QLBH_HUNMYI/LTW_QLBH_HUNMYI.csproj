@@ -334,6 +334,8 @@
     <Content Include="Views\Owner\StopSelling.cshtml" />
     <Content Include="Views\Owner\DeleteProduct.cshtml" />
     <Content Include="Views\Owner\DeleteSupplier.cshtml" />
+    <Content Include="Views\Owner\StopSupplier.cshtml" />
+    <Content Include="Views\Owner\SupplierDetail.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -4,33 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="438d2b7aca484f319fd23c8540557716" Name="Diagram1">
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.ACCOUNT" Width="1.5" PointX="6" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.CTHD_BAN" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.CHITIET_GIOHANG" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.CHITIETPHIEUNHAP" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.DANHMUC" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.GIOHANG" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.HOADON_BAN" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.KHACHHANG" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.NHANVIEN" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.PHIEUNHAP" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.SANPHAM" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBH_HUNMYI_LTW1Model.XUONGIN" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK__ACCOUNT__MAKH__5FB337D6" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK__ACCOUNT__MANV__60A75C0F" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK_CTHD_HOADON" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK_CTHD_SANPHAM" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK__CHITIET_GI__MAGH__778AC167" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK__CHITIET_GI__MASP__787EE5A0" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK__CHITIETPHI__MASP__1AD3FDA4" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK_CTPN_PHIEUNHAP" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK_SP_DM" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK__GIOHANG__MAKH__72C60C4A" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK__HOADON_BAN__MAKH__01142BA1" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK_HOADON_NHANVIEN" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK__PHIEUNHAP__MANV__151B244E" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBH_HUNMYI_LTW1Model.FK_PHIEUNHAP_NHACUNGCAP" ManuallyRouted="false" />
+      <Diagram DiagramId="4097ef82331d43609853230a5cebed33" Name="Diagram1">
+        <EntityTypeShape EntityType="QLBH1Model.ACCOUNT" Width="1.5" PointX="6" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.CTHD_BAN" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.CHITIET_GIOHANG" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.CHITIETPHIEUNHAP" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.DANHMUC" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.GIOHANG" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.HOADON_BAN" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.KHACHHANG" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.NHANVIEN" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.PHIEUNHAP" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.SANPHAM" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH1Model.XUONGIN" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="QLBH1Model.FK__ACCOUNT__MAKH__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK__ACCOUNT__MANV__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK_CTHD_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK_CTHD_SANPHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK__CHITIET_GI__MAGH__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK__CHITIET_GI__MASP__797309D9" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK__CHITIETPHI__MASP__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK_CTPN_PHIEUNHAP" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK_SP_DM" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK__GIOHANG__MAKH__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK__HOADON_BAN__MAKH__02084FDA" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK_HOADON_NHANVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK__PHIEUNHAP__MANV__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH1Model.FK_PHIEUNHAP_NHACUNGCAP" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
