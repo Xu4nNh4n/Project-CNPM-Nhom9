@@ -166,47 +166,52 @@ namespace LTW_QLBH_HUNMYI.Controllers
                 return View();
             }
 
-            string newMaKH = null;
-            
             try
             {
                 // Tạo mã KH mới
-                newMaKH = GenerateNewCode("KH", db.KHACHHANG.Select(k => k.MAKH).ToList());
-                string newAccountID = GenerateNewCode("ACC", db.ACCOUNT.Select(a => a.USERID).ToList());
+                string newMaKH = GenerateNewCode("KH", db.KHACHHANG.Select(k => k.MAKH).ToList());
+                string newAccountID = GenerateNewCode("ID", db.ACCOUNT.Select(a => a.USERID).ToList());
                 string newMaGH = GenerateNewCode("GH", db.GIOHANG.Select(g => g.MAGH).ToList());
 
-                // DISABLE TẤT CẢ TRIGGERS
-                db.Database.ExecuteSqlCommand("ALTER TABLE KHACHHANG DISABLE TRIGGER ALL");
-                db.Database.ExecuteSqlCommand("ALTER TABLE ACCOUNT DISABLE TRIGGER ALL");
-                db.Database.ExecuteSqlCommand("ALTER TABLE GIOHANG DISABLE TRIGGER ALL");
-
-                try
+                // 1. Tạo KHACHHANG
+                var khachHang = new KHACHHANG
                 {
-                    // 1. INSERT KHACHHANG TRƯỚC
-                    string sqlKH = @"INSERT INTO KHACHHANG (MAKH, HOTENKH, GIOITINH, SDT, EMAIL, DIACHI, NGAYDANGKY) 
-                                    VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6)";
-                    db.Database.ExecuteSqlCommand(sqlKH, 
-                        newMaKH, hoTen, gioiTinh, sdt, email, diaChi ?? "", DateTime.Now);
+                    MAKH = newMaKH,
+                    HOTENKH = hoTen,
+                    GIOITINH = gioiTinh,
+                    SDT = sdt,
+                    EMAIL = email,
+                    DIACHI = diaChi ?? "",
+                    NGAYDANGKY = DateTime.Now
+                };
+                db.KHACHHANG.Add(khachHang);
 
-                    // 2. INSERT ACCOUNT (KHACHHANG đã tồn tại)
-                    string sqlAccount = @"INSERT INTO ACCOUNT (USERID, USERNAME, PASSWORDHASH, VAITRO, MAKH, MANV, EMAIL, SDT, TRANGTHAI) 
-                                         VALUES (@p0, @p1, @p2, @p3, @p4, NULL, @p5, @p6, @p7)";
-                    db.Database.ExecuteSqlCommand(sqlAccount,
-                        newAccountID, username, GetMD5Hash(password), "Khách", newMaKH, email, sdt, "Hoạt động");
-
-                    // 3. INSERT GIOHANG (KHACHHANG đã tồn tại)
-                    string sqlGH = @"INSERT INTO GIOHANG (MAGH, MAKH, NGAYTAO) 
-                                    VALUES (@p0, @p1, @p2)";
-                    db.Database.ExecuteSqlCommand(sqlGH,
-                        newMaGH, newMaKH, DateTime.Now);
-                }
-                finally
+                // 2. Tạo ACCOUNT
+                var account = new ACCOUNT
                 {
-                    // ENABLE LẠI TRIGGERS
-                    db.Database.ExecuteSqlCommand("ALTER TABLE KHACHHANG ENABLE TRIGGER ALL");
-                    db.Database.ExecuteSqlCommand("ALTER TABLE ACCOUNT ENABLE TRIGGER ALL");
-                    db.Database.ExecuteSqlCommand("ALTER TABLE GIOHANG ENABLE TRIGGER ALL");
-                }
+                    USERID = newAccountID,
+                    USERNAME = username,
+                    PASSWORDHASH = GetMD5Hash(password),
+                    VAITRO = "Khách",
+                    MAKH = newMaKH,
+                    MANV = null,
+                    EMAIL = email,
+                    SDT = sdt,
+                    TRANGTHAI = "Hoạt động"
+                };
+                db.ACCOUNT.Add(account);
+
+                // 3. Tạo GIOHANG
+                var gioHang = new GIOHANG
+                {
+                    MAGH = newMaGH,
+                    MAKH = newMaKH,
+                    NGAYTAO = DateTime.Now
+                };
+                db.GIOHANG.Add(gioHang);
+
+                // Lưu tất cả thay đổi
+                db.SaveChanges();
 
                 TempData["Success"] = "Đăng ký thành công! Vui lòng đăng nhập.";
                 return RedirectToAction("Login");

@@ -678,38 +678,34 @@ namespace LTW_QLBH_HUNMYI.Controllers
 
                 try
                 {
-                    // DISABLE TRIGGERS
-                    db.Database.ExecuteSqlCommand("ALTER TABLE NHANVIEN DISABLE TRIGGER ALL");
-                    db.Database.ExecuteSqlCommand("ALTER TABLE ACCOUNT DISABLE TRIGGER ALL");
+                    // 1. Tạo NHÂN VIÊN
+                    nv.NGAYSINH = nv.NGAYSINH?.Date;
+                    nv.NGAYVAOLAM = DateTime.Now;
+                    nv.TRANGTHAI = "Đang làm";
+                    nv.DIACHI = nv.DIACHI ?? "";
+                    
+                    db.NHANVIEN.Add(nv);
 
-                    try
+                    // 2. Tạo ACCOUNT
+                    string newAccountID = GenerateNewCode("ID", db.ACCOUNT.Select(a => a.USERID).ToList());
+                    string vaiTro = nv.CHUCVU == "Chủ shop" ? "Chủ shop" : "Nhân viên";
+                    
+                    var account = new ACCOUNT
                     {
-                        // 1. INSERT NHÂN VIÊN
-                        nv.NGAYSINH = nv.NGAYSINH?.Date;
-                        nv.NGAYVAOLAM = DateTime.Now;
-                        nv.TRANGTHAI = "Đang làm";
-                        
-                        string sqlNV = @"INSERT INTO NHANVIEN (MANV, HOTENNV, GIOITINH, NGAYSINH, NGAYVAOLAM, SDT, EMAIL, DIACHI, CHUCVU, LUONGCOBAN, TRANGTHAI) 
-                                        VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)";
-                        db.Database.ExecuteSqlCommand(sqlNV,
-                            nv.MANV, nv.HOTENNV, nv.GIOITINH, nv.NGAYSINH, nv.NGAYVAOLAM, 
-                            nv.SDT, nv.EMAIL, nv.DIACHI ?? "", nv.CHUCVU, nv.LUONGCOBAN, nv.TRANGTHAI);
+                        USERID = newAccountID,
+                        USERNAME = username,
+                        PASSWORDHASH = GetMD5Hash(password),
+                        VAITRO = vaiTro,
+                        MANV = nv.MANV,
+                        MAKH = null,
+                        EMAIL = nv.EMAIL,
+                        SDT = nv.SDT,
+                        TRANGTHAI = "Hoạt động"
+                    };
+                    db.ACCOUNT.Add(account);
 
-                        // 2. INSERT ACCOUNT
-                        string newAccountID = GenerateNewCode("ACC", db.ACCOUNT.Select(a => a.USERID).ToList());
-                        string vaiTro = nv.CHUCVU == "Chủ shop" ? "Chủ shop" : "Nhân viên";
-                        
-                        string sqlAccount = @"INSERT INTO ACCOUNT (USERID, USERNAME, PASSWORDHASH, VAITRO, MANV, MAKH, EMAIL, SDT, TRANGTHAI) 
-                                             VALUES (@p0, @p1, @p2, @p3, @p4, NULL, @p5, @p6, @p7)";
-                        db.Database.ExecuteSqlCommand(sqlAccount,
-                            newAccountID, username, GetMD5Hash(password), vaiTro, nv.MANV, nv.EMAIL, nv.SDT, "Hoạt động");
-                    }
-                    finally
-                    {
-                        // ENABLE LẠI TRIGGERS
-                        db.Database.ExecuteSqlCommand("ALTER TABLE NHANVIEN ENABLE TRIGGER ALL");
-                        db.Database.ExecuteSqlCommand("ALTER TABLE ACCOUNT ENABLE TRIGGER ALL");
-                    }
+                    // Lưu tất cả thay đổi
+                    db.SaveChanges();
 
                     TempData["Success"] = "Thêm nhân viên và tài khoản thành công!";
                     return RedirectToAction("Staff");
@@ -758,64 +754,43 @@ namespace LTW_QLBH_HUNMYI.Controllers
                     return RedirectToAction("EditStaff", new { id = nv.MANV });
                 }
 
-                // DISABLE chỉ ACCOUNT trigger (không disable NHANVIEN để trigger auto-sync chạy)
-                db.Database.ExecuteSqlCommand("ALTER TABLE ACCOUNT DISABLE TRIGGER ALL");
+                // ✅ UPDATE NHÂN VIÊN
+                existingNV.HOTENNV = nv.HOTENNV;
+                existingNV.GIOITINH = nv.GIOITINH;
+                existingNV.NGAYSINH = nv.NGAYSINH?.Date;
+                existingNV.SDT = nv.SDT;
+                existingNV.EMAIL = nv.EMAIL;
+                existingNV.DIACHI = nv.DIACHI ?? "";
+                existingNV.CHUCVU = nv.CHUCVU;
+                existingNV.LUONGCOBAN = nv.LUONGCOBAN;
+                existingNV.TRANGTHAI = nv.TRANGTHAI;
 
-
-                try
+                // Reset mật khẩu nếu được yêu cầu
+                if (resetPassword)
                 {
-                    // ✅ UPDATE NHÂN VIÊN - Trigger sẽ tự động sync ACCOUNT
-                    string sqlUpdateNV = @"UPDATE NHANVIEN 
-                                          SET HOTENNV = @p0, GIOITINH = @p1, NGAYSINH = @p2, 
-                                              SDT = @p3, EMAIL = @p4, DIACHI = @p5, 
-                                              CHUCVU = @p6, LUONGCOBAN = @p7, TRANGTHAI = @p8
-                                          WHERE MANV = @p9";
-                    
-                    db.Database.ExecuteSqlCommand(sqlUpdateNV,
-                        nv.HOTENNV, nv.GIOITINH, nv.NGAYSINH?.Date,
-                        nv.SDT, nv.EMAIL, nv.DIACHI ?? "",
-                        nv.CHUCVU, nv.LUONGCOBAN, nv.TRANGTHAI,
-                        nv.MANV);
-
-                    // Reset mật khẩu nếu được yêu cầu
-                    if (resetPassword)
+                    var account = db.ACCOUNT.FirstOrDefault(a => a.MANV == nv.MANV);
+                    if (account != null)
                     {
-                        var account = db.ACCOUNT.FirstOrDefault(a => a.MANV == nv.MANV);
-                        if (account != null)
-                        {
-                            string newPasswordHash = GetMD5Hash("123456");
-                            string sqlResetPassword = @"UPDATE ACCOUNT SET PASSWORDHASH = @p0 WHERE MANV = @p1";
-                            db.Database.ExecuteSqlCommand(sqlResetPassword, newPasswordHash, nv.MANV);
-                            
-                            TempData["Success"] = "Cập nhật nhân viên và reset mật khẩu về 123456 thành công!";
-                        }
-                        else
-                        {
-                            TempData["Success"] = "Cập nhật nhân viên thành công!";
-                        }
+                        account.PASSWORDHASH = GetMD5Hash("123456");
+                        TempData["Success"] = "Cập nhật nhân viên và reset mật khẩu về 123456 thành công!";
                     }
                     else
                     {
                         TempData["Success"] = "Cập nhật nhân viên thành công!";
                     }
                 }
-                finally
+                else
                 {
-                    // ENABLE LẠI ACCOUNT TRIGGER
-                    db.Database.ExecuteSqlCommand("ALTER TABLE ACCOUNT ENABLE TRIGGER ALL");
+                    TempData["Success"] = "Cập nhật nhân viên thành công!";
                 }
+
+                // Lưu tất cả thay đổi
+                db.SaveChanges();
 
                 return RedirectToAction("Staff");
             }
             catch (Exception ex)
             {
-                // ENSURE TRIGGERS ARE RE-ENABLED EVEN ON ERROR
-                try
-                {
-                    db.Database.ExecuteSqlCommand("ALTER TABLE ACCOUNT ENABLE TRIGGER ALL");
-                }
-                catch { }
-
                 TempData["Error"] = "Có lỗi xảy ra: " + ex.Message;
                 return RedirectToAction("EditStaff", new { id = nv.MANV });
             }

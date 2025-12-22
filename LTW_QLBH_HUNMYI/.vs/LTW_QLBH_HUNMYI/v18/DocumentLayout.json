@@ -3,7 +3,11 @@
   "WorkspaceRootPath": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\editstaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\views\\owner\\editstaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\editstaff.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -11,19 +15,19 @@
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\deletesupplier.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\customerdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\views\\owner\\customerdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\customerdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\customers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\views\\owner\\customers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\customers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\staffdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\views\\owner\\staffdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\staffdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\categories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\views\\owner\\categories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\categories.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -35,10 +39,6 @@
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -47,15 +47,15 @@
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|d:\\code\\code\\c#\\asp.net\\do_an_ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\ltw_qlbh_hunmyi\\views\\owner\\supplierdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\ltw_qlbh_hunmyi\\views\\owner\\supplierdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2791DC87-397F-4F8E-B439-2C7AF2B47223}|LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI.csproj|solutionrelative:ltw_qlbh_hunmyi\\views\\owner\\supplierdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -86,7 +86,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 17,
+          "SelectedChildIndex": 24,
           "Children": [
             {
               "$type": "Bookmark",
@@ -158,20 +158,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "EditStaff.cshtml",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\EditStaff.cshtml",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\EditStaff.cshtml",
               "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\EditStaff.cshtml",
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\EditStaff.cshtml",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-21T22:21:40.768Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T22:21:40.768Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CustomerDetail.cshtml",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\CustomerDetail.cshtml",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\CustomerDetail.cshtml",
@@ -179,12 +178,11 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\CustomerDetail.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-21T22:21:09.274Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T22:21:09.274Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Customers.cshtml",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Customers.cshtml",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Customers.cshtml",
@@ -192,12 +190,11 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Customers.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-21T22:21:08.738Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T22:21:08.738Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "StaffDetail.cshtml",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
@@ -205,12 +202,11 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\StaffDetail.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-21T22:20:31.294Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T22:20:31.294Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Categories.cshtml",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
@@ -218,8 +214,7 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Categories.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-21T22:19:33.327Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T22:19:33.327Z"
             },
             {
               "$type": "Document",
@@ -231,12 +226,11 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\SupplierDetail.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-21T20:34:53.407Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T20:34:53.407Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "CustomerController.cs",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
@@ -244,25 +238,24 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\CustomerController.cs",
               "ViewState": "AgIAAD4BAAAAAAAAAAAMwE4BAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T12:16:22.385Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-18T12:16:22.385Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
               "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAzwOYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-18T12:15:56.291Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DeleteSupplier.cshtml",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
@@ -270,8 +263,7 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteSupplier.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-18T07:40:28.114Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-18T07:40:28.114Z"
             },
             {
               "$type": "Document",
@@ -282,8 +274,7 @@
               "ToolTip": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Models\\Model1.edmx [Diagram1]",
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Models\\Model1.edmx [Diagram1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2025-12-21T21:16:29.281Z",
-              "EditorCaption": " [Diagram1]"
+              "WhenOpened": "2025-12-21T21:16:29.281Z"
             },
             {
               "$type": "Document",
@@ -295,8 +286,7 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\OwnerController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T06:42:59.869Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-18T06:42:59.869Z"
             },
             {
               "$type": "Document",
@@ -308,8 +298,7 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Controllers\\StaffController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-18T12:16:13.598Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-18T12:16:13.598Z"
             },
             {
               "$type": "Document",
@@ -326,7 +315,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Products.cshtml",
               "DocumentMoniker": "D:\\Code\\code\\C#\\ASP.NET\\DO_AN_LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
               "RelativeDocumentMoniker": "LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
@@ -334,8 +323,7 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Products.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-18T06:51:21.245Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-18T06:51:21.245Z"
             },
             {
               "$type": "Document",
@@ -347,8 +335,7 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Models\\GIOHANG.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-21T21:16:52.651Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T21:16:52.651Z"
             },
             {
               "$type": "Document",
@@ -360,8 +347,7 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\StopSupplier.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-21T20:21:07.093Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T20:21:07.093Z"
             },
             {
               "$type": "Document",
@@ -373,8 +359,7 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\Suppliers.cshtml",
               "ViewState": "AgIAAEIAAAAAAAAAAADwv2EAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-18T07:33:11.422Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-18T07:33:11.422Z"
             },
             {
               "$type": "Document",
@@ -386,8 +371,7 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\DeleteProduct.cshtml",
               "ViewState": "AgIAAGAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-18T07:07:58.272Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-18T07:07:58.272Z"
             },
             {
               "$type": "Document",
@@ -399,8 +383,7 @@
               "RelativeToolTip": "LTW_QLBH_HUNMYI\\Views\\owner\\StopSelling.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-18T06:50:35.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-18T06:50:35.623Z"
             }
           ]
         },
