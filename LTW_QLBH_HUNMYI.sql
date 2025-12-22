@@ -314,59 +314,59 @@ END
 -- ==========================================================================================
 
 -- 1. Thêm khách hàng mẫu
-INSERT INTO KHACHHANG (HOTENKH, GIOITINH, SDT, EMAIL, DIACHI, NGAYDANGKY) VALUES
-(N'Trần Tuấn Huy', N'Nam', '0987654321', 'customer1@gmail.com', N'Quận 1, TP.HCM', '2024-01-01'),
-(N'Nguyễn Thị D', N'Nữ', '0123456789', 'customer2@gmail.com', N'Quận 12, TP.HCM', '2025-08-01')
+INSERT INTO KHACHHANG (MAKH,HOTENKH, GIOITINH, SDT, EMAIL, DIACHI, NGAYDANGKY) VALUES
+('KH1',N'Trần Tuấn Huy', N'Nam', '0987654321', 'customer1@gmail.com', N'Quận 1, TP.HCM', '2024-01-01'),
+('KH2',N'Nguyễn Thị D', N'Nữ', '0123456789', 'customer2@gmail.com', N'Quận 12, TP.HCM', '2025-08-01')
 GO
 
 -- 2. Thêm nhân viên
-INSERT INTO NHANVIEN (HOTENNV, GIOITINH, NGAYSINH, NGAYVAOLAM, SDT, EMAIL, DIACHI, CHUCVU, LUONGCOBAN, TRANGTHAI) VALUES
-(N'Nguyễn Văn A', N'Nam', '1990-01-01', '2020-01-01', '0901234567', 'owner@hunmyi.com', N'TP.HCM', N'Chủ Shop', 20000000, N'Đang làm'),
-(N'Trần Thị B', N'Nữ', '1995-05-05', '2021-06-01', '0912345678', 'staff1@hunmyi.com', N'TP.HCM', N'Nhân Viên', 10000000, N'Đang làm'),
-(N'Lê Văn C', N'Nam', '1998-03-10', '2022-03-01', '0923456789', 'staff2@hunmyi.com', N'TP.HCM', N'Nhân Viên', 10000000, N'Đang làm')
+INSERT INTO NHANVIEN (MANV, HOTENNV, GIOITINH, NGAYSINH, NGAYVAOLAM, SDT, EMAIL, DIACHI, CHUCVU, LUONGCOBAN, TRANGTHAI) VALUES
+('NV01', N'Nguyễn Văn A', N'Nam', '1990-01-01', '2020-01-01', '0901234567', 'owner@hunmyi.com', N'TP.HCM', N'Chủ Shop', 20000000, N'Đang làm'),
+('NV02', N'Trần Thị B', N'Nữ', '1995-05-05', '2021-06-01', '0912345678', 'staff1@hunmyi.com', N'TP.HCM', N'Nhân Viên', 10000000, N'Đang làm'),
+('NV03', N'Lê Văn C', N'Nam', '1998-03-10', '2022-03-01', '0923456789', 'staff2@hunmyi.com', N'TP.HCM', N'Nhân Viên', 10000000, N'Đang làm')
 GO
 
 -- 3. Thêm tài khoản (mật khẩu: 123456)
-INSERT INTO ACCOUNT (USERNAME,PASSWORDHASH,VAITRO,MAKH,MANV,EMAIL,SDT,TRANGTHAI) VALUES
-('owner', N'e10adc3949ba59abbe56e057f20f883e', N'Chủ shop', NULL, 'NV1', 'owner@hunmyi.com', '0901234567', N'Hoạt động'),
-('staff1', N'e10adc3949ba59abbe56e057f20f883e', N'Nhân viên', NULL, 'NV2', 'staff1@hunmyi.com', '0912345678', N'Hoạt động'),
-('staff2', N'e10adc3949ba59abbe56e057f20f883e', N'Nhân viên', NULL, 'NV3', 'staff2@hunmyi.com', '0923456789', N'Hoạt động'),
-('customer1', N'e10adc3949ba59abbe56e057f20f883e', N'Khách', 'KH1', NULL, 'customer1@gmail.com', '0987654321', N'Hoạt động'),
-('customer2', N'e10adc3949ba59abbe56e057f20f883e', N'Khách', 'KH2', NULL, 'customer2@gmail.com', '0987654321', N'Hoạt động')
+INSERT INTO ACCOUNT (USERID ,USERNAME,PASSWORDHASH,VAITRO,MAKH,MANV,EMAIL,SDT,TRANGTHAI) VALUES
+('ID1', 'owner', N'e10adc3949ba59abbe56e057f20f883e', N'Chủ shop', NULL, 'NV1', 'owner@hunmyi.com', '0901234567', N'Hoạt động'),
+('ID2', 'staff1', N'e10adc3949ba59abbe56e057f20f883e', N'Nhân viên', NULL, 'NV2', 'staff1@hunmyi.com', '0912345678', N'Hoạt động'),
+('ID3', 'staff2', N'e10adc3949ba59abbe56e057f20f883e', N'Nhân viên', NULL, 'NV3', 'staff2@hunmyi.com', '0923456789', N'Hoạt động'),
+('ID4', 'customer1', N'e10adc3949ba59abbe56e057f20f883e', N'Khách', 'KH1', NULL, 'customer1@gmail.com', '0987654321', N'Hoạt động'),
+('ID5', 'customer2', N'e10adc3949ba59abbe56e057f20f883e', N'Khách', 'KH2', NULL, 'customer2@gmail.com', '0987654321', N'Hoạt động')
 GO
 
 
 -- 4. Thêm danh mục
-INSERT INTO DANHMUC (TENDM, MOTA_DM, TRANGTHAI) VALUES
-(N'Pin Gỗ ', N'Pin cài áo, cặp ', N'Hiển thị'),
-(N'Standee Gacha', N'Standee 3cm từ nhiều fandom ', N'Hiển thị'),
-(N'Badge', N'Các loại pin cài áo và cặp ', N'Hiển thị'),
-(N'Sticker', N'Sticker đa dạng về mẫu mã ', N'Hiển thị'),
-(N'Phonecharm', N'Móc treo điện thoại và chìa khóa ', N'Hiển thị'),
-(N'Card Gacha', N'Hình các nhân vật ', N'Hiển thị')
+INSERT INTO DANHMUC (MADM ,TENDM, MOTA_DM, TRANGTHAI) VALUES
+('DM1',N'Pin Gỗ ', N'Pin cài áo, cặp ', N'Hiển thị'),
+('DM2',N'Standee Gacha', N'Standee 3cm từ nhiều fandom ', N'Hiển thị'),
+('DM3',N'Badge', N'Các loại pin cài áo và cặp ', N'Hiển thị'),
+('DM4',N'Sticker', N'Sticker đa dạng về mẫu mã ', N'Hiển thị'),
+('DM5',N'Phonecharm', N'Móc treo điện thoại và chìa khóa ', N'Hiển thị'),
+('DM6',N'Card Gacha', N'Hình các nhân vật ', N'Hiển thị')
 
 
 -- 5. Thêm sản phẩm
-INSERT INTO SANPHAM (TENSP,HINHANH,MOTA,SOLUONGTON,GIA,TRANGTHAI,MADM,NGAYTAO) VALUES
-(N'Pin Gỗ HSR', 'pingo1.jpg', N'Pin gỗ Honkai: Star Rail, nhiều mẫu', 49 , 40000, N'Đang bán', 'DM1', '2024-01-01'),
-(N'Pin Gỗ GI', 'pingo2.jpg', N'Pin gỗ Gensin Impact, nhiều mẫu', 59, 40000, N'Đang bán', 'DM1', '2024-01-01'),
-(N'Pin Gỗ ZZZ', 'pingo3.jpg', N'Pin gỗ Zenless Zone Zero, nhiều mẫu', 68, 40000, N'Đang bán', 'DM1', '2024-01-01'),
+INSERT INTO SANPHAM (MASP, TENSP, HINHANH, MOTA, SOLUONGTON, GIA, TRANGTHAI, MADM, NGAYTAO) VALUES
+('SP1', N'Pin Gỗ HSR', 'pingo1.jpg', N'Pin gỗ Honkai: Star Rail, nhiều mẫu', 49, 40000, N'Đang bán', 'DM1', '2024-01-01'),
+('SP2', N'Pin Gỗ GI', 'pingo2.jpg', N'Pin gỗ Gensin Impact, nhiều mẫu', 59, 40000, N'Đang bán', 'DM1', '2024-01-01'),
+('SP3', N'Pin Gỗ ZZZ', 'pingo3.jpg', N'Pin gỗ Zenless Zone Zero, nhiều mẫu', 68, 40000, N'Đang bán', 'DM1', '2024-01-01'),
 
-(N'Honkai: Star Rail', 'standee1.jpg', N'Mô hình dựng đứng các nhân vật Honkai: Star Rail', 44, 30000, N'Đang bán', 'DM2', '2024-01-01'),
-(N'Gensin Impact ', 'standee2.jpg', N'Mô hình dựng đứng các nhân vật Gensin Impact', 38, 30000, N'Đang bán', 'DM2', '2024-01-01'),
-(N'Zenless Zone Zero', 'standee3.jpg', N'Mô hình dựng đứng các nhân vật Zenless Zone Zero', 78, 30000, N'Đang bán', 'DM2', '2024-01-01'),
+('SP4', N'Honkai: Star Rail', 'standee1.jpg', N'Mô hình dựng đứng các nhân vật Honkai: Star Rail', 44, 30000, N'Đang bán', 'DM2', '2024-01-01'),
+('SP5', N'Gensin Impact ', 'standee2.jpg', N'Mô hình dựng đứng các nhân vật Gensin Impact', 38, 30000, N'Đang bán', 'DM2', '2024-01-01'),
+('SP6', N'Zenless Zone Zero', 'standee3.jpg', N'Mô hình dựng đứng các nhân vật Zenless Zone Zero', 78, 30000, N'Đang bán', 'DM2', '2024-01-01'),
 
-(N'Gensin Impact', 'badge1.jpg', N'Huy hiệu cài áo hình các nhân vật trong Gensin Impact', 46, 20000, N'Đang bán', 'DM3', '2024-01-01'),
-(N'Honkai: Star Rail', 'badge2.jpg', N'Huy hiệu cài áo hình các nhân vật trong Honkai: Star Rail', 54, 20000, N'Đang bán', 'DM3', '2024-01-01'),
+('SP7', N'Gensin Impact', 'badge1.jpg', N'Huy hiệu cài áo hình các nhân vật trong Gensin Impact', 46, 20000, N'Đang bán', 'DM3', '2024-01-01'),
+('SP8', N'Honkai: Star Rail', 'badge2.jpg', N'Huy hiệu cài áo hình các nhân vật trong Honkai: Star Rail', 54, 20000, N'Đang bán', 'DM3', '2024-01-01'),
 
-(N'Gensin Impact', 'sticker1.jpg', N'Sticker hình các nhân vật trong Gensin Impact', 76, 15000, N'Đang bán', 'DM4', '2024-01-01'),
-(N'Mochi', 'sticker2.jpg', N'Sticker hình các nhân vật trong Mochi', 42, 15000, N'Đang bán', 'DM4', '2024-01-01'),
+('SP9', N'Gensin Impact', 'sticker1.jpg', N'Sticker hình các nhân vật trong Gensin Impact', 76, 15000, N'Đang bán', 'DM4', '2024-01-01'),
+('SP10', N'Mochi', 'sticker2.jpg', N'Sticker hình các nhân vật trong Mochi', 42, 15000, N'Đang bán', 'DM4', '2024-01-01'),
 
-(N'Kimetsu no Yaiba', 'phonecharm1.jpg', N'Móc điện thoại hình các nhân vật trong Kimetsu no Yaiba', 45, 30000, N'Đang bán', 'DM5', '2024-01-01'),
-(N'Singger Board', 'phonecharm2.jpg', N'Móc điện thoại hình các nhân vật trong Singger Board', 37, 30000, N'Đang bán', 'DM5', '2024-01-01'),
+('SP11', N'Kimetsu no Yaiba', 'phonecharm1.jpg', N'Móc điện thoại hình các nhân vật trong Kimetsu no Yaiba', 45, 30000, N'Đang bán', 'DM5', '2024-01-01'),
+('SP12', N'Singger Board', 'phonecharm2.jpg', N'Móc điện thoại hình các nhân vật trong Singger Board', 37, 30000, N'Đang bán', 'DM5', '2024-01-01'),
 
-(N'Bling', 'card1.jpg', N'Card bo góc hình các nhân vật trong Bling', 57, 30000, N'Đang bán', 'DM6', '2024-01-01'),
-(N'Spot Light', 'card2.jpg', N'Card bo góc hình các nhân vật trong Spot Light', 59, 30000, N'Đang bán', 'DM6', '2024-01-01')
+('SP13', N'Bling', 'card1.jpg', N'Card bo góc hình các nhân vật trong Bling', 57, 30000, N'Đang bán', 'DM6', '2024-01-01'),
+('SP14', N'Spot Light', 'card2.jpg', N'Card bo góc hình các nhân vật trong Spot Light', 59, 30000, N'Đang bán', 'DM6', '2024-01-01');
 GO
 
 

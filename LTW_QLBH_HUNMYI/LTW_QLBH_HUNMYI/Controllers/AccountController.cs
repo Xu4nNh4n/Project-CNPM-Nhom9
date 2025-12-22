@@ -98,7 +98,6 @@ namespace LTW_QLBH_HUNMYI.Controllers
         // POST: Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public ActionResult Register(string username, string password, string confirmPassword,
                              string hoTen, string gioiTinh, string sdt, string email, string diaChi)
         {
@@ -140,27 +139,13 @@ namespace LTW_QLBH_HUNMYI.Controllers
                 return View();
             }
             
-            // Kiểm tra email trong cả ACCOUNT và KHACHHANG
             if (db.ACCOUNT.Any(a => a.EMAIL == email))
             {
                 ViewBag.Error = "Email đã được sử dụng!";
                 return View();
             }
             
-            if (db.KHACHHANG.Any(k => k.EMAIL == email))
-            {
-                ViewBag.Error = "Email đã được sử dụng!";
-                return View();
-            }
-            
-            // Kiểm tra SDT trong cả ACCOUNT và KHACHHANG
             if (db.ACCOUNT.Any(a => a.SDT == sdt))
-            {
-                ViewBag.Error = "Số điện thoại đã được sử dụng!";
-                return View();
-            }
-            
-            if (db.KHACHHANG.Any(k => k.SDT == sdt))
             {
                 ViewBag.Error = "Số điện thoại đã được sử dụng!";
                 return View();
